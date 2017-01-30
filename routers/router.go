@@ -1,10 +1,11 @@
 package routers
 
 import (
-	"go-samba4/controllers"
 	"github.com/astaxie/beego"
+	"go-samba4/controllers"
 )
 
 func init() {
-    beego.Router("/", &controllers.MainController{})
+	beego.Router("/", &controllers.MainController{})
+	beego.Router("/login", &controllers.LoginController{})
 }
