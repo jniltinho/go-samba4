@@ -94,9 +94,15 @@ chown -R wide:wide /opt/wide
 cp /opt/wide/scripts/wide.service /etc/systemd/system/wide.service
 chmod +x /opt/wide/scripts/start-wide.sh
 
+
 systemctl daemon-reload
 systemctl start wide.service
 systemctl enable wide.service
+
+su - wide
+go get github.com/astaxie/beego
+go get github.com/beego/bee
+exit
 
 ```
 
