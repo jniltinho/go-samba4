@@ -40,13 +40,16 @@ WantedBy=multi-user.target' > /etc/systemd/system/samba4.service
 echo 'export PATH=$PATH:/opt/samba4/bin:/opt/samba4/sbin' >> /etc/profile
 source /etc/profile
 
+
+### Create Domain Samba4 like AD
+# samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL --realm=LINUXPRO.NET --domain=LINUXPRO --adminpass=Linuxpro123456
+
+#samba-tool domain provision --server-role=dc --use-rfc2307 --function-level=2008_R2 --use-xattrs=yes --dns-backend=SAMBA_INTERNAL --realm=LINUXPRO.NET --domain=LINUXPRO --adminpass=Linuxpro123456
+
 ### Add start script on boot
 # systemctl daemon-reload
 # systemctl enable samba4.service
 # systemctl start samba4.service
-
-### Create User
-# samba-tool user create nilton --random-password --use-username-as-cn --surname="OS" --given-name="Nilton" --mail-address=nilton@linuxpro.com.br --job-title="Goes there and back again"
 
 ```
 
@@ -69,9 +72,13 @@ mkdir -p $HOME/GO
 ```
 
 ## Clonando o go-samba4 do GitHub
+
+```bash
+
 cd /opt/
 git clone https://github.com/jniltinho/go-samba4.git
 
+```
 
 ## Instalando a WEB IDE PARA DESENV Golang
 
