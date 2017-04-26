@@ -3,7 +3,7 @@ Criando o Servidor com Debian 8.7 64Bits
 
 
 
-## Instalando, Compilando e Configurando o Samba4 4.6.0
+## Instalando, Compilando e Configurando o Samba4 4.6.3
 
 ```bash
 apt-get install -y libreadline-dev git build-essential libattr1-dev libblkid-dev 
@@ -12,9 +12,9 @@ apt-get install -y dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnut
 
 
 cd /usr/src
-wget https://download.samba.org/pub/samba/stable/samba-4.6.0.tar.gz
-tar -xzvf samba-4.6.0.tar.gz
-cd samba-4.6.0
+wget https://download.samba.org/pub/samba/stable/samba-4.6.3.tar.gz
+tar -xzvf samba-4.6.3.tar.gz
+cd samba-4.6.3
 ./configure --with-ads --with-shared-modules=idmap_ad --enable-debug --enable-selftest --with-systemd --prefix=/opt/samba4
 make
 make install
@@ -58,8 +58,8 @@ source /etc/profile
 ```bash
 
 cd /usr/local/
-wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
-tar -xzf go1.8.linux-amd64.tar.gz && rm -f go1.8.linux-amd64.tar.gz
+wget https://storage.googleapis.com/golang/go1.8.1.linux-amd64.tar.gz
+tar -xzf go1.8.1.linux-amd64.tar.gz && rm -f go1.8.1.linux-amd64.tar.gz
 
 echo 'export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/GO
