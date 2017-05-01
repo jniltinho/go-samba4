@@ -1,2 +1,8 @@
 Documentação em Portugues sobre o Projeto Samba4
 http://lobocode.github.io/2015/09/11/samba4.html
+
+ACTIVE DIRECTORY: uma implementação prática envolvendo Samba 4 
+http://sombrio.ifc.edu.br/download/redes/TCC_2013/ARTIGO_Joelson.pdf
+
+DESENVOLVIMENTO DE WEBSITE PREFEITURA MUNICIPAL DE DOM PEDRITO
+http://escola.qwerty.com.br/artigos/pdf_tcc/tcc_felippe.pdf
