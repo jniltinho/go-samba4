@@ -3,7 +3,7 @@ Criando o Servidor com Debian 9.1 64Bits
 
 
 
-## Instalando, Compilando e Configurando o Samba4 4.6.7
+## Instalando, Compilando e Configurando o Samba4 4.7.4
 
 ```bash
 apt-get install -y libreadline-dev git build-essential libattr1-dev libblkid-dev 
@@ -12,9 +12,10 @@ apt-get install -y dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnut
 
 
 cd /usr/src
-wget https://download.samba.org/pub/samba/stable/samba-4.6.7.tar.gz
-tar -xzvf samba-4.6.7.tar.gz
-cd samba-4.6.7
+get_samba4=https://download.samba.org/pub/samba/stable/samba-4.7.4.tar.gz
+wget -c ${get_samba4}
+tar xvfz $(basename ${get_samba4})
+cd samba-4.7.4
 ./configure --with-ads --with-shared-modules=idmap_ad --enable-debug --enable-selftest --with-systemd --prefix=/opt/samba4
 make
 make install
@@ -53,13 +54,13 @@ source /etc/profile
 
 ```
 
-## Instalando Golang 1.8.3 64Bits
+## Instalando Golang 1.9.2 64Bits
 
 ```bash
 
 cd /usr/local/
-wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
-tar -xzf go1.8.3.linux-amd64.tar.gz && rm -f go1.8.3.linux-amd64.tar.gz
+wget https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
+tar -xzf go1.9.2.linux-amd64.tar.gz && rm -f go1.9.2.linux-amd64.tar.gz
 
 echo 'export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/GO
