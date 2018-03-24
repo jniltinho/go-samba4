@@ -22,3 +22,35 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+
+*.tmp
+# Word temporary
+~$*.doc*
+
+
+### Python
+.DS_Store
+.env
+.flaskenv
+*.pyc
+*.pyo
+env/
+env*
+dist/
+build/
+*.egg
+*.egg-info/
+_mailinglist
+.tox/
+.cache/
+.pytest_cache/
+.idea/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+*,cover
+
+
