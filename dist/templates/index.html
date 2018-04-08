@@ -63,7 +63,7 @@
                     <li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>
                     <li id="fat-menu" class="dropdown">
                         <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-user"></i> Tobias Admin
+                            <i class="icon-user"></i> {{session['username'].title()}}
                             <i class="icon-caret-down"></i>
                         </a>
 
@@ -72,12 +72,12 @@
                             <li class="divider"></li>
                             <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
                             <li class="divider visible-phone"></li>
-                            <li><a tabindex="-1" href="/logout">Logout</a></li>
+                            <li><a tabindex="-1" href="{{url_for('logout')}}">Logout</a></li>
                         </ul>
                     </li>
                     
                 </ul>
-                <a class="brand" href="index.html"><span class="second">Go Samba4</span></a>
+                <a class="brand" href="{{url_for('home')}}"><span class="second">Go Samba4</span></a>
         </div>
     </div>
     
@@ -237,7 +237,7 @@
                 </tr>
               </tbody>
             </table>
-            <p><a href="users.html">More...</a></p>
+            <p><a href="{{url_for('users_list')}}">More...</a></p>
         </div>
     </div>
     <div class="block span6">
@@ -327,13 +327,6 @@
     </div>
 </div>
 
-
-                    
-                    <footer>
-                        <hr>
-                        <p class="pull-right">Design by <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-                        <p>&copy; 2012 <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-                    </footer>
                     
             </div>
         </div>
