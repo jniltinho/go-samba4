@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import os
+import psutil
 import commands
 from functools import wraps
 from flask import Flask, redirect
@@ -59,6 +61,18 @@ def get_users():
 
     return users
 
+def get_groups():
+    ls_groups = sorted(cmd("samba-tool group list"))
+    return ls_groups
+
+
+def get_cpu_stats():
+    data = {}
+    users = cmd("samba-tool user list")
+    groups = cmd("samba-tool group list")
+    data.update({'load': os.getloadavg(), 'jobs': len(psutil.pids())})
+    data.update({'users': len(users), 'groups': len(groups)})
+    return data
 
 # user_create("nicolas", "Nicolas@2018", "Nicolas", "de Oliveira Silva")
 # group_list()

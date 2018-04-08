@@ -3,7 +3,7 @@ Criando o Servidor com Debian 9.1 64Bits
 
 
 
-## Instalando, Compilando e Configurando o Samba4 4.7.4
+## Instalando, Compilando e Configurando o Samba4 4.8.0
 
 ```bash
 apt-get install -y libreadline-dev git build-essential libattr1-dev libblkid-dev libpam0g-dev
@@ -58,9 +58,9 @@ source /etc/profile
 
 ```bash
 
-apt-get install -y python-pip git-core dos2unix python-ldap
+apt-get install -y python-pip git-core dos2unix
 apt-get install -y libsasl2-dev python-dev libldap2-dev libssl-dev
-pip install flask pyinstaller gevent
+pip install flask pyinstaller gevent psutil python-ldap
 
 ```
 

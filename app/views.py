@@ -4,8 +4,10 @@
 from flask import url_for, session, abort
 from flask import flash, redirect, render_template, request
 
+
 from app import app
-from app.utils import login_required,  get_users
+from app.utils import login_required, get_users
+from app.utils import get_cpu_stats, get_groups
 from app.AuthSMB4 import AuthSMB4
 
 
@@ -14,7 +16,9 @@ def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        return render_template('index.html')
+        get_proc = get_cpu_stats()
+        get_proc.update({'ls_users': get_users()})
+        return render_template('index.html', **get_proc)
 
 
 @app.route('/welcome')
@@ -24,9 +28,16 @@ def welcome():
 
 @app.route('/users')
 @login_required
-def users_list():
-    users = get_users()
-    return render_template('users.html', users=users)
+def users():
+    ls_users = get_users()
+    return render_template('users.html', users=ls_users)
+
+
+@app.route('/groups')
+@login_required
+def groups():
+    ls_groups = get_groups()
+    return render_template('groups.html', groups=ls_groups)
 
 
 @app.route('/login', methods=['POST'])
