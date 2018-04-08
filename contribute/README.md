@@ -12,10 +12,10 @@ apt-get install -y dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnut
 
 
 cd /usr/src
-get_samba4=https://download.samba.org/pub/samba/stable/samba-4.7.4.tar.gz
+get_samba4=https://download.samba.org/pub/samba/stable/samba-4.8.0.tar.gz
 wget -c ${get_samba4}
 tar xvfz $(basename ${get_samba4})
-cd samba-4.7.4
+cd $(basename ${get_samba4}|sed "s/.tar.gz//")
 ./configure --with-ads --with-shared-modules=idmap_ad --enable-debug --enable-selftest --with-systemd --prefix=/opt/samba4
 make
 make install
@@ -54,21 +54,12 @@ source /etc/profile
 
 ```
 
-## Instalando Golang 1.9.2 64Bits
+## Instalando o Framework Flask
 
 ```bash
 
-cd /usr/local/
-wget https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
-tar -xzf go1.9.2.linux-amd64.tar.gz && rm -f go1.9.2.linux-amd64.tar.gz
-
-echo 'export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/GO
-export PATH=$PATH:$GOPATH/bin' >> /etc/profile
-
-
-source /etc/profile
-mkdir -p $HOME/GO
+apt-get install -y python-pip git-core dos2unix
+pip install flask pyinstaller gevent
 
 ```
 
@@ -78,32 +69,6 @@ mkdir -p $HOME/GO
 
 cd /opt/
 git clone https://github.com/jniltinho/go-samba4.git
-
-```
-
-## Instalando a WEB IDE PARA DESENV Golang
-
-```bash
-
-groupadd wide && useradd -M -s /bin/bash -g wide -d /opt/wide wide
-
-cd /opt/
-wget https://github.com/jniltinho/go-samba4/raw/master/contribute/wide-1.5.2-linux-amd64.tar.gz
-tar -xvf wide-1.5.2-linux-amd64.tar.gz && rm -f wide-1.5.2-linux-amd64.tar.gz
-chown -R wide:wide /opt/wide
-
-cp /opt/wide/scripts/wide.service /etc/systemd/system/wide.service
-chmod +x /opt/wide/scripts/start-wide.sh
-
-
-systemctl daemon-reload
-systemctl start wide.service
-systemctl enable wide.service
-
-su - wide
-go get github.com/astaxie/beego
-go get github.com/beego/bee
-exit
 
 ```
 

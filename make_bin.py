@@ -22,8 +22,8 @@ def compile_32(file_name):
     if os.path.exists(file_name):
         os.system('pyinstaller %s -F --add-data "app:app" --distpath=dist_32' % (file_name))
         os.system("rm -rf build *.spec *.pyc app/*.pyc")
-        os.system("rm -rf dist_32/templates dist_32/static")
-        os.system("cp -aR app/templates app/static dist_32/")
+        os.system("rm -rf dist_32/templates dist_32/static dist_32/ssl")
+        os.system("cp -aR app/templates app/static ssl dist_32/")
     else:
         print "File %s NotFound !!!" % (file_name)
 
@@ -32,8 +32,8 @@ def compile_64(file_name):
     if os.path.exists(file_name):
         os.system('pyinstaller %s -F --add-data "app:app" --distpath=dist' % (file_name))
         os.system("rm -rf build *.spec *.pyc app/*.pyc")
-        os.system("rm -rf dist/templates dist/static")
-        os.system("cp -aR app/templates app/static dist/")
+        os.system("rm -rf dist/templates dist/static dist/ssl")
+        os.system("cp -aR app/templates app/static ssl dist/")
     else:
         print "File %s NotFound !!!" % (file_name)
 
