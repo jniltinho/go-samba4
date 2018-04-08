@@ -7,7 +7,7 @@ from flask import flash, redirect, render_template, request
 
 from app import app
 from app.utils import login_required, get_users
-from app.utils import get_cpu_stats, get_groups
+from app.utils import get_cpu_stats, get_groups, user_delete
 from app.AuthSMB4 import AuthSMB4
 
 
@@ -31,6 +31,14 @@ def welcome():
 def users():
     ls_users = get_users()
     return render_template('users.html', users=ls_users)
+
+
+@app.route('/del/<username>')
+@login_required
+def users_del(username):
+    user_get = request.args.get('user')
+    res = user_delete(user_get)
+    print res
 
 
 @app.route('/groups')

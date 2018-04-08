@@ -41,6 +41,10 @@ def user_create(username, password, given_name, surname):
     res = cmd(cli)
     print res
 
+def user_delete(username):
+    res = cmd("samba-tool user delete %s" % (username))
+    return res
+
 
 def group_list():
     res = cmd("samba-tool group list")
