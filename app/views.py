@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 
@@ -6,6 +5,7 @@ from flask import url_for, session, abort
 from flask import flash, redirect, render_template, request
 
 from app import app
+from app.AuthSMB4 import AuthSMB4
 
 
 @app.route('/')
@@ -24,7 +24,8 @@ def welcome():
 @app.route('/login', methods=['POST'])
 def login():
     # app.logger.debug("Request Form %s", request.form)
-    if request.form['password'] == '123456' and request.form['username'] == 'admin':
+    base = AuthSMB4(request.form['username'], request.form['password'])
+    if base.Autenticate():
         session['logged_in'] = True
     else:
         flash('wrong password!')

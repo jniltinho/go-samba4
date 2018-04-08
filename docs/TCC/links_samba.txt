@@ -6,3 +6,10 @@ http://sombrio.ifc.edu.br/download/redes/TCC_2013/ARTIGO_Joelson.pdf
 
 DESENVOLVIMENTO DE WEBSITE PREFEITURA MUNICIPAL DE DOM PEDRITO
 http://escola.qwerty.com.br/artigos/pdf_tcc/tcc_felippe.pdf
+
+
+## Links Importantes para Desenvolvimento do Projeto (Samba4)
+https://www.samba.org/samba/docs/current/man-html/pdbedit.8.html
+https://unix.stackexchange.com/questions/45333/how-to-list-and-filter-samba-users-that-need-a-password-change
+http://e-tinet.com/linux/gerenciando-usuarios-de-um-servidor-samba-com-o-pdbedit-parte-01/
+https://community.nethserver.org/t/samba4-ad-change-the-user-password-after-the-first-login/7943/2

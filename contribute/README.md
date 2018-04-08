@@ -58,7 +58,8 @@ source /etc/profile
 
 ```bash
 
-apt-get install -y python-pip git-core dos2unix
+apt-get install -y python-pip git-core dos2unix python-ldap
+apt-get install -y libsasl2-dev python-dev libldap2-dev libssl-dev
 pip install flask pyinstaller gevent
 
 ```
