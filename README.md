@@ -2,6 +2,26 @@
 A web interface to manage a remote samba4 server - Python, Flask Framework
 
 
+## System requirements for development
+
+- Debian 9 64Bits
+- Samba4 4.8.0
+- Python
+- Flask Framework
+- Pyinstaller
+
+
+## System requirements for use
+
+- Debian 9 64Bits
+- Samba4 4.8.0
+
+
+## Installing Samba4 on Debian 9
+
+[Install Samba4](https://github.com/jniltinho/go-samba4/tree/master/contribute)
+
+
 ## Run go-samba4
 
 ```bash
