@@ -1,4 +1,4 @@
-Documentação em Portugues sobre o Projeto Samba4
+﻿Documentação em Portugues sobre o Projeto Samba4
 http://lobocode.github.io/2015/09/11/samba4.html
 
 ACTIVE DIRECTORY: uma implementação prática envolvendo Samba 4 
@@ -13,3 +13,6 @@ https://www.samba.org/samba/docs/current/man-html/pdbedit.8.html
 https://unix.stackexchange.com/questions/45333/how-to-list-and-filter-samba-users-that-need-a-password-change
 http://e-tinet.com/linux/gerenciando-usuarios-de-um-servidor-samba-com-o-pdbedit-parte-01/
 https://community.nethserver.org/t/samba4-ad-change-the-user-password-after-the-first-login/7943/2
+
+*Exemplares
+http://www.mariolb.com.br/blog/2014/02/18/tcc_infraestrutura_com_samba4.html
