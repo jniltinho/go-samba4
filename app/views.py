@@ -6,7 +6,7 @@ from flask import flash, redirect, render_template, request
 
 
 from app import app
-from app.utils import login_required, get_users
+from app.utils import login_required, get_users, get_pkgs
 from app.utils import get_cpu_stats, get_groups, user_delete
 from app.AuthSMB4 import AuthSMB4
 
@@ -18,6 +18,7 @@ def home():
     else:
         get_proc = get_cpu_stats()
         get_proc.update({'ls_users': get_users()})
+        get_proc.update(get_pkgs())
         return render_template('index.html', **get_proc)
 
 
