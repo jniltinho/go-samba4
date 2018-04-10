@@ -24,15 +24,19 @@ from gevent.wsgi import WSGIServer
 from gevent.monkey import patch_all
 from flask_caching import Cache
 
+from app import app
+app.config['CACHE_TYPE'] = 'simple'
+app.cache = Cache(app)
+app.secret_key = os.urandom(12)
+
 reinit()
 patch_all(dns=False)
 
 
-def server_prod(host="0.0.0.0", port=8088, ssl=True):
-    from app import app
-    app.config['CACHE_TYPE'] = 'simple'
-    app.cache = Cache(app)
-    app.secret_key = os.urandom(12)
+def server_prod(host="0.0.0.0", port=8088, ssl=True, debug=True):
+    if sys.argv[0].split(".")[-1] != 'py':
+        debug = False
+    app.debug = debug
     try:
         if ssl:
             print('Starting Gevent HTTP server on https://%s:%s' % (host, port))
@@ -48,17 +52,15 @@ def server_prod(host="0.0.0.0", port=8088, ssl=True):
     sys.exit(0)
 
 
-def server_dev(host="0.0.0.0", port=8088, ssl=True):
-    from app import app
-    app.config['CACHE_TYPE'] = 'simple'
-    app.cache = Cache(app)
-    app.secret_key = os.urandom(12)
+def server_dev(host="0.0.0.0", port=8088, ssl=True, debug=True):
     context = ('ssl/server.crt', 'ssl/server.key')
+    if sys.argv[0].split(".")[-1] != 'py':
+        debug = False
     try:
         if ssl:
-            app.run(host=host, port=port, debug=True, ssl_context=context)
+            app.run(host=host, port=port, debug=debug, ssl_context=context)
         else:
-            app.run(host=host, port=port, debug=True)
+            app.run(host=host, port=port, debug=debug)
     except KeyboardInterrupt:
         print "Shutdown requested...exiting"
     except Exception:
