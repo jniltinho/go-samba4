@@ -18,22 +18,11 @@ os_plat = platform.system().lower()
 bits = platform.machine()[-2:]
 
 
-def compile_32(file_name):
+def compile_py(file_name):
     if os.path.exists(file_name):
-        os.system('pyinstaller %s -F --add-data "app:app" --distpath=dist_32' % (file_name))
-        os.system("rm -rf build *.spec *.pyc app/*.pyc")
-        os.system("rm -rf dist_32/templates dist_32/static dist_32/ssl")
-        os.system("cp -aR app/templates app/static ssl dist_32/")
-    else:
-        print "File %s NotFound !!!" % (file_name)
-
-
-def compile_64(file_name):
-    if os.path.exists(file_name):
-        os.system('pyinstaller %s -F --add-data "app:app" --distpath=dist' % (file_name))
-        os.system("rm -rf build *.spec *.pyc app/*.pyc")
-        os.system("rm -rf dist/templates dist/static dist/ssl")
-        os.system("cp -aR app/templates app/static ssl dist/")
+        bin_name = file_name.split(".")[0]
+        os.system("pyinstaller %s -F -n %s-x%s_%s" % (file_name, bin_name, bits, os_plat))
+        os.system("rm -rf build *.spec *.pyc")
     else:
         print "File %s NotFound !!!" % (file_name)
 
@@ -45,7 +34,4 @@ if len(sys.argv) == 1:
 
 if len(sys.argv) == 2:
     file_name = sys.argv[1]
-    if bits == '64':
-        compile_64(file_name)
-    else:
-        compile_32(file_name)
+    compile_py(file_name)
