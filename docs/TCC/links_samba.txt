@@ -16,3 +16,5 @@ https://community.nethserver.org/t/samba4-ad-change-the-user-password-after-the-
 
 *Exemplares
 http://www.mariolb.com.br/blog/2014/02/18/tcc_infraestrutura_com_samba4.html
+https://projetos.inf.ufsc.br/arquivos_projetos/projeto_731/resumo_TCC.pdf
+http://www.faciccruzeiro.com.br/images/documentos/201482892934s.pdf
