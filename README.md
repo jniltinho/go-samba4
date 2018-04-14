@@ -30,8 +30,8 @@ cd /opt/
 git clone https://github.com/jniltinho/go-samba4.git
 mv go-samba4/dist /opt/
 rm -rf go-samba4 && mv dist go-samba4
-chmod +x go-samba4/go_samba4 && cd /opt/go-samba4/
-./go_samba4
+chmod +x go-samba4/go_samba4-x64_linux && cd /opt/go-samba4/
+./go_samba4-x64_linux --server-prod
 
 ## Run https://0.0.0.0:8088
 

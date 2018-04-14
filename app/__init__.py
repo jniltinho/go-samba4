@@ -10,9 +10,6 @@ from flask import session
 app = Flask(__name__)
 
 
-from app import views
-
-
 @app.before_request
 def log_request():
     app.logger.debug("Request Headers %s", request.headers)
@@ -28,3 +25,10 @@ def make_session_permanent():
 @app.errorhandler(404)
 def not_found(error):
     return render_template('404.html'), 404
+
+
+## Init App
+from views import default, users
+
+app.register_blueprint(default.mod)
+app.register_blueprint(users.mod)

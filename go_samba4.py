@@ -17,6 +17,7 @@ openssl req -nodes -new -x509 -keyout ssl/server.key -out ssl/server.crt
 
 import os
 import sys
+import logging
 import optparse
 import traceback
 from gevent import reinit
@@ -24,10 +25,12 @@ from gevent.wsgi import WSGIServer
 from gevent.monkey import patch_all
 from flask_caching import Cache
 
+
 from app import app
 app.config['CACHE_TYPE'] = 'simple'
 app.cache = Cache(app)
 app.secret_key = os.urandom(12)
+
 
 reinit()
 patch_all(dns=False)
@@ -40,7 +43,8 @@ def server_prod(host="0.0.0.0", port=8088, ssl=True, debug=True):
     try:
         if ssl:
             print('Starting Gevent HTTP server on https://%s:%s' % (host, port))
-            server = WSGIServer((host, port), app, keyfile='ssl/server.key', certfile='ssl/server.crt')
+            server = WSGIServer(
+                (host, port), app, keyfile='ssl/server.key', certfile='ssl/server.crt')
         else:
             print('Starting Gevent HTTP server on https://%s:%s' % (host, port))
             server = WSGIServer((host, port), app)
@@ -71,8 +75,10 @@ def server_dev(host="0.0.0.0", port=8088, ssl=True, debug=True):
 def main():
     usage = "Usage: %prog --server-prod|--server-dev"
     parser = optparse.OptionParser(usage)
-    parser.add_option("--server-prod", action="store_true", dest="SRV_PROD", default=False, help="Server Gevent Prod")
-    parser.add_option("--server-dev", action="store_true", dest="SRV_DEV", default=False, help="Server Flask Desenv")
+    parser.add_option("--server-prod", action="store_true",
+                      dest="SRV_PROD", default=False, help="Server Gevent Prod")
+    parser.add_option("--server-dev", action="store_true",
+                      dest="SRV_DEV", default=False, help="Server Flask Desenv")
 
     options, args = parser.parse_args()
 

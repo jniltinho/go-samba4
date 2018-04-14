@@ -17,8 +17,6 @@ app = Flask(__name__)
 def cmd(shell_cmd):
     """
     Classe para enviar comandos shell
-    ddDdD
-    sdgsdgsdggs
     """
     status, output = commands.getstatusoutput(shell_cmd)
     if status == 0:
@@ -32,7 +30,7 @@ def login_required(f):
             return f(*args, **kwargs)
         else:
             flash("You need to login first")
-            return redirect(url_for('home'))
+            return redirect(url_for('default.index'))
 
     return wrap
 
@@ -52,7 +50,8 @@ def get_pkgs():
         output = cmd("dpkg-query -f '${Package};${Version};deb\n' -W")
         pkg_type = 'deb'
     if dist == 'centos':
-        output = cmd("rpm -qa --qf '%{NAME}.%{ARCH};%{VERSION}-%{RELEASE};rpm\n'|sort")
+        output = cmd(
+            "rpm -qa --qf '%{NAME}.%{ARCH};%{VERSION}-%{RELEASE};rpm\n'|sort")
         pkg_type = 'rpm'
     pkgs = []
     for value in output:
@@ -82,9 +81,11 @@ def get_users():
     # print get_users
     for user in get_users:
         if user.split(':')[2]:
-            users['result'].append({'username': user.split(':')[0], 'full_name': user.split(':')[2]})
+            users['result'].append({'username': user.split(
+                ':')[0], 'full_name': user.split(':')[2]})
         else:
-            users['result'].append({'username': user.split(':')[0], 'full_name': user.split(':')[0].title()})
+            users['result'].append({'username': user.split(
+                ':')[0], 'full_name': user.split(':')[0].title()})
 
     return users
 
