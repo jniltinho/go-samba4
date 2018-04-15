@@ -7,9 +7,9 @@ from flask import flash, redirect, request
 
 
 # from app import app
-from app.utils import get_users, get_pkgs
-from app.utils import get_cpu_stats
-from app.AuthSMB4 import AuthSMB4
+from app.model.users import get_users, get_pkgs
+from app.model.users import get_cpu_stats
+from app.model.auth.auth_base import auth_base
 
 
 mod = Blueprint('default', __name__)
@@ -34,10 +34,11 @@ def welcome():
 @mod.route('/login', methods=['POST'])
 def login():
     # app.logger.debug("Request Form %s", request.form)
-    base = AuthSMB4(request.form['username'], request.form['password'])
-    if base.Autenticate():
+    base = auth_base(request.form['username'], request.form['password'])
+    if base.autenticate():
         session['logged_in'] = True
         session['username'] = request.form['username']
+        session['password'] = request.form['password']
     else:
         flash('wrong password!')
     return redirect(url_for('default.index'))

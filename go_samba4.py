@@ -17,7 +17,6 @@ openssl req -nodes -new -x509 -keyout ssl/server.key -out ssl/server.crt
 
 import os
 import sys
-import logging
 import optparse
 import traceback
 from gevent import reinit

@@ -6,8 +6,8 @@ from flask import session, current_app, jsonify
 from flask import request
 
 
-from app.utils import login_required, get_users
-from app.utils import get_groups, user_delete
+from app.model.users import login_required, get_users
+from app.model.users import get_groups, user_delete
 
 
 mod = Blueprint('users', __name__, url_prefix='/users')
