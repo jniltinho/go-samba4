@@ -20,6 +20,12 @@ def index():
     return render_template('users/index.html', users=ls_users)
 
 
+@mod.route('/add/')
+@login_required
+def add():
+    return render_template('users/add_user.html')
+
+
 @mod.route('/del/', methods=['POST'])
 @login_required
 def users_del():
