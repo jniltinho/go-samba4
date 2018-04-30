@@ -42,4 +42,4 @@ def users_del():
 @login_required
 def groups():
     ls_groups = get_groups()
-    return render_template('users/groups.html', groups=ls_groups)
+    return render_template('users/groups_new.html', groups=ls_groups)
