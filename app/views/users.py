@@ -7,7 +7,7 @@ from flask import request
 
 
 from app.model.users import login_required, get_users
-from app.model.users import get_groups, user_delete
+from app.model.users import user_delete
 
 
 mod = Blueprint('users', __name__, url_prefix='/users')
@@ -17,7 +17,7 @@ mod = Blueprint('users', __name__, url_prefix='/users')
 @login_required
 def index():
     ls_users = get_users()
-    return render_template('users/index.html', users=ls_users)
+    return render_template('users/index_new.html', users=ls_users)
 
 
 @mod.route('/add/')
@@ -36,10 +36,3 @@ def users_del():
             current_app.cache.clear()
         return jsonify(message=res)
     return jsonify(message="No Deleted User")
-
-
-@mod.route('/groups')
-@login_required
-def groups():
-    ls_groups = get_groups()
-    return render_template('users/groups_new.html', groups=ls_groups)
