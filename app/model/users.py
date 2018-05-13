@@ -39,7 +39,7 @@ def user_create(username, password, given_name, surname):
     cli = "samba-tool user create %s %s --given-name='%s' --surname='%s'" % (
         username, password, given_name, surname)
     res = cmd(cli)
-    print res
+    return res
 
 
 def get_pkgs():

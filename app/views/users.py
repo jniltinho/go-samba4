@@ -3,11 +3,11 @@
 
 from flask import Blueprint, render_template
 from flask import session, current_app, jsonify
-from flask import request
+from flask import request, redirect, url_for
 
 
 from app.model.users import login_required, get_users
-from app.model.users import user_delete
+from app.model.users import user_delete, user_create
 
 
 mod = Blueprint('users', __name__, url_prefix='/users')
@@ -20,10 +20,17 @@ def index():
     return render_template('users/index_new.html', users=ls_users)
 
 
-@mod.route('/add/')
+@mod.route('/add/', methods=['POST', 'GET'])
 @login_required
 def add():
-    return render_template('users/add_user.html')
+    if request.method == 'POST':
+        username = request.form['username'].lstrip().rstrip()
+        given_name = request.form['given_name'].lstrip().rstrip()
+        surname = request.form['surname'].lstrip().rstrip()
+        password = request.form['password'].lstrip().rstrip()
+        user_create(username, password, given_name, surname)
+        return redirect(url_for('users.index'))
+    return render_template('users/add_user_new.html')
 
 
 @mod.route('/del/', methods=['POST'])

@@ -168,27 +168,32 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
+              <button id="user_add" class="btn btn-primary btn-block btn-flat"><i class="fa fa-user-plus"></i> &nbsp;&nbsp;Add New User</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example2" class="table table-bordered table-hover">
+              <table id="users" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>Username</th>
                   <th>First Name</th>
                   <th>Full Name</th>
-                  <th>Edit</th>
+                  <th>Status</th>
                   <th>Delete</th>
+                  <th>Edit</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for user in users['result'] %}
                 <tr>
                   <td>{{user['username']}}</td>
-                  <td>{{ user['username'].title() }}</td>
+                  <td>{{user['username'].title() }}</td>
                   <td>{{user['full_name']}}</td>
-                  <td>Edit</td>
-                  <td>Delete</td>
+                  <td><button class="btn btn-success btn-block btn-flat"><i class="glyphicon glyphicon-ok"></i></button></td>
+                  <td><button id="delete" data-user="{{user['username']}}" class="btn btn-danger btn-block btn-flat">Delete</button></td>
+                  <td><button id="edit" data-user="{{user['username']}}" class="btn btn-primary btn-block btn-flat">Edit</button></td>
+                   
+                  </td>
                 </tr>
                 {% endfor %}
 
@@ -198,10 +203,6 @@
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-
-
-
-
 
         </div>
         <!-- /.col -->
@@ -213,18 +214,12 @@
   <!-- /.content-wrapper -->
 
 
-
-
-
-
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 0.1
     </div>
     <strong>Python - Flask Framework <a href="https://github.com/jniltinho/go-samba4">Go Samba4</a>.</strong>
   </footer>
-
-
 
   <div class="control-sidebar-bg"></div>
 </div>
@@ -248,15 +243,50 @@
 <!-- page script -->
 <script>
   $(function () {
-    $('#example2').DataTable({
+    $('#users').DataTable({
       'paging'      : true,
       'lengthChange': false,
       'searching'   : false,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : false
-    })
-  })
+    });
+  });
 </script>
+
+<script>
+  function deleteUser($username) {
+    $.ajax({
+      type: "POST",
+      contentType: "application/json; charset=utf-8",
+      url: "{{url_for('users.users_del')}}",
+      data: JSON.stringify({username: $username}),
+      success: function (data) {
+        // console.log(data.message);
+        alert(data.message);
+        location.reload();
+      },
+      dataType: "json"
+    });
+  }
+
+  function myFunction($param) {
+    var username = $param;
+    if (confirm('Deseja excluir o usuário ' +username+ ' ?')) {
+        deleteUser(username);
+    }
+  }
+
+  $("#users #delete").click(function() {
+      var username = $(this).attr('data-user');
+      myFunction(username)
+  });
+
+$("#user_add").click(function(){
+  window.location = "{{url_for('users.add')}}";
+}); 
+
+</script>
+
 </body>
 </html>
