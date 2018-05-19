@@ -1,5 +1,5 @@
 # Samba4 Web Manager - Python + Flask Framework
-A web interface to manage a remote samba4 server - Python, Flask Framework
+A web interface to manage samba4 server - Python, Flask Framework
 
 
 ## System requirements for development
@@ -31,8 +31,17 @@ git clone https://github.com/jniltinho/go-samba4.git
 mv go-samba4/dist /opt/
 rm -rf go-samba4 && mv dist go-samba4
 chmod +x go-samba4/go_samba4 && cd /opt/go-samba4/
-./go_samba4
+./go_samba4 --server-prod
 
 ## Run https://0.0.0.0:8088
 
 ```
+
+
+## New Admin Template
+
+[AdminLTE](https://github.com/almasaeed2010/AdminLTE)
+
+**AdminLTE** -- is a fully responsive admin template. Based on **[Bootstrap 3](https://github.com/twbs/bootstrap)** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself.
+
+**Download & Preview on [AdminLTE.IO](https://adminlte.io)**

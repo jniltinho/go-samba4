@@ -14,7 +14,10 @@ https://unix.stackexchange.com/questions/45333/how-to-list-and-filter-samba-user
 http://e-tinet.com/linux/gerenciando-usuarios-de-um-servidor-samba-com-o-pdbedit-parte-01/
 https://community.nethserver.org/t/samba4-ad-change-the-user-password-after-the-first-login/7943/2
 
-*Exemplares
+## Exemplares
 http://www.mariolb.com.br/blog/2014/02/18/tcc_infraestrutura_com_samba4.html
 https://projetos.inf.ufsc.br/arquivos_projetos/projeto_731/resumo_TCC.pdf
 http://www.faciccruzeiro.com.br/images/documentos/201482892934s.pdf
+
+## Samba-tool
+https://www.samba.org/samba/docs/current/man-html/samba-tool.8.html

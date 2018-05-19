@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+    
+
+    {% block sidebar_nav %}
+    <div class="sidebar-nav">
+        <form class="search form-inline">
+            <input type="text" placeholder="Search...">
+        </form>
+
+        <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>Dashboard</a>
+        <ul id="dashboard-menu" class="nav nav-list collapse in">
+            <li><a href="{{url_for('default.index')}}">Home</a></li>
+            <li><a href="{{url_for('users.index')}}">Accounts</a></li>
+            <li class="active"><a href="{{url_for('users.groups')}}">Groups</a></li>            
+        </ul>
+        <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-briefcase"></i>My Pages <i class="icon-chevron-up"></i></a>
+        <ul id="error-menu" class="nav nav-list collapse">
+            <li ><a href="#">403 page</a></li>
+            <li ><a href="#">404 page</a></li>
+            <li ><a href="#">500 page</a></li>
+            <li ><a href="#">503 page</a></li>
+        </ul>
+
+    </div>
+    {% endblock %}
+    
+
+    {% block content %} 
+    <div class="content">
+        
+        <div class="header">
+            
+            <h1 class="page-title">Groups</h1>
+        </div>
+        
+                <ul class="breadcrumb">
+            <li><a href="{{url_for('default.index')}}">Home</a> <span class="divider">/</span></li>
+            <li class="active">Groups</li>
+        </ul>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                    
+<div class="btn-toolbar">
+    <button class="btn btn-primary"><i class="icon-plus"></i> New Group</button>
+  <div class="btn-group">
+  </div>
+</div>
+<div class="well">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Group Name</th>
+          <th style="width: 26px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      {% for group in groups %}
+        <tr>
+          <td>{{group}}</td>
+          <td>
+              <a href="user.html"><i class="icon-pencil"></i></a>
+              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+          </td>
+        </tr>
+      {% endfor %}
+
+      </tbody>
+    </table>
+</div>
+<div class="pagination">
+    <ul>
+        <li><a href="#">Prev</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">Next</a></li>
+    </ul>
+</div>
+
+                    
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+
+
