@@ -36,7 +36,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="../../index2.html" class="logo">
+    <a href="{{url_for('default.index')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>SMB</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -172,7 +172,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example2" class="table table-bordered table-hover">
+              <table id="groups" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>ID</th>
@@ -186,7 +186,7 @@
                 <tr>
                   <td>#ID</td>
                   <td>{{group}}</td>
-                  <td><button class="btn btn-danger btn-block btn-flat">Delete</button></td>
+                  <td><button id="delete" data-user="{{group}}" class="btn btn-danger btn-block btn-flat">Delete</button></td>
                   <td><button class="btn btn-primary btn-block btn-flat">Edit</button></td>
                 </tr>
                 {% endfor %}
@@ -247,8 +247,9 @@
 <!-- page script -->
 <script>
   $(function () {
-    $('#example2').DataTable({
+    $('#groups').DataTable({
       'paging'      : true,
+      'iDisplayLength': 5,
       'lengthChange': false,
       'searching'   : false,
       'ordering'    : true,
@@ -257,5 +258,40 @@
     })
   })
 </script>
+
+<script>
+
+  function deleteGroup($groupname) {
+    $.ajax({
+      type: "POST",
+      contentType: "application/json; charset=utf-8",
+      url: "{{url_for('groups.groups_del')}}",
+      data: JSON.stringify({groupname: $groupname}),
+      success: function (data) {
+        // console.log(data.message);
+        alert(data.message);
+        if (data.deleted == true) {
+          location.reload();
+        }
+
+      },
+      dataType: "json"
+    });
+  }
+
+
+$("#groups #delete").click(function() {
+      var groupname = $(this).attr('data-user');
+      if (confirm('Deseja excluir o grupo ' +groupname+ ' ?')) {
+        deleteGroup(groupname);
+    }
+  });
+
+$("#group_add").click(function(){
+  window.location = "{{url_for('groups.add')}}";
+});
+</script>
+
+
 </body>
 </html>

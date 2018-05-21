@@ -36,7 +36,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="../../index2.html" class="logo">
+    <a href="{{url_for('default.index')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>SMB</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -158,7 +158,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url_for('default.index')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="{{url_for('groups.index')}}">Group</a></li>
+        <li><a href="{{url_for('groups.index')}}">Groups</a></li>
         <li class="active">Add</li>
       </ol>
     </section>
@@ -172,7 +172,7 @@
           <div class="box box-header">
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{url_for('users.add')}}" method="post">
+            <form role="form" action="{{url_for('groups.add')}}" method="post">
               <div class="box-body">
                 <div class="form-group">
                   <label>Groupname</label>

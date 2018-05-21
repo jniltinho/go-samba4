@@ -245,6 +245,7 @@
   $(function () {
     $('#users').DataTable({
       'paging'      : true,
+      'iDisplayLength': 5,
       'lengthChange': false,
       'searching'   : false,
       'ordering'    : true,
@@ -270,16 +271,12 @@
     });
   }
 
-  function myFunction($param) {
-    var username = $param;
-    if (confirm('Deseja excluir o usuário ' +username+ ' ?')) {
+
+$("#users #delete").click(function() {
+      var username = $(this).attr('data-user');
+      if (confirm('Deseja excluir o usuário ' +username+ ' ?')) {
         deleteUser(username);
     }
-  }
-
-  $("#users #delete").click(function() {
-      var username = $(this).attr('data-user');
-      myFunction(username)
   });
 
 $("#user_add").click(function(){

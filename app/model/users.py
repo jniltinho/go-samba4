@@ -36,15 +36,20 @@ def login_required(f):
 
 
 def user_create(username, password, given_name, surname):
-    cli = "samba-tool user create %s %s --given-name='%s' --surname='%s'" % (
+    cli = "samba-tool user create '%s' '%s' --given-name='%s' --surname='%s'" % (
         username, password, given_name, surname)
     res = cmd(cli)
     return res
 
 
 def group_create(groupname):
-    cli = "samba-tool group add your_domain_group" % (groupname)
+    cli = "samba-tool group add '%s'" % (groupname)
     res = cmd(cli)
+    return res
+
+
+def group_delete(groupname):
+    res = cmd("samba-tool group delete '%s'" % (groupname))
     return res
 
 
