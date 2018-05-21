@@ -42,6 +42,12 @@ def user_create(username, password, given_name, surname):
     return res
 
 
+def group_create(groupname):
+    cli = "samba-tool group add your_domain_group" % (groupname)
+    res = cmd(cli)
+    return res
+
+
 def get_pkgs():
     cached = current_app.cache.get('get_pkgs')
     if cached:
