@@ -1,0 +1,148 @@
+.
+├── app
+│   ├── __init__.py
+│   ├── model
+│   │   ├── auth
+│   │   ├── __init__.py
+│   │   └── users.py
+│   ├── static
+│   │   ├── bower_components
+│   │   ├── dist
+│   │   ├── images
+│   │   ├── lib
+│   │   ├── plugins
+│   │   └── stylesheets
+│   ├── templates
+│   │   ├── 403.html
+│   │   ├── 404.html
+│   │   ├── 500.html
+│   │   ├── 503.html
+│   │   ├── base.html
+│   │   ├── default
+│   │   ├── faq.html
+│   │   ├── groups
+│   │   ├── help.html
+│   │   ├── layout.html
+│   │   ├── media.html
+│   │   ├── privacy-policy.html
+│   │   ├── reset-password.html
+│   │   ├── terms-and-conditions.html
+│   │   └── users
+│   └── views
+│       ├── default.py
+│       ├── groups.py
+│       ├── __init__.py
+│       └── users.py
+├── backup_beego
+│   ├── conf
+│   │   └── app.conf
+│   ├── controllers
+│   │   ├── default.go
+│   │   └── login.go
+│   ├── go-samba4
+│   ├── libs
+│   │   └── auth_user.go
+│   ├── main.go
+│   ├── routers
+│   │   └── router.go
+│   ├── static
+│   │   ├── images
+│   │   ├── lib
+│   │   └── stylesheets
+│   ├── tests
+│   │   └── default_test.go
+│   └── views
+│       ├── 403.html
+│       ├── 404.html
+│       ├── 500.html
+│       ├── 503.html
+│       ├── faq.html
+│       ├── help.html
+│       ├── index.html
+│       ├── login.html
+│       ├── media.html
+│       ├── privacy-policy.html
+│       ├── reset-password.html
+│       ├── terms-and-conditions.html
+│       ├── user.html
+│       └── users.html
+├── contribute
+│   ├── AdminLTE
+│   │   ├── bower_components
+│   │   ├── bower.json
+│   │   ├── changelog.md
+│   │   ├── composer.json
+│   │   ├── dist
+│   │   ├── documentation
+│   │   ├── Gruntfile.js
+│   │   ├── index2.html
+│   │   ├── index.html
+│   │   ├── LICENSE
+│   │   ├── package.json
+│   │   ├── package-lock.json
+│   │   ├── pages
+│   │   ├── plugins
+│   │   ├── README.md
+│   │   ├── starter.html
+│   │   └── yarn.lock
+│   └── README.md
+├── dist
+│   ├── go_samba4
+│   ├── ssl
+│   │   ├── server.crt
+│   │   └── server.key
+│   ├── static
+│   │   ├── bower_components
+│   │   ├── dist
+│   │   ├── images
+│   │   ├── lib
+│   │   ├── plugins
+│   │   └── stylesheets
+│   └── templates
+│       ├── 403.html
+│       ├── 404.html
+│       ├── 500.html
+│       ├── 503.html
+│       ├── base.html
+│       ├── default
+│       ├── faq.html
+│       ├── groups
+│       ├── help.html
+│       ├── layout.html
+│       ├── media.html
+│       ├── privacy-policy.html
+│       ├── reset-password.html
+│       ├── terms-and-conditions.html
+│       └── users
+├── docs
+│   └── TCC
+│       ├── ARTIGO_Joelson.pdf
+│       ├── Backup
+│       ├── Exemplo_TCC-1_Projeto-Grupo_A.pdf
+│       ├── Exemplo_TCC-2_Concluido-Grupo_A.pdf
+│       ├── links_samba.txt
+│       ├── Projeto_TCC_final.doc
+│       ├── TCC_DESEN_WEB_Exemplo.pdf
+│       ├── Template_Professor_TCC_02-05.doc
+│       ├── Template_Professor_TCC_24-03.doc
+│       ├── Template_Projeto_TCCI_1.doc
+│       └── TPL_TCCI.doc
+├── go_samba4.py
+├── LICENSE
+├── list_dir.txt
+├── make_bin.py
+├── README.md
+├── screens
+│   ├── add_group.png
+│   ├── add_user.png
+│   ├── AdminLTE.png
+│   ├── dashboard.png
+│   ├── grupos.png
+│   ├── login.png
+│   └── users.png
+├── ssl
+│   ├── server.crt
+│   └── server.key
+└── tree_.txt
+
+51 directories, 94 files
