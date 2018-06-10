@@ -5,7 +5,7 @@ A web interface to manage samba4 server - Python, Flask Framework
 ## System requirements for development
 
 - Debian 9 64Bits
-- Samba4 4.8.0
+- Samba4 4.8.2
 - Python
 - Flask Framework
 - Pyinstaller
@@ -14,7 +14,7 @@ A web interface to manage samba4 server - Python, Flask Framework
 ## System requirements for use
 
 - Debian 9 64Bits
-- Samba4 4.8.0
+- Samba4 4.8.2
 
 
 ## Installing Samba4 on Debian 9
