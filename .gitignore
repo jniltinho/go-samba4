@@ -27,6 +27,7 @@ _testmain.go
 *.tmp
 # Word temporary
 ~$*.doc*
+.~lock*
 
 
 ### Python
