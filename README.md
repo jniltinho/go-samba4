@@ -45,3 +45,13 @@ chmod +x go-samba4/go_samba4 && cd /opt/go-samba4/
 **AdminLTE** -- is a fully responsive admin template. Based on **[Bootstrap 3](https://github.com/twbs/bootstrap)** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself.
 
 **Download & Preview on [AdminLTE.IO](https://adminlte.io)**
+
+
+## Telas
+
+![image](https://raw.github.com/jniltinho/go-samba4/master/screens/login.png)
+![image](https://raw.github.com/jniltinho/go-samba4/master/screens/dashboard.png)
+![image](https://raw.github.com/jniltinho/go-samba4/master/screens/users.png)
+![image](https://raw.github.com/jniltinho/go-samba4/master/screens/grupos.png)
+![image](https://raw.github.com/jniltinho/go-samba4/master/screens/add_user.png)
+![image](https://raw.github.com/jniltinho/go-samba4/master/screens/add_group.png)

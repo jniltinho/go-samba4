@@ -25,6 +25,8 @@ from gevent.monkey import patch_all
 from flask_caching import Cache
 
 
+os.environ["PATH"] += ':/opt/samba4/bin:/opt/samba4/sbin'
+
 from app import app
 app.config['CACHE_TYPE'] = 'simple'
 app.cache = Cache(app)

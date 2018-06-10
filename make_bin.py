@@ -22,7 +22,7 @@ def compile_py(file_name):
     if os.path.exists(file_name):
         bin_name = file_name.split(".")[0]
         os.system("find . -type f -iname *.pyc -exec rm  -f {} \;")
-        os.system("pyinstaller %s --add-data 'app:app' -F -n %s" %
+        os.system("pyinstaller %s --clean --add-data 'app:app' -F -n %s" %
                   (file_name, bin_name))
         os.system("rm -rf build *.spec *.pyc")
         os.system("find . -type f -iname *.pyc -exec rm  -f {} \;")
