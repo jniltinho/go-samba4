@@ -33,9 +33,12 @@ rm -rf go-samba4 && mv dist go-samba4
 chmod +x go-samba4/go_samba4 && cd /opt/go-samba4/
 ./go_samba4 --server-prod
 ## Run https://0.0.0.0:8088
+```
 
 
+## SystemD Daemon go-samba4
 
+```bash
 ## Create daemon systemd
 echo '[Unit]
 Description=Go-Samba4 Daemon
@@ -50,12 +53,11 @@ NonBlocking=true
 WantedBy=multi-user.target' > /etc/systemd/system/go_samba4.service
 
 ## Add start script on boot
-# systemctl daemon-reload
-# systemctl enable go_samba4.service
-# systemctl start go_samba4.service
+systemctl daemon-reload
+systemctl enable go_samba4.service
+systemctl start go_samba4.service
 
 ```
-
 
 ## New Admin Template
 
