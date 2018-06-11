@@ -59,7 +59,7 @@ systemctl start go_samba4.service
 
 ```
 
-## New Admin Template
+## AdminLTE Admin Template
 
 [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 
