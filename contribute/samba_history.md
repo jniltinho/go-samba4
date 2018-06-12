@@ -1,5 +1,4 @@
 
-
 ## Sobre Samba
 
 O Samba é um software livre, licenciado pela GPL (Generic Public License) criado em 1992, que permite o compartilhamento de arquivos/impressão, entre máquinas Windows e Linux, além de outras funções.
@@ -7,12 +6,11 @@ O Samba é um software livre, licenciado pela GPL (Generic Public License) criad
 O Samba permite o compartilhamento de impressão "segura" e algumas de suas características são estabilidade e velocidade para garantir a total interoperabilidade entre os Sistemas Operacionais Unix e Windows.
 Samba é um componente importante para integrar servidores e desktops Linux/Unix em ambientes Active Directory. Ele pode funcionar tanto como um controlador de domínio ou como um membro de domínio.
 
-
 ## Sobre Samba 4
 
 No dia [11 de Dezembro de 2012 Foi lançado o Samba 4.0](https://www.samba.org/samba/history/samba-4.0.0.html), em desenvolvimento desde 2006, o primeiro release estável desta série com grandes aprimoramentos.
 
-Em desenvolvimento desde 2006, o Samba 4 trará novas melhorias e de acordo com a desenvolvedora, uma maior flexibilidade em sua configuração. O programa já estava em fase beta há um bom tempo, porém, é a primeira vez que ele ganha uma data de lançamento concreta.
+O Samba 4 trará novas melhorias e de acordo com a desenvolvedora, uma maior flexibilidade em sua configuração. O programa já estava em fase beta há um bom tempo, porém, é a primeira vez que ele ganha uma data de lançamento concreta.
 
 ## Alguns recursos do Servidor Samba 4
 
@@ -33,7 +31,6 @@ Diante da ausência de documentação sobre o SMB, Andrew realizou a engenharia 
 
 Para quem não conhece, Samba é um software Servidor para Linux e outros sistemas unix. Sua função principal é gerenciar grupos e usuários, compartilhamento de recursos em redes formadas por PCs com o Windows. Assim, o usuário que utilizar o Samba poderá manter o Linux como servidor de arquivos.
 
-
 ## Cenários de implantação do Samba 4
 
 O Samba 4 será a solução para quem precisa de controladores de domínios e ou Servidores de arquivos para o seguinte cenários:
@@ -47,7 +44,6 @@ O Samba 4 será a solução para quem precisa de controladores de domínios e ou
 - Como Domain Controller Somente leitura para as filiais que não tem a mesma segurança física e logica que tem na matriz.
 
 Esses são apenas alguns exemplos de uso do Samba 4, as possibilidades são enormes, podendo até coloca-lo em um ambiente de alta disponibilidade.
-
 
 ## 20 razões para usar o Samba 4
 
@@ -78,12 +74,7 @@ O projeto Go-Samba4 tem como solução a gestão de usuários e grupos no ambien
 
 Esse trabalho apresenta um projeto que vai criar uma solução web desenvolvida na linguagem Python usando o framework Flask para gestão de usuários no software Samba 4, preocupando-se em criar algo que seja simples e intuitivo, de fácil execução em um servidor com o software Samba na versão 4.7.0 ou superior instalado.
 
-O intuito é que o projeto open source (aberto), com seu código disponível no [GitHub](https://github.com/jniltinho/go-samba4) possibilite que os desenvolvedores possam baixar, usar e contribuir de alguma forma na melhoria e crescimento do projeto.
-
-### Objetivos
-
-Criar uma interface fácil e útil para que o usuário final tenha uma maior compreensão na utilização do sistema proposto. Temos como objetivo facilitar o usuário desde a instalação até a configuração e administração para criar, excluir, alterar, bloquear usuário e grupos no servidor Samba 4.
-
+É um projeto open source (aberto), com seu código fonte disponível no [GitHub](https://github.com/jniltinho/go-samba4) possibilite que os desenvolvedores possam baixar, usar e contribuir de alguma forma na melhoria e crescimento do projeto.
 
 ## Links
 
