@@ -31,11 +31,8 @@ def netdata():
     if not session.get('logged_in'):
         return render_template('default/login.html')
     else:
-        netdata_ip = request.host.split(':')[0]
-        print request.host_url
-        print request.host
-        print netdata_ip
-        return render_template('default/netdata.html', netdata_ip=netdata_ip)  # render a template
+        netdata_host = request.host_url
+        return render_template('default/netdata.html', netdata_host=netdata_host)  # render a template
 
 
 @mod.route('/login', methods=['POST'])
