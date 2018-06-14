@@ -20,7 +20,7 @@ import sys
 import optparse
 import traceback
 from gevent import reinit
-from gevent.wsgi import WSGIServer
+from gevent.pywsgi import WSGIServer
 from gevent.monkey import patch_all
 from flask_caching import Cache
 
