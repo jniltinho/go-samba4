@@ -36,8 +36,8 @@ systemctl daemon-reload
 systemctl enable netdata
 systemctl start netdata
 
-./go_samba4 --server-prod
-## Run http://0.0.0.0:8088
+./go_samba4 --server-prod --ssl
+## Run https://0.0.0.0:8088
 ```
 
 ## SystemD Daemon go-samba4
@@ -50,7 +50,7 @@ After=syslog.target network.target
  
 [Service]
 WorkingDirectory=/opt/go-samba4
-ExecStart=/opt/go-samba4/go_samba4 --server-prod
+ExecStart=/opt/go-samba4/go_samba4 --server-prod --ssl
 NonBlocking=true
  
 [Install]
