@@ -37,7 +37,7 @@ systemctl enable netdata
 systemctl start netdata
 
 ./go_samba4 --server-prod
-## Run https://0.0.0.0:8088
+## Run http://0.0.0.0:8088
 ```
 
 ## SystemD Daemon go-samba4

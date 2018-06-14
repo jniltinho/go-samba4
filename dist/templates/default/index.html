@@ -27,6 +27,8 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -226,7 +228,7 @@
 
       <div class="row">
         <div class="col-md-12">
-          <img src="/static/images/server_stats.png" class="img-responsive" alt="Responsive image">
+            <iframe src="{{url_for('default.netdata')}}"  frameborder="0" scrolling="no" style="overflow:hidden;height:100vh;width:100%"></iframe>
         </div>
         <!-- /.col -->
       </div>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: GPL-3.0+ -->
+<html lang="en">
+<head>
+    <title>Go-Samba4 NetData Dashboard</title>
+    <meta name="application-name" content="netdata">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<script>
+//var netdataTheme = 'default'; // this is white
+var netdataTheme = 'slate'; // this is dark
+
+</script>
+<script type="text/javascript" src="http://{{netdata_ip}}/dashboard.js"></script>
+
+<script>
+NETDATA.options.current.destroy_on_hide = true;
+NETDATA.options.current.eliminate_zero_dimensions = true;
+NETDATA.options.current.concurrent_refreshes = false;
+NETDATA.options.current.parallel_refresher = true;
+
+var RELOAD_EVERY = 5;
+setTimeout(function(){
+    location.reload();
+}, RELOAD_EVERY * 60 * 1000);
+
+</script>
+<body>
+
+<div style="width: 100%; text-align: center; display: inline-block;">
+
+    <div style="width: 100%; height: 24vh; text-align: center; display: inline-block;">
+        <div style="width: 100%; height: 15px; text-align: center; display: inline-block;">
+            <b>CPU On both servers</b>
+        </div>
+        <div style="width: 100%; height: calc(100% - 15px); text-align: center; display: inline-block;">
+            <br/>
+            <div data-netdata="system.cpu"
+                    data-host="http://{{netdata_ip}}"
+                    data-title="CPU usage of Go-Samba4 Server"
+                    data-chart-library="dygraph"
+                    data-width="49%"
+                    data-height="100%"
+                    data-after="-300"
+                    data-dygraph-valuerange="[0, 100]"
+                    ></div>
+            <div data-netdata="system.cpu"
+                    data-title="CPU usage of your netdata server"
+                    data-chart-library="dygraph"
+                    data-width="49%"
+                    data-height="100%"
+                    data-after="-300"
+                    data-dygraph-valuerange="[0, 100]"
+                    ></div>
+        </div>
+    </div>
+
+
+    <div style="width: 100%; height: 24vh; text-align: center; display: inline-block;">
+        <div style="width: 100%; height: 15px; text-align: center; display: inline-block;">
+            <b>Disk I/O on both servers</b>
+        </div>
+        <div style="width: 100%; height: calc(100% - 15px); text-align: center; display: inline-block;">
+            <div data-netdata="system.io"
+                    data-host="http://{{netdata_ip}}"
+                    data-common-max="io"
+                    data-common-min="io"
+                    data-title="I/O on Go-Samba4 Server"
+                    data-chart-library="dygraph"
+                    data-width="49%"
+                    data-height="100%"
+                    data-after="-300"
+                    ></div>
+            <div data-netdata="system.io"
+                    data-title="I/O on Go-Samba4 Server"
+                    data-common-max="io"
+                    data-common-min="io"
+                    data-chart-library="dygraph"
+                    data-width="49%"
+                    data-height="100%"
+                    data-after="-300"
+                    ></div>
+        </div>
+    </div>
+
+
+    <div style="width: 100%; height: 24vh; text-align: center; display: inline-block;">
+        <div style="width: 100%; height: 15px; text-align: center; display: inline-block;">
+            <b>IPv4 traffic on both servers</b>
+        </div>
+        <div style="width: 100%; height: calc(100% - 15px); text-align: center; display: inline-block;">
+            <div data-netdata="system.ipv4"
+                    data-host="http://{{netdata_ip}}"
+                    data-common-max="traffic"
+                    data-common-min="traffic"
+                    data-title="IPv4 traffic on Go-Samba4 Server"
+                    data-chart-library="dygraph"
+                    data-width="49%"
+                    data-height="100%"
+                    data-after="-300"
+                    ></div>
+            <div data-netdata="system.ipv4"
+                    data-title="IPv4 traffic on Go-Samba4 Server"
+                    data-common-max="traffic"
+                    data-common-min="traffic"
+                    data-chart-library="dygraph"
+                    data-width="49%"
+                    data-height="100%"
+                    data-after="-300"
+                    ></div>
+        </div>
+    </div>
+
+    <div style="width: 100%; height: 23vh; text-align: center; display: inline-block;">
+        <div style="width: 100%; height: 15px; text-align: center; display: inline-block;">
+            <b>Go-Samba4 Server statistics on both servers</b>
+        </div>
+        <div style="width: 100%; max-height: calc(100% - 15px); text-align: center; display: inline-block;">
+            <div style="width: 49%; height:100%; align: center; display: inline-block;">
+                Go-Samba4 Server
+                <br/>
+                <div data-netdata="netdata.requests"
+                        data-host="http://{{netdata_ip}}"
+                        data-common-max="netdata-requests"
+                        data-decimal-digits="0"
+                        data-title="Chart Refreshes/s"
+                        data-chart-library="gauge"
+                        data-width="20%"
+                        data-height="100%"
+                        data-after="-300"
+                        data-points="300"
+                        ></div>
+                <div data-netdata="netdata.clients"
+                        data-host="http://{{netdata_ip}}"
+                        data-common-max="netdata-clients"
+                        data-decimal-digits="0"
+                        data-title="Sockets"
+                        data-chart-library="gauge"
+                        data-width="20%"
+                        data-height="100%"
+                        data-after="-300"
+                        data-points="300"
+                        data-colors="#AA5500"
+                        ></div>
+                <div data-netdata="netdata.net"
+                        data-dimensions="in"
+                        data-common-max="netdata-net-in"
+                        data-decimal-digits="0"
+                        data-host="http://{{netdata_ip}}"
+                        data-title="Requests Traffic on Go-Samba4 Server"
+                        data-chart-library="easypiechart"
+                        data-width="15%"
+                        data-height="100%"
+                        data-after="-300"
+                        data-points="300"
+                        ></div>
+                <div data-netdata="netdata.net"
+                        data-dimensions="out"
+                        data-common-max="netdata-net-out"
+                        data-decimal-digits="0"
+                        data-host="http://{{netdata_ip}}"
+                        data-title="Chart Data Traffic on Go-Samba4 Server"
+                        data-chart-library="easypiechart"
+                        data-width="15%"
+                        data-height="100%"
+                        data-after="-300"
+                        data-points="300"
+                        ></div>
+            </div>
+            <div style="width: 49%; height:100%; align: center; display: inline-block;">
+                Go-Samba4 Server
+                <br/>
+                <div data-netdata="netdata.requests"
+                        data-title="Chart Refreshes/s"
+                        data-common-max="netdata-requests"
+                        data-decimal-digits="0"
+                        data-chart-library="gauge"
+                        data-width="20%"
+                        data-height="100%"
+                        data-after="-300"
+                        data-points="300"
+                        ></div>
+                <div data-netdata="netdata.clients"
+                        data-common-max="netdata-clients"
+                        data-decimal-digits="0"
+                        data-title="Sockets"
+                        data-chart-library="gauge"
+                        data-width="20%"
+                        data-height="100%"
+                        data-after="-300"
+                        data-points="300"
+                        data-colors="#AA5500"
+                        ></div>
+                <div data-netdata="netdata.net"
+                        data-dimensions="in"
+                        data-common-max="netdata-net-in"
+                        data-decimal-digits="0"
+                        data-title="Requests Traffic on Go-Samba4 Server"
+                        data-chart-library="easypiechart"
+                        data-width="15%"
+                        data-height="100%"
+                        data-after="-300"
+                        data-points="300"
+                        ></div>
+                <div data-netdata="netdata.net"
+                        data-dimensions="out"
+                        data-common-max="netdata-net-out"
+                        data-decimal-digits="0"
+                        data-title="Chart Data Traffic on Go-Samba4 Server"
+                        data-chart-library="easypiechart"
+                        data-width="15%"
+                        data-height="100%"
+                        data-after="-300"
+                        data-points="300"
+                        ></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

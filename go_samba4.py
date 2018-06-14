@@ -47,7 +47,7 @@ def server_prod(host="0.0.0.0", port=8088, ssl=True, debug=True):
             server = WSGIServer(
                 (host, port), app, keyfile='ssl/server.key', certfile='ssl/server.crt')
         else:
-            print('Starting Gevent HTTP server on https://%s:%s' % (host, port))
+            print('Starting Gevent HTTP server on http://%s:%s' % (host, port))
             server = WSGIServer((host, port), app)
         server.serve_forever()
     except KeyboardInterrupt:
@@ -80,6 +80,9 @@ def main():
                       dest="SRV_PROD", default=False, help="Server Gevent Prod")
     parser.add_option("--server-dev", action="store_true",
                       dest="SRV_DEV", default=False, help="Server Flask Desenv")
+    parser.add_option("--SSL", action="store_true",
+                      dest="SSL", default=False, help="Enable SSL")
+
 
     options, args = parser.parse_args()
 
@@ -88,10 +91,10 @@ def main():
         sys.exit(1)
 
     if (options.SRV_PROD):
-        server_prod()
+        server_prod(ssl=options.SSL)
 
     if (options.SRV_DEV):
-        server_dev()
+        server_dev(ssl=options.SSL)
 
 
 if __name__ == "__main__":

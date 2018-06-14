@@ -26,9 +26,13 @@ def index():
         return render_template('default/index.html', **get_proc)
 
 
-@mod.route('/welcome')
-def welcome():
-    return render_template('default/welcome.html')  # render a template
+@mod.route('/netdata/')
+def netdata():
+    if not session.get('logged_in'):
+        return render_template('default/login.html')
+    else:
+        netdata_ip = request.host.split(':')[0] + ':19999'
+        return render_template('default/netdata.html', netdata_ip=netdata_ip)  # render a template
 
 
 @mod.route('/login', methods=['POST'])

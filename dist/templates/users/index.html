@@ -62,8 +62,8 @@
       {% for user in users['result'] %}
         <tr>
           <td>{{user['username']}}</td>
-          <td>{{ user['username'].title() }}</td>
-          <td>{{ user['full_name'] }}</td>
+          <td>{{user['username'].title()}}</td>
+          <td>{{user['full_name']}}</td>
           <td>
               <a href="user.html"><i class="icon-pencil"></i></a>
               <a href="#" id="delete" role="button" data-toggle="modal" data-user="{{user['username']}}"><i class="icon-remove"></i></a>
