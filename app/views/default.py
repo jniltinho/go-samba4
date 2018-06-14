@@ -32,6 +32,8 @@ def netdata():
         return render_template('default/login.html')
     else:
         netdata_ip = request.host.split(':')[0]
+        print request.host_url
+        print request.host
         print netdata_ip
         return render_template('default/netdata.html', netdata_ip=netdata_ip)  # render a template
 

@@ -80,7 +80,7 @@ def main():
                       dest="SRV_PROD", default=False, help="Server Gevent Prod")
     parser.add_option("--server-dev", action="store_true",
                       dest="SRV_DEV", default=False, help="Server Flask Desenv")
-    parser.add_option("--SSL", action="store_true",
+    parser.add_option("--ssl", action="store_true",
                       dest="SSL", default=False, help="Enable SSL")
 
 
