@@ -26,8 +26,8 @@ def index():
         return render_template('default/index.html', **get_proc)
 
 
-@mod.route('/netdata/')
-def netdata():
+@mod.route('/stats/')
+def stats():
     if not session.get('logged_in'):
         return render_template('default/login.html')
     else:
