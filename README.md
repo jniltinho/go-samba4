@@ -29,7 +29,7 @@ mv go-samba4/dist /opt/
 rm -rf go-samba4 && mv dist go-samba4
 
 cd /opt/go-samba4/
-chmod +x go-samba4/go_samba4
+chmod +x go_samba4
 bash <(curl -Ss https://my-netdata.io/kickstart-static64.sh) --dont-wait --dont-start-it
 cp /opt/netdata/system/netdata.service /etc/systemd/system/
 systemctl daemon-reload
