@@ -28,6 +28,8 @@ from flask_caching import Cache
 os.environ["PATH"] += ':/opt/samba4/bin:/opt/samba4/sbin:/usr/local/samba/bin:/usr/local/samba/sbin'
 
 from app import app
+app.template_folder = os.getcwd() + '/templates'
+app.static_folder = os.getcwd() + '/static'
 app.config['CACHE_TYPE'] = 'simple'
 app.cache = Cache(app)
 app.secret_key = os.urandom(12)

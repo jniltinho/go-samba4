@@ -27,7 +27,7 @@ def compile_py(file_name):
         os.system("rm -rf build *.spec *.pyc")
         os.system("find . -type f -iname *.pyc -exec rm  -f {} \;")
         os.system("rm -rf dist/ssl dist/static dist/templates")
-        os.system("cp -aR ssl app/static app/templates dist/")
+        os.system("cp -aR ssl themes/AdminLTE/* dist/")
     else:
         print "File %s NotFound !!!" % (file_name)
 
