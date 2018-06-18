@@ -62,6 +62,11 @@ systemctl enable go_samba4.service
 systemctl start go_samba4.service
 ```
 
+## Demo Server
+
+[Go-Samba4 Demo Server](https://35.196.196.235/) LOGIN: administrator, PASSWD: Linuxpro123456
+
+
 ## AdminLTE Admin Template
 
 [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
