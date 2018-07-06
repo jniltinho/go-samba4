@@ -61,8 +61,6 @@ source /etc/profile
 
 apt-get install -y python-pip git-core dos2unix
 apt-get install -y libsasl2-dev python-dev libldap2-dev libssl-dev
-pip install flask pyinstaller gevent psutil python-ldap Flask-Caching gevent
-
 ```
 
 ## Clonando o go-samba4 do GitHub
@@ -72,6 +70,7 @@ pip install flask pyinstaller gevent psutil python-ldap Flask-Caching gevent
 cd /opt/
 mkdir dev_go-samba4 && cd dev_go-samba4
 git clone https://github.com/jniltinho/go-samba4.git
-
+cd go-samba4
+pip install -r requirements.txt
 ```
 
