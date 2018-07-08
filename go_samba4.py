@@ -84,7 +84,8 @@ def main():
                       dest="SRV_DEV", default=False, help="Server Flask Desenv")
     parser.add_option("--ssl", action="store_true",
                       dest="SSL", default=False, help="Enable SSL")
-
+    parser.add_option("--host", action="store", type="string",
+                      dest="HOST", default="0.0.0.0", help="Host IP Bind")
 
     options, args = parser.parse_args()
 
@@ -93,10 +94,10 @@ def main():
         sys.exit(1)
 
     if (options.SRV_PROD):
-        server_prod(ssl=options.SSL)
+        server_prod(host=options.HOST, ssl=options.SSL)
 
     if (options.SRV_DEV):
-        server_dev(ssl=options.SSL)
+        server_dev(host=options.HOST, ssl=options.SSL)
 
 
 if __name__ == "__main__":
