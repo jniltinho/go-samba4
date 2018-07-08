@@ -13,7 +13,7 @@ A web interface to manage samba4 server - Python, Flask Framework
 ## System requirements for use
 
 - Debian 9 64Bits
-- Samba4 4.8.2
+- Samba4 4.8.3
 
 ## Installing Samba4 on Debian 9
 
