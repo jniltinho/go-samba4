@@ -64,7 +64,7 @@ systemctl start go_samba4.service
 
 ## Demo Server
 
-[Go-Samba4 Demo Server](https://35.196.196.235/) LOGIN: administrator, PASSWD: Linuxpro123456
+[Go-Samba4 Demo Server](https://35.190.174.76/) LOGIN: administrator, PASSWD: Linuxpro123456
 
 
 ## AdminLTE Admin Template
