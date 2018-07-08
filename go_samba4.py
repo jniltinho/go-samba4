@@ -8,11 +8,11 @@ https://www.digitalocean.com/community/tutorials/how-to-structure-large-flask-ap
 https://github.com/stgraber/samba4-manager
 https://github.com/baboons/samba4-gaps
 
-pyinstaller -F --add-data "app:app" go_samba4.py
-cp -aR app/templates app/static dist/
+pyinstaller -F --clean --add-data "app:app" go_samba4.py
+cp -aR themes/AdminLTE/templates themes/AdminLTE/static dist/
 rm -rf build *.spec *.pyc app/*.pyc
 openssl req -nodes -new -x509 -keyout ssl/server.key -out ssl/server.crt
-
+cp -aR ssl dist/
 """
 
 import os
