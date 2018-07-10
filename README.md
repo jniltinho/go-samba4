@@ -62,7 +62,7 @@ systemctl enable go_samba4.service
 systemctl start go_samba4.service
 ```
 
-## Demo Server
+## Go-Samba4 Demo Server
 
 [Go-Samba4 Demo Server](https://go-samba4.linuxpro.com.br/) LOGIN: administrator, PASSWD: Linuxpro123456
 
