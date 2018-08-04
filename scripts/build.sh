@@ -30,11 +30,8 @@ apt-get clean
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb
 
 echo '[supervisord] 
-nodaemon=false
+nodaemon=true
 
 [program:go_samba4]
 directory=/opt/go-samba4
-command=/opt/go-samba4/go_samba4 --server-prod --ssl
-
-[program:samba4] 
-command=/opt/samba4/sbin/samba -D' > /etc/supervisord.conf
+command=/opt/go-samba4/go_samba4 --server-prod --ssl' > /etc/supervisord.conf
