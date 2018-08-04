@@ -9,4 +9,4 @@
 /etc/init.d/netdata start
 
 cd /opt/go-samba4/
-exec ./go_samba4 --server-prod --ssl >/dev/null 2>&1 &
+exec ./go_samba4 --server-prod --ssl
