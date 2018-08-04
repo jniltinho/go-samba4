@@ -24,3 +24,5 @@ RUN chmod +x /run.sh /build.sh && sync && sleep 1 && /build.sh
 
 EXPOSE 8088
 ENTRYPOINT ["/run.sh"]
+
+CMD cd /opt/go-samba4/ && /opt/go-samba4/go_samba4 --server-prod --ssl
