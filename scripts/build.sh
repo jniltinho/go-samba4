@@ -3,7 +3,7 @@ set -e
 DEBIAN_FRONTEND=noninteractive
 
 apt-get update
-apt-get -yq install libreadline-dev wget git build-essential libattr1-dev libblkid-dev libpam0g-dev
+apt-get -yq install libreadline-dev wget git build-essential libattr1-dev libblkid-dev libpam0g-dev supervisor
 apt-get -yq install autoconf python-dev python-dnspython libacl1-dev gdb pkg-config libpopt-dev libldap2-dev
 apt-get -yq install dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnutls28-dev ca-certificates
 
@@ -28,3 +28,13 @@ cd ..
 
 apt-get clean
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb
+
+echo '[supervisord] 
+nodaemon=false
+
+[program:go_samba4]
+directory=/opt/go-samba4
+command=/opt/go-samba4/go_samba4 --server-prod --ssl
+
+[program:samba4] 
+command=/opt/samba4/sbin/samba -D' > /etc/supervisord.conf

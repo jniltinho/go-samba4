@@ -23,5 +23,3 @@ RUN chmod +x /run.sh /build.sh && sync && sleep 1 && /build.sh
 
 EXPOSE 8088
 ENTRYPOINT ["/run.sh"]
-
-CMD ["/bin/bash"]
