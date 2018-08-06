@@ -3,9 +3,10 @@ set -e
 DEBIAN_FRONTEND=noninteractive
 
 apt-get update
-apt-get -yq install libreadline-dev wget git build-essential libattr1-dev libblkid-dev libpam0g-dev supervisor
+apt-get -yq install libreadline-dev wget git-core build-essential libattr1-dev libblkid-dev libpam0g-dev supervisor
 apt-get -yq install autoconf python-dev python-dnspython libacl1-dev gdb pkg-config libpopt-dev libldap2-dev
 apt-get -yq install dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnutls28-dev ca-certificates nginx
+apt-get -yq install python-pip dos2unix libsasl2-dev python-dev libldap2-dev libssl-dev
 
 cd /tmp/
 wget https://download.samba.org/pub/samba/stable/samba-4.8.3.tar.gz
@@ -15,11 +16,19 @@ cd samba-4.8.3/
 make && make install
 cd ..
 
+cd /tmp/
 git clone https://github.com/jniltinho/go-samba4.git
-mv go-samba4/dist /opt/go-samba4
+cd go-samba4
+pip install --upgrade pip
+pip install -r requirements.txt
+python make_bin.py go_samba4.py
+rm -rf dist/* 
+mv /tmp/go-samba4/dist /opt/go-samba4
 rm -rf go-samba4
 chmod +x /opt/go-samba4/go_samba4
+cd ..
 
+cd /tmp/
 wget https://my-netdata.io/kickstart-static64.sh
 /bin/bash kickstart-static64.sh --dont-wait --dont-start-it
 cp /opt/netdata/system/netdata-lsb /etc/init.d/netdata
