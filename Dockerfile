@@ -4,8 +4,8 @@ LABEL maintainer="Nilton OS <jniltinho@gmail.com>"
 ## docker build -t debian-samba4 .
 ## docker run -it debian-samba4 /bin/bash
 ## docker run -it jniltinho/debian-samba4 /bin/bash
-## docker run -d --restart=unless-stopped -p 8088:8088 debian-samba4
-## docker run -d --restart=unless-stopped -p 8088:8088 jniltinho/debian-samba4
+## docker run -d --restart=unless-stopped -p 443:443 debian-samba4
+## docker run -d --restart=unless-stopped -p 443:443 jniltinho/debian-samba4
 ## https://github.com/titpetric/netdata/blob/master/releases/latest/Dockerfile
 
 ## docker tag debian-samba4 jniltinho/debian-samba4
@@ -21,5 +21,7 @@ ADD scripts/run.sh /run.sh
 ## Install base packages
 RUN chmod +x /run.sh /build.sh && sync && sleep 1 && /build.sh
 
-EXPOSE 8088
+ADD scripts/nginx/default /etc/nginx/sites-available/default
+
+EXPOSE 443 80 8088 19999
 ENTRYPOINT ["/run.sh"]

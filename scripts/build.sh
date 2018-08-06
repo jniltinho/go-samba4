@@ -5,7 +5,7 @@ DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get -yq install libreadline-dev wget git build-essential libattr1-dev libblkid-dev libpam0g-dev supervisor
 apt-get -yq install autoconf python-dev python-dnspython libacl1-dev gdb pkg-config libpopt-dev libldap2-dev
-apt-get -yq install dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnutls28-dev ca-certificates
+apt-get -yq install dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnutls28-dev ca-certificates nginx
 
 cd /tmp/
 wget https://download.samba.org/pub/samba/stable/samba-4.8.3.tar.gz
@@ -34,4 +34,14 @@ nodaemon=true
 
 [program:go_samba4]
 directory=/opt/go-samba4
-command=/opt/go-samba4/go_samba4 --server-prod --ssl' > /etc/supervisord.conf
+autostart=true
+autorestart=true
+command=/opt/go-samba4/go_samba4 --server-prod --ssl
+
+[program:nginx]
+command=/usr/sbin/nginx -g "daemon off;"
+autostart=true
+autorestart=true
+#user=nobody' > /etc/supervisord.conf
+
+mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default_old_$$

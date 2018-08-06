@@ -22,8 +22,8 @@ A web interface to manage samba4 server - Python, Flask Framework
 ## Docker Image
 
 ```bash
-docker run -d --restart=unless-stopped -p 8088:8088 jniltinho/debian-samba4
-## Run https://ip-server:8088
+docker run -d --restart=unless-stopped -p 443:443 jniltinho/debian-samba4
+## Run https://ip-server
 ```
 
 ## Run go-samba4
