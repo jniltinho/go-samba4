@@ -19,12 +19,10 @@ cd ..
 cd /tmp/
 git clone https://github.com/jniltinho/go-samba4.git
 cd go-samba4
-pip install --upgrade pip
+rm -rf dist/*
 pip install -r requirements.txt
 python make_bin.py go_samba4.py
-rm -rf dist/* 
 mv /tmp/go-samba4/dist /opt/go-samba4
-rm -rf go-samba4
 chmod +x /opt/go-samba4/go_samba4
 cd ..
 
