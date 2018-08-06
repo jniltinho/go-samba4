@@ -3,7 +3,7 @@ LABEL maintainer="Nilton OS <jniltinho@gmail.com>"
 
 ## docker build -t debian-samba4 .
 ## docker run -it debian-samba4 /bin/bash
-## docker run -it jniltinho/debian-samba4 /bin/bash
+## docker run -it -p 443:443 jniltinho/debian-samba4 /bin/bash
 ## docker run -d --restart=unless-stopped -p 443:443 debian-samba4
 ## docker run -d --restart=unless-stopped -p 443:443 jniltinho/debian-samba4
 ## https://github.com/titpetric/netdata/blob/master/releases/latest/Dockerfile
