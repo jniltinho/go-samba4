@@ -13,7 +13,7 @@ get_samba4=https://download.samba.org/pub/samba/rc/samba-4.9.0rc2.tar.gz
 wget ${get_samba4}
 tar xvfz $(basename ${get_samba4})
 cd $(basename ${get_samba4}|sed "s/.tar.gz//")
-./configure --with-ads --with-shared-modules=idmap_ad --enable-debug --enable-selftest --with-systemd --prefix=/opt/samba4
+./configure --with-ads --with-shared-modules=idmap_ad --enable-debug --with-systemd --prefix=/opt/samba4
 make && make install
 
 cd /tmp/
