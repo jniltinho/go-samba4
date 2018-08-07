@@ -9,11 +9,11 @@ apt-get -yq install dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnu
 apt-get -yq install python-pip dos2unix libsasl2-dev libldap2-dev libssl-dev
 
 cd /tmp/
-get_samba4=https://download.samba.org/pub/samba/rc/samba-4.9.0rc2.tar.gz
+get_samba4=https://download.samba.org/pub/samba/stable/samba-4.8.3.tar.gz
 wget ${get_samba4}
 tar xvfz $(basename ${get_samba4})
 cd $(basename ${get_samba4}|sed "s/.tar.gz//")
-./configure --with-ads --with-shared-modules=idmap_ad --with-systemd --prefix=/opt/samba4
+./configure --with-ads --with-shared-modules=idmap_ad --enable-debug --enable-selftest --with-systemd --prefix=/opt/samba4
 make && make install
 
 cd /tmp/
