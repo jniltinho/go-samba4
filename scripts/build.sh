@@ -9,7 +9,7 @@ apt-get -yq install dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnu
 apt-get -yq install python-pip dos2unix libsasl2-dev libldap2-dev libssl-dev
 
 cd /tmp/
-get_samba4=https://download.samba.org/pub/samba/stable/samba-4.8.3.tar.gz
+get_samba4=https://download.samba.org/pub/samba/stable/samba-4.8.4.tar.gz
 wget ${get_samba4}
 tar xvfz $(basename ${get_samba4})
 cd $(basename ${get_samba4}|sed "s/.tar.gz//")

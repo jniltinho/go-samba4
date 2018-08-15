@@ -12,14 +12,13 @@ apt-get install -y dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnut
 
 
 cd /usr/src
-get_samba4=https://download.samba.org/pub/samba/stable/samba-4.8.3.tar.gz
+get_samba4=https://download.samba.org/pub/samba/stable/samba-4.8.4.tar.gz
 wget -c ${get_samba4}
 tar xvfz $(basename ${get_samba4})
 cd $(basename ${get_samba4}|sed "s/.tar.gz//")
 ./configure --with-ads --with-shared-modules=idmap_ad --enable-debug --enable-selftest --with-systemd --prefix=/opt/samba4
 make
 make install
-
 
 
 echo '[Unit]
@@ -52,7 +51,6 @@ source /etc/profile
 # systemctl daemon-reload
 # systemctl enable samba4.service
 # systemctl start samba4.service
-
 ```
 
 ## Instalando o Framework Flask
@@ -73,4 +71,3 @@ git clone https://github.com/jniltinho/go-samba4.git
 cd go-samba4
 pip install -r requirements.txt
 ```
-
