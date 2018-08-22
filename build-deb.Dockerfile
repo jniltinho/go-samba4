@@ -2,15 +2,16 @@ ARG DISTRO_IMAGE=debian:stretch
 FROM $DISTRO_IMAGE
 LABEL maintainer="Nilton OS <jniltinho@gmail.com>"
 
-# docker build -t localhost/build-samba4 -f build-deb.Dockerfile .
-# ID=$(docker create localhost/build-samba4)
+# docker build -t build-samba4 -f build-deb.Dockerfile .
+# ID=$(docker create build-samba4)
 # docker cp $ID:/root/samba-4.8.4+dfsg-1.amd64.deb scripts/
 # docker rm $ID
-# docker build -t localhost/build-samba4 --build-arg DISTRO_IMAGE=ubuntu:xenial -f build-deb.Dockerfile .
+# docker build -t build-samba4 --build-arg DISTRO_IMAGE=ubuntu:xenial -f build-deb.Dockerfile .
+# docker run --rm -it -v "${PWD}:/src" jniltinho/build-samba4 /bin/bash
 
 
-# docker tag build-samba4 jniltinh/build-samba4
-# docker push jniltinh/build-samba4
+# docker tag build-samba4 jniltinho/build-samba4
+# docker push jniltinho/build-samba4
 
 # docker stop $(docker ps -a -q)
 # docker rm $(docker ps -a -q)
