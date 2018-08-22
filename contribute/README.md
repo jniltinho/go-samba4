@@ -3,7 +3,7 @@
 
 Criando o Servidor com Debian 9.1 64Bits
 
-## Instalando, Compilando e Configurando o Samba4 4.8.3
+## Instalando, Compilando e Configurando o Samba4 4.8.4
 
 ```bash
 apt-get install -y libreadline-dev git build-essential libattr1-dev libblkid-dev libpam0g-dev
