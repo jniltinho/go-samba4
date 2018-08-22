@@ -4,7 +4,7 @@
 ## Run as root (sudo su)
 
 apt-get update
-apt-get -yq install ruby-devel
+apt-get -yq install ruby-dev
 apt-get -yq install libreadline-dev git build-essential libattr1-dev libblkid-dev libpam0g-dev
 apt-get -yq install autoconf python-dev python-dnspython libacl1-dev gdb pkg-config libpopt-dev libldap2-dev 
 apt-get -yq install dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnutls28-dev

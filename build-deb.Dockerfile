@@ -2,8 +2,8 @@ ARG DISTRO_IMAGE=debian:9
 FROM $DISTRO_IMAGE
 LABEL maintainer="Nilton OS <jniltinho@gmail.com>"
 
-# docker build -t build-samba4 -f duild-deb.Dockerfile
-# docker build -t build-samba4 --build-arg DISTRO_IMAGE=ubuntu:xenial -f duild-deb.Dockerfile
+# docker build -t build-samba4 -f build-deb.Dockerfile .
+# docker build -t build-samba4 --build-arg DISTRO_IMAGE=ubuntu:xenial -f build-deb.Dockerfile .
 # docker run build-samba4
 # docker run -it build-samba4 /bin/bash
 # docker run --rm -it -v "${PWD}:/src" build-samba4 /bin/bash
