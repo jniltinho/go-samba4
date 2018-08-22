@@ -4,7 +4,7 @@ DEBIAN_FRONTEND=noninteractive
 
 apt-get update
 apt-get -yq install wget git-core supervisor python-dev
-apt-get -yq install python-minimal libpython2.7 libbsd0 libgnutls30 libldap-2.4-2 libcups2
+apt-get -yq install python-minimal libpython2.7 libbsd0 libpopt0 libgnutls30 libldap-2.4-2 libcups2
 apt-get -yq install ca-certificates nginx python-pip dos2unix
 
 dpkg -i /tmp/samba-4.8.4+dfsg-1.amd64.deb
