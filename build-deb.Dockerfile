@@ -20,14 +20,7 @@ LABEL maintainer="Nilton OS <jniltinho@gmail.com>"
 # https://gist.github.com/jniltinho/7a59467a8a4e5e88a8166f9e7e679e4d
 # http://sig9.hatenablog.com/entry/2017/12/04/000000
 
-
-
 ADD scripts/build_deb.sh /
 
 ## Install base packages
 RUN chmod +x /build_deb.sh && sync && sleep 2 && /build_deb.sh
-
-VOLUME /src
-WORKDIR /src
-
-CMD ls /src/ /root/
