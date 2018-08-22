@@ -3,18 +3,11 @@ set -e
 DEBIAN_FRONTEND=noninteractive
 
 apt-get update
-apt-get -yq install libreadline-dev wget git-core build-essential libattr1-dev libblkid-dev libpam0g-dev supervisor
-apt-get -yq install autoconf python-dev python-dnspython libacl1-dev gdb pkg-config libpopt-dev libldap2-dev
-apt-get -yq install dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnutls28-dev ca-certificates nginx
-apt-get -yq install python-pip dos2unix libsasl2-dev libldap2-dev libssl-dev
+apt-get -yq install wget git-core build-essential supervisor python-dev
+apt-get -yq install python-minimal libpython2.7 libbsd0 libgnutls30 libldap-2.4-2 libcups2
+apt-get -yq install ca-certificates nginx python-pip dos2unix
 
-cd /tmp/
-get_samba4=https://download.samba.org/pub/samba/stable/samba-4.8.4.tar.gz
-wget ${get_samba4}
-tar xvfz $(basename ${get_samba4})
-cd $(basename ${get_samba4}|sed "s/.tar.gz//")
-./configure --with-ads --with-shared-modules=idmap_ad --enable-debug --enable-selftest --with-systemd --prefix=/opt/samba4
-make && make install
+dpkg -i /tmp/samba-4.8.4+dfsg-1.amd64.deb
 
 cd /tmp/
 git clone https://github.com/jniltinho/go-samba4.git
