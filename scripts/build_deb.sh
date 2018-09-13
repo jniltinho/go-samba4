@@ -9,7 +9,7 @@ apt-get -yq install libreadline-dev git build-essential libattr1-dev libblkid-de
 apt-get -yq install autoconf python-dev python-dnspython libacl1-dev gdb pkg-config libpopt-dev
 apt-get -yq install libldap2-dev libtirpc-dev libxslt1-dev python-pycryptopp libgnutls28-dev
 apt-get -yq install dnsutils acl attr libbsd-dev libcups2-dev libgnutls28-dev curl wget
-apt-get -yq install docbook-xsl libacl1-dev gdb liblmdb-dev libjansson-dev libpam0g-dev
+apt-get -yq install docbook-xsl libacl1-dev gdb liblmdb-dev libjansson-dev libpam0g-dev libgpgme-dev
 apt-get -yq install tracker libtracker-sparql-1.0-dev libavahi-client-dev libavahi-common-dev bison flex
 
 gem install fpm
