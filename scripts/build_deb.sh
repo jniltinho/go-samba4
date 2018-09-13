@@ -1,13 +1,15 @@
 #!/bin/bash
-## Create RPM package Samba4 4.8.5 (Debian 9)
+## Create RPM package Samba4 4.9.0 (Debian 9)
 ## http://sig9.hatenablog.com/entry/2017/12/04/000000
 ## Run as root (sudo su)
 
 apt-get update
 apt-get -yq install ruby-dev
 apt-get -yq install libreadline-dev git build-essential libattr1-dev libblkid-dev libpam0g-dev
-apt-get -yq install autoconf python-dev python-dnspython libacl1-dev gdb pkg-config libpopt-dev libldap2-dev 
-apt-get -yq install dnsutils acl attr libbsd-dev docbook-xsl libcups2-dev libgnutls28-dev curl wget
+apt-get -yq install autoconf python-dev python-dnspython libacl1-dev gdb pkg-config libpopt-dev
+apt-get -yq install libldap2-dev libtirpc-dev libxslt1-dev python-pycryptopp libgnutls28-dev
+apt-get -yq install dnsutils acl attr libbsd-dev libcups2-dev libgnutls28-dev curl wget
+apt-get -yq install docbook-xsl
 
 gem install fpm
 
