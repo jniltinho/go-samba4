@@ -17,7 +17,7 @@ LABEL maintainer="Nilton OS <jniltinho@gmail.com>"
 
 ADD scripts/build.sh /build.sh
 ADD scripts/run.sh /run.sh
-ADD scripts/samba-4.8.5+dfsg-1.amd64.deb /tmp/
+ADD scripts/samba-4.9.0+dfsg-1.amd64.deb /tmp/
 
 ## Install base packages
 RUN chmod +x /run.sh /build.sh && sync && sleep 1 && /build.sh

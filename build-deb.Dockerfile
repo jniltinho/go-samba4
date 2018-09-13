@@ -4,7 +4,7 @@ LABEL maintainer="Nilton OS <jniltinho@gmail.com>"
 
 # docker build -t build-samba4 -f build-deb.Dockerfile .
 # ID=$(docker create build-samba4)
-# docker cp $ID:/root/samba-4.8.5+dfsg-1.amd64.deb scripts/
+# docker cp $ID:/root/samba-4.9.0+dfsg-1.amd64.deb scripts/
 # docker rm $ID
 # docker build -t build-samba4 --build-arg DISTRO_IMAGE=ubuntu:xenial -f build-deb.Dockerfile .
 # docker run --rm -it -v "${PWD}:/src" jniltinho/build-samba4 /bin/bash

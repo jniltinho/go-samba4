@@ -14,7 +14,7 @@ gem install fpm
 
 mkdir -p /build && cd /build
 
-get_samba4=https://download.samba.org/pub/samba/stable/samba-4.8.5.tar.gz
+get_samba4=https://download.samba.org/pub/samba/stable/samba-4.9.0.tar.gz
 
 PKG=$(basename ${get_samba4}|sed "s/.tar.gz//")
 PKG_NAME=$(basename ${get_samba4}|sed "s/.tar.gz//"|cut -d- -f1)
@@ -64,7 +64,7 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb /buil
 ## Install DEB
 ## apt-get update
 ## apt-get -yq install python-minimal libpython2.7 libbsd0 libpopt0 libgnutls30 libldap-2.4-2 libcups2
-## dpkg -i /root/samba-4.8.5+dfsg-1.amd64.deb
+## dpkg -i /root/samba-4.9.0+dfsg-1.amd64.deb
 
 ### Add PATH
 # echo 'export PATH=$PATH:/opt/samba4/bin:/opt/samba4/sbin' >> /etc/profile
