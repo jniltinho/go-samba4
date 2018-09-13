@@ -5,7 +5,7 @@ DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get -yq install wget git-core supervisor python-dev
 apt-get -yq install python-minimal libpython2.7 libbsd0 libpopt0 libgnutls30 libldap-2.4-2 libcups2
-apt-get -yq install ca-certificates nginx python-pip
+apt-get -yq install ca-certificates nginx python-pip libjansson4 libtracker-sparql-1.0-0 libgpgme11
 apt-get -yq install libsasl2-dev libldap2-dev libssl-dev
 
 dpkg -i /tmp/samba-*.amd64.deb

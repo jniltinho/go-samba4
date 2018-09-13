@@ -57,6 +57,9 @@ fpm -s dir -t deb -n ${PKG_NAME} -v ${PKG_VERSION} -C /tmp/installdir \
   -d "libgnutls30" \
   -d "libldap-2.4-2" \
   -d "libcups2" \
+  -d "libjansson4" \
+  -d "libtracker-sparql-1.0-0" \
+  -d "libgpgme11" \
   -p ${PKG}+dfsg-1.amd64.deb .
 
 mv ${PKG}+dfsg-1.amd64.deb /root/
@@ -68,7 +71,7 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb /buil
 
 ## Install DEB
 ## apt-get update
-## apt-get -yq install python-minimal libpython2.7 libbsd0 libpopt0 libgnutls30 libldap-2.4-2 libcups2
+## apt-get -yq install python-minimal libpython2.7 libbsd0 libpopt0 libgnutls30 libldap-2.4-2 libcups2 libjansson4 libtracker-sparql-1.0-0 libgpgme11
 ## dpkg -i /root/samba-4.9.0+dfsg-1.amd64.deb
 
 ### Add PATH
