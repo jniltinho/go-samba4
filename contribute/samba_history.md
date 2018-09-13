@@ -87,3 +87,5 @@ http://e-tinet.com/linux/por-que-samba-4-como-servidor/
 https://blogs.technet.microsoft.com/openchoice/2008/03/03/testemunhos-sobre-o-anuncio-da-semana-passada-sobre-interoperabilidade/
 
 http://www.theregister.co.uk/2008/02/21/microsoft_goes_open/
+
+https://www.howtoforge.com/tutorial/samba-4-domain-controller-installation-on-centos/
