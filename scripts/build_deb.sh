@@ -26,7 +26,8 @@ PKG_VERSION=$(basename ${get_samba4}|sed "s/.tar.gz//"|cut -d- -f2)
 wget -c ${get_samba4}
 tar xvfz $(basename ${get_samba4})
 cd $(basename ${get_samba4}|sed "s/.tar.gz//")
-./configure --with-ads --with-shared-modules=idmap_ad --enable-debug --enable-selftest --with-systemd --prefix=/opt/samba4
+./configure --with-ads --systemd-install-services --with-shared-modules=idmap_ad --enable-debug --enable-selftest --with-systemd --enable-spotlight --prefix=/opt/samba4
+
 make -j 2
 make install install DESTDIR=/tmp/installdir
 
