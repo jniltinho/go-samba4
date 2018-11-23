@@ -73,7 +73,7 @@ source /etc/profile
 
 
 ### Create Domain Samba4 like AD
-# hostnamectl set-hostname samba4.linuxpro.net 
+# hostnamectl set-hostname samba4.linuxpro.net
 # samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL --realm=LINUXPRO.NET --domain=LINUXPRO --adminpass=Linuxpro123456
 # or
 # samba-tool domain provision --server-role=dc --use-rfc2307 --function-level=2008_R2 --use-xattrs=yes --dns-backend=SAMBA_INTERNAL --realm=LINUXPRO.NET --domain=LINUXPRO --adminpass=Linuxpro123456
@@ -100,5 +100,6 @@ cd /opt/
 mkdir dev_go-samba4 && cd dev_go-samba4
 git clone https://github.com/jniltinho/go-samba4.git
 cd go-samba4
+rm -rf .git
 pip install -r requirements.txt
 ```
