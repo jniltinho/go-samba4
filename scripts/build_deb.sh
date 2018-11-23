@@ -10,7 +10,7 @@ apt-get -yq install autoconf python-dev python-dnspython libacl1-dev gdb pkg-con
 apt-get -yq install libldap2-dev libtirpc-dev libxslt1-dev python-pycryptopp libgnutls28-dev
 apt-get -yq install dnsutils acl attr libbsd-dev libcups2-dev libgnutls28-dev curl wget
 apt-get -yq install docbook-xsl libacl1-dev gdb liblmdb-dev libjansson-dev libpam0g-dev libgpgme-dev
-apt-get -yq install tracker libtracker-sparql-1.0-dev libavahi-client-dev libavahi-common-dev bison flex
+apt-get -yq install tracker libavahi-client-dev libavahi-common-dev bison flex
 apt-get -yq install libarchive-dev
 
 gem install fpm
@@ -58,7 +58,6 @@ fpm -s dir -t deb -n ${PKG_NAME} -v ${PKG_VERSION} -C /tmp/installdir \
   -d "libldap-2.4-2" \
   -d "libcups2" \
   -d "libjansson4" \
-  -d "libtracker-sparql-1.0-0" \
   -d "libgpgme11" \
   -p ${PKG}+dfsg-1.amd64.deb .
 
@@ -71,7 +70,7 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb /buil
 
 ## Install DEB
 ## apt-get update
-## apt-get -yq install python-minimal libpython2.7 libbsd0 libpopt0 libgnutls30 libldap-2.4-2 libcups2 libjansson4 libtracker-sparql-1.0-0 libgpgme11
+## apt-get -yq install python-minimal libpython2.7 libbsd0 libpopt0 libgnutls30 libldap-2.4-2 libcups2 libjansson4 libgpgme11
 ## dpkg -i /root/samba-4.9.0+dfsg-1.amd64.deb
 
 ### Add PATH
