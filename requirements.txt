@@ -6,4 +6,4 @@ netifaces==0.10.6
 psutil
 py-cpuinfo==4.0.0
 PyInstaller
-python-ldap==3.0.0
+python-ldap==3.4.0
