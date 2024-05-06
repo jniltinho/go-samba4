@@ -90,3 +90,16 @@ systemctl start go_samba4.service
 ![image](https://raw.github.com/jniltinho/go-samba4/master/screens/grupos.png)
 ![image](https://raw.github.com/jniltinho/go-samba4/master/screens/add_user.png)
 ![image](https://raw.github.com/jniltinho/go-samba4/master/screens/add_group.png)
+
+
+## Next Level
+- https://cybernetist.com/2020/05/18/getting-started-with-go-ldap/
+- https://github.com/go-ldap/ldap
+- https://github.com/jtblin/go-ldap-client
+- https://dev.to/openlab/ldap-authentication-in-golang-with-bind-and-search-47h5
+- https://usrbinpehli.medium.com/user-authentication-via-ldap-in-go-aff096654db5
+- https://medium.com/@hajsanad/ldap-authentication-in-golang-using-go-guardian-6477eade2a8e
+
+
+
+
