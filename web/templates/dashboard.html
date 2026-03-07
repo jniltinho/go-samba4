@@ -1,0 +1,72 @@
+{{template "base" .}}
+
+{{define "title"}}Dashboard{{end}}
+
+{{define "content"}}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    
+    <div class="card flex flex-col items-center justify-center p-8 bg-[#E5E5E5] hover:bg-white transition-none">
+        <span class="text-6xl mb-4">👥</span>
+        <h3 class="text-xl font-bold uppercase">Users</h3>
+        <p class="text-4xl font-black mt-2 mono">{{.TotalUsers}}</p>
+    </div>
+
+    <div class="card flex flex-col items-center justify-center p-8 bg-[#E5E5E5] hover:bg-white transition-none">
+        <span class="text-6xl mb-4">🛡️</span>
+        <h3 class="text-xl font-bold uppercase">Groups</h3>
+        <p class="text-4xl font-black mt-2 mono">{{.TotalGroups}}</p>
+    </div>
+
+    <div class="card flex flex-col items-center justify-center p-8 bg-[#E5E5E5] hover:bg-white transition-none">
+        <span class="text-6xl mb-4">📁</span>
+        <h3 class="text-xl font-bold uppercase">Org Units</h3>
+        <p class="text-4xl font-black mt-2 mono">{{.TotalOUs}}</p>
+    </div>
+
+    <div class="card flex flex-col items-center justify-center p-8 bg-[var(--color-primary)] text-white border-white border-4 shadow-[8px_8px_0px_var(--color-ink)] hover:bg-[var(--color-ink)] transition-none">
+        <span class="text-6xl mb-4">🖥️</span>
+        <h3 class="text-xl font-bold uppercase">DC Status</h3>
+        <p class="text-2xl font-black mt-2 text-[var(--color-success)] uppercase">Online</p>
+    </div>
+
+</div>
+
+<div class="mt-12">
+    <h2 class="text-2xl font-bold uppercase border-b-4 border-[var(--color-ink)] pb-2 mb-6">
+        Recent Activity (Audit Log)
+    </h2>
+    <div class="card p-0 overflow-hidden">
+        <table class="table-brutal">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>User</th>
+                    <th>Action</th>
+                    <th>Object</th>
+                </tr>
+            </thead>
+            <tbody class="mono text-sm">
+                <!-- Data populated from DB later -->
+                <tr>
+                    <td>2026-03-07 10:15:30</td>
+                    <td>samba4admin</td>
+                    <td><span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold">CREATE</span></td>
+                    <td>CN=JSmith,OU=Users,DC=empresa,DC=local</td>
+                </tr>
+                <tr>
+                    <td>2026-03-07 10:10:12</td>
+                    <td>samba4admin</td>
+                    <td><span class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold">UPDATE</span></td>
+                    <td>CN=ITStaff,OU=Groups,DC=empresa,DC=local</td>
+                </tr>
+                <tr>
+                    <td>2026-03-07 09:45:00</td>
+                    <td>samba4admin</td>
+                    <td><span class="bg-[var(--color-primary)] text-white px-2 py-1 font-bold">LOGIN</span></td>
+                    <td>192.168.1.50</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{{end}}

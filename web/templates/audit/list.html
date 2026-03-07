@@ -1,0 +1,36 @@
+{{template "base" .}}
+
+{{define "title"}}Audit Logs{{end}}
+
+{{define "content"}}
+<div class="flex justify-between items-center mb-6">
+    <div class="flex gap-4">
+        <input type="text" placeholder="Search logs..." class="w-64">
+        <input type="date" class="w-48">
+        <button class="btn btn-primary px-6">Filter</button>
+    </div>
+</div>
+
+<div class="card p-0 overflow-x-auto">
+    <table class="table-brutal w-full whitespace-nowrap">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Admin User</th>
+                <th>IP Address</th>
+                <th>Action</th>
+                <th>Object DN</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody class="mono text-sm">
+            <!-- Simulated data or empty state -->
+            {{/* range .AuditLogs */}}
+            <tr>
+                <td colspan="6" class="text-center italic py-4">No audit logs available matching the filter.</td>
+            </tr>
+            {{/* end */}}
+        </tbody>
+    </table>
+</div>
+{{end}}

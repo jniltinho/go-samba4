@@ -1,0 +1,49 @@
+{{template "base" .}}
+
+{{define "title"}}Users List{{end}}
+
+{{define "content"}}
+<div class="flex justify-between items-center mb-6">
+    <div class="flex gap-4">
+        <input type="text" placeholder="Search users..." class="w-64">
+        <button class="btn btn-primary px-6">Filter</button>
+    </div>
+    <a href="/users/new" class="btn btn-primary no-underline">+ New User</a>
+</div>
+
+<div class="card p-0 overflow-x-auto">
+    <table class="table-brutal w-full whitespace-nowrap">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Display Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody class="mono text-sm">
+            {{range .Users}}
+            <tr>
+                <td class="font-bold">{{.SAMAccountName}}</td>
+                <td>{{.DisplayName}}</td>
+                <td>{{.Mail}}</td>
+                <td>{{.Department}}</td>
+                <td>
+                    {{if eq .UserAccountControl 512}}
+                        <span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold">ACTIVE</span>
+                    {{else}}
+                        <span class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold">OTHER ({{.UserAccountControl}})</span>
+                    {{end}}
+                </td>
+                <td>
+                    <a href="/users/{{.SAMAccountName}}" class="btn bg-white px-2 py-1 text-xs shadow-[2px_2px_0px_var(--color-ink)] mr-2 no-underline">View</a>
+                    <a href="/users/{{.SAMAccountName}}/edit" class="btn bg-[#FFF] px-2 py-1 text-xs shadow-[2px_2px_0px_var(--color-ink)] mr-2 no-underline">Edit</a>
+                </td>
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+</div>
+{{end}}

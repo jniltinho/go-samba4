@@ -1,0 +1,53 @@
+{{template "base" .}}
+
+{{define "title"}}Edit User{{end}}
+
+{{define "content"}}
+<div class="card max-w-4xl">
+    <form method="POST" action="/users/save">
+        <input type="hidden" name="_csrf" value="{{.CSRFToken}}">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex flex-col gap-2">
+                <label for="SAMAccountName" class="font-bold uppercase tracking-wider">Username</label>
+                <input type="text" id="SAMAccountName" name="SAMAccountName" required>
+            </div>
+            
+            <div class="flex flex-col gap-2">
+                <label for="DisplayName" class="font-bold uppercase tracking-wider">Display Name</label>
+                <input type="text" id="DisplayName" name="DisplayName" required>
+            </div>
+            
+            <div class="flex flex-col gap-2">
+                <label for="GivenName" class="font-bold uppercase tracking-wider">First Name</label>
+                <input type="text" id="GivenName" name="GivenName">
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <label for="SN" class="font-bold uppercase tracking-wider">Last Name</label>
+                <input type="text" id="SN" name="SN">
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <label for="Mail" class="font-bold uppercase tracking-wider">Email</label>
+                <input type="email" id="Mail" name="Mail">
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <label for="Department" class="font-bold uppercase tracking-wider">Department</label>
+                <input type="text" id="Department" name="Department">
+            </div>
+            
+            <div class="flex flex-col gap-2">
+                <label for="Password" class="font-bold uppercase tracking-wider">Password</label>
+                <input type="password" id="Password" name="Password" placeholder="Leave blank to keep unchanged">
+            </div>
+        </div>
+        
+        <div class="mt-8 pt-6 border-t-4 border-[var(--color-ink)] flex justify-end gap-4">
+            <a href="/users" class="btn bg-[#FFF] no-underline leading-[normal] flex items-center justify-center">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save User</button>
+        </div>
+    </form>
+</div>
+{{end}}

@@ -1,0 +1,47 @@
+{{template "base" .}}
+
+{{define "title"}}User Details{{end}}
+
+{{define "content"}}
+<div class="card max-w-4xl">
+    <div class="flex justify-between items-start mb-8 pb-4 border-b-4 border-[var(--color-ink)]">
+        <div>
+            <h2 class="text-2xl font-bold uppercase">{{.User.DisplayName}}</h2>
+            <p class="mono mt-2 text-lg">{{.User.SAMAccountName}}</p>
+        </div>
+        <div>
+            <a href="/users/{{.User.SAMAccountName}}/edit" class="btn btn-primary no-underline">Edit Data</a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div>
+            <h3 class="font-bold uppercase mb-4 border-b-2 border-dashed border-[var(--color-ink)] pb-1">General Info</h3>
+            <ul class="flex flex-col gap-4">
+                <li><strong>Email:</strong> <span class="mono">{{.User.Mail}}</span></li>
+                <li><strong>Department:</strong> {{.User.Department}}</li>
+                <li><strong>Title:</strong> {{.User.Title}}</li>
+                <li><strong>Phone:</strong> {{.User.TelephoneNumber}}</li>
+            </ul>
+        </div>
+        
+        <div>
+            <h3 class="font-bold uppercase mb-4 border-b-2 border-dashed border-[var(--color-ink)] pb-1">System Info</h3>
+            <ul class="flex flex-col gap-4">
+                <li><strong>UPN:</strong> <span class="mono">{{.User.UserPrincipalName}}</span></li>
+                <li><strong>DN:</strong> <span class="mono break-all text-xs">{{.User.DN}}</span></li>
+                <li><strong>UAC:</strong> <span class="mono">{{.User.UserAccountControl}}</span></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div>
+        <h3 class="font-bold uppercase mb-4 border-b-2 border-dashed border-[var(--color-ink)] pb-1">Group Memberships</h3>
+        <div class="flex flex-wrap gap-2">
+            {{range .User.MemberOf}}
+                <span class="px-2 py-1 border-2 border-[var(--color-ink)] bg-[var(--color-base)] mono text-xs shadow-[2px_2px_0px_var(--color-ink)]">{{.}}</span>
+            {{end}}
+        </div>
+    </div>
+</div>
+{{end}}

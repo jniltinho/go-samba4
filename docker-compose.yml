@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  samba4-admin:
+    build: .
+    container_name: samba4-admin
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - samba4_data:/var/lib/samba4-admin
+      - ./config.toml:/etc/samba4-admin/config.toml:ro
+    environment:
+      - SAMBA4_LDAP_PASS=secretpassword
+
+volumes:
+  samba4_data:

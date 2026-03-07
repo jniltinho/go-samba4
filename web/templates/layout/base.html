@@ -1,0 +1,54 @@
+{{define "base"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samba4 Web Admin</title>
+    <!-- CSRF Token for AJAX -->
+    <meta name="csrf-token" content="{{.CSRFToken}}">
+    
+    <!-- Google Fonts: JetBrains Mono & Inter/system -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind v4 and Custom CSS -->
+    <!-- For dev/standalone, Tailwind Play CDN can be used, but app.css contains the rules -->
+    <script src="/static/js/tailwindcss.browser.js"></script>
+    <link rel="stylesheet" href="/static/css/app.css">
+    
+    <!-- jQuery 4.0.0 -->
+    <script src="/static/js/jquery.min.js"></script>
+</head>
+<body class="bg-[var(--color-base)] text-[var(--color-ink)] min-h-screen flex">
+    {{if .Username}}
+        {{template "sidebar" .}}
+        <main class="flex-1 ml-[240px] p-8">
+            <header class="flex justify-between items-center mb-8 border-b-4 border-[var(--color-ink)] pb-4">
+                <h1 class="text-3xl font-bold uppercase tracking-wide flex items-center gap-2">
+                    {{block "title" .}}Samba4 Admin{{end}}
+                </h1>
+                <div class="flex items-center gap-4 font-bold">
+                    <span class="px-4 py-2 border-4 border-[var(--color-ink)] bg-[var(--color-surface)] shadow-[4px_4px_0px_var(--color-ink)]">
+                        👤 {{.Username}}
+                    </span>
+                    <a href="/auth/logout" class="btn btn-danger no-underline">Logout</a>
+                </div>
+            </header>
+            
+            <div class="content">
+                {{template "content" .}}
+            </div>
+        </main>
+    {{else}}
+        <main class="w-full h-screen flex items-center justify-center">
+            {{template "content" .}}
+        </main>
+    {{end}}
+
+    <!-- Custom JS -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
+{{end}}

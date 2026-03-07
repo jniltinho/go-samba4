@@ -1,0 +1,40 @@
+[server]
+host     = "0.0.0.0"
+port     = 8080
+tls_cert = ""
+tls_key  = ""
+dev_mode = false
+
+[ldap]
+host            = "dc1.empresa.local"
+port            = 636
+use_tls         = true
+skip_tls_verify = true
+base_dn         = "DC=empresa,DC=local"
+bind_user       = "CN=samba4admin,CN=Users,DC=empresa,DC=local"
+# bind_pass via SAMBA4_LDAP_PASS
+
+[database]
+# SQLite (padrão)
+driver = "sqlite"
+path   = "data.db"
+# Para usar MySQL:
+# driver = "mysql"
+# dsn = "usuario:senha@tcp(127.0.0.1:3306)/samba4admin?charset=utf8mb4&parseTime=True&loc=Local"
+
+[session]
+secret           = "YOUR_SECRET_KEY_HERE"
+timeout_minutes  = 30
+cookie_secure    = true
+cookie_same_site = "lax"
+
+[security]
+max_login_attempts = 5
+lockout_minutes    = 15
+require_totp       = false
+
+[rbac]
+admin_group    = "Domain Admins"
+operator_group = "SambaWebOperators"
+helpdesk_group = "SambaWebHelpdesk"
+readonly_group = "SambaWebReadOnly"
