@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log/slog"
 	"net"
+	"strings"
 	"time"
 
 	goldap "github.com/go-ldap/ldap/v3"
@@ -60,6 +61,17 @@ func NewClient(cfg *config.LDAPConfig) (*Client, error) {
 	}
 
 	return &Client{conn: conn, config: cfg}, nil
+}
+
+// Domain derives the DNS domain from BaseDN (e.g. "DC=corp,DC=local" → "corp.local").
+func (c *Client) Domain() string {
+	var parts []string
+	for _, component := range strings.Split(c.config.BaseDN, ",") {
+		if strings.HasPrefix(strings.ToUpper(strings.TrimSpace(component)), "DC=") {
+			parts = append(parts, component[strings.Index(component, "=")+1:])
+		}
+	}
+	return strings.Join(parts, ".")
 }
 
 // Close closes the underlying LDAP connection

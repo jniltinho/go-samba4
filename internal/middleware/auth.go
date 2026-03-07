@@ -23,9 +23,10 @@ func RequireAuth(sm *auth.SessionManager) echo.MiddlewareFunc {
 				return c.Redirect(http.StatusFound, "/auth/login")
 			}
 
-			// Store session and username in context
+			// Store session data in context for handlers and RBAC
 			c.Set("session", session)
 			c.Set("username", session.Username)
+			c.Set("is_admin", session.IsAdmin)
 
 			return next(c)
 		}

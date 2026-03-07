@@ -1,52 +1,208 @@
 {{template "base" .}}
 
-{{define "title"}}Edit User{{end}}
+{{define "title"}}{{if .User}}Edit User — {{.User.SAMAccountName}}{{else}}New User{{end}}{{end}}
 
 {{define "content"}}
+<div class="mb-6">
+    <a href="/users" class="btn bg-white no-underline text-sm py-1 px-3">&#8592; Back to Users</a>
+</div>
+
+{{if .Error}}
+<div class="mb-6 p-4 border-2 border-[var(--color-accent)] bg-[#FFF5F5] shadow-[2px_2px_0px_var(--color-accent)]">
+    <p class="font-bold text-[var(--color-accent)] uppercase tracking-wide">Error</p>
+    <p class="mono text-sm mt-1">{{.Error}}</p>
+</div>
+{{end}}
+
 <div class="card max-w-4xl">
-    <form method="POST" action="/users/save">
+    <div class="border-b-2 border-[var(--color-ink)] pb-4 mb-6">
+        <h2 class="text-xl font-black uppercase tracking-wide">
+            {{if .User}}Edit User{{else}}Create New User{{end}}
+        </h2>
+        {{if .User}}
+        <p class="mono text-xs text-[var(--color-muted)] mt-1 break-all">{{.User.DN}}</p>
+        {{end}}
+    </div>
+
+    <form method="POST" action="{{if .User}}/users/{{.User.SAMAccountName}}/edit{{else}}/users/new{{end}}">
         <input type="hidden" name="_csrf" value="{{.CSRFToken}}">
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="flex flex-col gap-2">
-                <label for="SAMAccountName" class="font-bold uppercase tracking-wider">Username</label>
-                <input type="text" id="SAMAccountName" name="SAMAccountName" required>
-            </div>
-            
-            <div class="flex flex-col gap-2">
-                <label for="DisplayName" class="font-bold uppercase tracking-wider">Display Name</label>
-                <input type="text" id="DisplayName" name="DisplayName" required>
-            </div>
-            
-            <div class="flex flex-col gap-2">
-                <label for="GivenName" class="font-bold uppercase tracking-wider">First Name</label>
-                <input type="text" id="GivenName" name="GivenName">
-            </div>
 
-            <div class="flex flex-col gap-2">
-                <label for="SN" class="font-bold uppercase tracking-wider">Last Name</label>
-                <input type="text" id="SN" name="SN">
-            </div>
+        <!-- ── Account ────────────────────────────────────────────── -->
+        <details class="collapse-section mb-4" open>
+            <summary>Account</summary>
+            <div class="section-body grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            <div class="flex flex-col gap-2">
-                <label for="Mail" class="font-bold uppercase tracking-wider">Email</label>
-                <input type="email" id="Mail" name="Mail">
-            </div>
+                <div class="flex flex-col gap-1">
+                    <label for="SAMAccountName" class="font-bold uppercase tracking-wider text-sm">
+                        Username {{if not .User}}<span class="text-[var(--color-accent)]">*</span>{{end}}
+                    </label>
+                    {{if .User}}
+                    <input type="text" id="SAMAccountName" name="SAMAccountName"
+                        value="{{.User.SAMAccountName}}"
+                        class="bg-[var(--color-base)] text-[var(--color-muted)] cursor-not-allowed"
+                        readonly>
+                    <p class="text-xs text-[var(--color-muted)] mt-1">Username cannot be changed after creation</p>
+                    {{else}}
+                    <input type="text" id="SAMAccountName" name="SAMAccountName"
+                        required autocomplete="off"
+                        data-upn-domain="{{.Domain}}">
+                    {{end}}
+                </div>
 
-            <div class="flex flex-col gap-2">
-                <label for="Department" class="font-bold uppercase tracking-wider">Department</label>
-                <input type="text" id="Department" name="Department">
+                <div class="flex flex-col gap-1">
+                    <label for="UserPrincipalName" class="font-bold uppercase tracking-wider text-sm">
+                        User Principal Name (UPN)
+                    </label>
+                    {{if .User}}
+                    <input type="text" id="UserPrincipalName" name="UserPrincipalName"
+                        value="{{.User.UserPrincipalName}}">
+                    {{else}}
+                    <input type="text" id="UserPrincipalName" name="UserPrincipalName"
+                        class="bg-[var(--color-base)] text-[var(--color-muted)] cursor-not-allowed"
+                        readonly>
+                    <p class="text-xs text-[var(--color-muted)] mt-1">Auto-filled as username@{{.Domain}}</p>
+                    {{end}}
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="Password" class="font-bold uppercase tracking-wider text-sm">
+                        Password {{if not .User}}<span class="text-[var(--color-accent)]">*</span>{{end}}
+                    </label>
+                    <input type="password" id="Password" name="Password"
+                        {{if not .User}}required{{end}}
+                        autocomplete="new-password">
+                    {{if .User}}
+                    <p class="text-xs text-[var(--color-muted)] mt-1">Leave blank to keep current password</p>
+                    {{end}}
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="OUDN" class="font-bold uppercase tracking-wider text-sm">
+                        Organizational Unit {{if not .User}}<span class="text-[var(--color-accent)]">*</span>{{end}}
+                    </label>
+                    <select id="OUDN" name="OUDN" {{if not .User}}required{{end}}>
+                        <option value="">-- Select OU --</option>
+                        {{range .OUs}}
+                        <option value="{{.DN}}">{{.Name}}</option>
+                        {{end}}
+                    </select>
+                    {{if .User}}
+                    <p class="text-xs text-[var(--color-muted)] mt-1">OU is not changed during edits</p>
+                    {{end}}
+                </div>
+
             </div>
-            
-            <div class="flex flex-col gap-2">
-                <label for="Password" class="font-bold uppercase tracking-wider">Password</label>
-                <input type="password" id="Password" name="Password" placeholder="Leave blank to keep unchanged">
+        </details>
+
+        <!-- ── Personal Info ──────────────────────────────────────── -->
+        <details class="collapse-section mb-4">
+            <summary>Personal Info</summary>
+            <div class="section-body grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <div class="flex flex-col gap-1">
+                    <label for="DisplayName" class="font-bold uppercase tracking-wider text-sm">
+                        Display Name <span class="text-[var(--color-accent)]">*</span>
+                    </label>
+                    <input type="text" id="DisplayName" name="DisplayName"
+                        value="{{if .User}}{{.User.DisplayName}}{{end}}"
+                        required>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="Mail" class="font-bold uppercase tracking-wider text-sm">Email</label>
+                    <input type="email" id="Mail" name="Mail"
+                        value="{{if .User}}{{.User.Mail}}{{end}}">
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="GivenName" class="font-bold uppercase tracking-wider text-sm">First Name</label>
+                    <input type="text" id="GivenName" name="GivenName"
+                        value="{{if .User}}{{.User.GivenName}}{{end}}">
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="SN" class="font-bold uppercase tracking-wider text-sm">Last Name</label>
+                    <input type="text" id="SN" name="SN"
+                        value="{{if .User}}{{.User.SN}}{{end}}">
+                </div>
+
             </div>
-        </div>
-        
-        <div class="mt-8 pt-6 border-t-2 border-[var(--color-ink)] flex justify-end gap-4">
-            <a href="/users" class="btn bg-[#FFF] no-underline leading-[normal] flex items-center justify-center">Cancel</a>
-            <button type="submit" class="btn btn-primary">Save User</button>
+        </details>
+
+        <!-- ── Work Info ──────────────────────────────────────────── -->
+        <details class="collapse-section mb-4">
+            <summary>Work Info</summary>
+            <div class="section-body grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <div class="flex flex-col gap-1">
+                    <label for="Title" class="font-bold uppercase tracking-wider text-sm">Title / Position</label>
+                    <input type="text" id="Title" name="Title"
+                        value="{{if .User}}{{.User.Title}}{{end}}">
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="Department" class="font-bold uppercase tracking-wider text-sm">Department</label>
+                    <input type="text" id="Department" name="Department"
+                        value="{{if .User}}{{.User.Department}}{{end}}">
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="TelephoneNumber" class="font-bold uppercase tracking-wider text-sm">Phone</label>
+                    <input type="tel" id="TelephoneNumber" name="TelephoneNumber"
+                        value="{{if .User}}{{.User.TelephoneNumber}}{{end}}">
+                </div>
+
+            </div>
+        </details>
+
+        <!-- ── Account Options (admins only in edit mode; all in create mode) ── -->
+        {{if or .IsAdmin (not .User)}}
+        <details class="collapse-section mb-6">
+            <summary>Account Options</summary>
+            <div class="section-body flex flex-col gap-5">
+
+                <label class="flex items-start gap-4 cursor-pointer">
+                    <input type="checkbox"
+                        id="AccountEnabled"
+                        name="AccountEnabled"
+                        value="1"
+                        {{if .AccountEnabled}}checked{{end}}
+                        class="checkbox-brutal mt-1">
+                    <div>
+                        <p class="font-bold uppercase tracking-wider text-sm">Account Enabled</p>
+                        <p class="text-xs text-[var(--color-muted)] mt-1">
+                            Uncheck to disable login access without deleting the account.
+                        </p>
+                    </div>
+                </label>
+
+                <label class="flex items-start gap-4 cursor-pointer border-t border-dashed border-[var(--color-ink)] pt-5">
+                    <input type="checkbox"
+                        id="PwdNeverExpires"
+                        name="PwdNeverExpires"
+                        value="1"
+                        {{if .PwdNeverExpires}}checked{{end}}
+                        class="checkbox-brutal mt-1">
+                    <div>
+                        <p class="font-bold uppercase tracking-wider text-sm">Password Never Expires</p>
+                        <p class="text-xs text-[var(--color-muted)] mt-1">
+                            Exempts this account from the domain password expiration policy.
+                        </p>
+                    </div>
+                </label>
+
+            </div>
+        </details>
+        {{end}}
+
+        <div class="flex justify-between items-center pt-4 border-t-2 border-[var(--color-ink)]">
+            <a href="{{if .User}}/users/{{.User.SAMAccountName}}{{else}}/users{{end}}"
+               class="btn bg-white no-underline leading-normal flex items-center justify-center">
+                Cancel
+            </a>
+            <button type="submit" class="btn btn-primary px-8">
+                {{if .User}}Save Changes{{else}}Create User{{end}}
+            </button>
         </div>
     </form>
 </div>

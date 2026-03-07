@@ -22,7 +22,7 @@ func NewSessionManager(db *gorm.DB, cfg *config.Config) *SessionManager {
 	return &SessionManager{db: db, cfg: cfg}
 }
 
-func (sm *SessionManager) CreateSession(username, ip, userAgent string) (*models.Session, error) {
+func (sm *SessionManager) CreateSession(username, ip, userAgent string, isAdmin bool) (*models.Session, error) {
 	tokenBytes := asSecret(64)
 	token := base64.URLEncoding.EncodeToString(tokenBytes)
 
@@ -31,6 +31,7 @@ func (sm *SessionManager) CreateSession(username, ip, userAgent string) (*models
 	session := &models.Session{
 		Token:     token,
 		Username:  username,
+		IsAdmin:   isAdmin,
 		IPAddress: ip,
 		UserAgent: userAgent,
 		ExpiresAt: expiresAt,

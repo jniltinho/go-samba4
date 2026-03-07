@@ -106,12 +106,44 @@ input, select, textarea {
   background-color: var(--color-surface);
 }
 
-input:focus, select:focus, textarea:focus { 
-  outline: none; 
-  box-shadow: 1px 1px 0px var(--color-primary); 	
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  box-shadow: 1px 1px 0px var(--color-primary);
 }
 
-input.error { 
+/* Neo-Brutalist checkbox */
+input[type="checkbox"].checkbox-brutal {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  min-width: 1.25rem;
+  border: 2px solid var(--color-ink);
+  border-radius: 0;
+  background-color: var(--color-surface);
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  box-shadow: 2px 2px 0px var(--color-ink);
+}
+input[type="checkbox"].checkbox-brutal:checked {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+  box-shadow: 2px 2px 0px var(--color-ink);
+}
+input[type="checkbox"].checkbox-brutal:checked::after {
+  content: '\2713';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+input.error {
   border-color: var(--color-accent); 
   box-shadow: 2px 2px 0px var(--color-accent); 
 }
@@ -150,6 +182,46 @@ input.error {
   padding: 1.5rem;
 }
 
+/* Collapsible sections (details/summary) */
+details.collapse-section {
+  border: 2px solid var(--color-ink);
+  box-shadow: 2px 2px 0px var(--color-ink);
+}
+details.collapse-section > summary {
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+details.collapse-section > summary::-webkit-details-marker { display: none; }
+details.collapse-section > summary::marker { display: none; }
+details.collapse-section > summary::after {
+  content: '[+]';
+  font-family: var(--font-mono);
+  font-weight: 900;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+details.collapse-section[open] > summary::after {
+  content: '[−]';
+}
+details.collapse-section > summary:hover {
+  background: var(--color-ink);
+}
+.section-body {
+  padding: 1.5rem;
+  border-top: 2px solid var(--color-ink);
+}
+
 /* Modals */
 .modal-overlay {
   background: rgba(0,0,0,0.85);
@@ -159,6 +231,10 @@ input.error {
   justify-content: center;
   align-items: center;
   z-index: 50;
+}
+/* Garante que .hidden vença na cascata (2 classes > 1 classe) */
+.modal-overlay.hidden {
+  display: none;
 }
 .modal-content {
   background: var(--color-surface);
