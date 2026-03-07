@@ -6,12 +6,11 @@ all: build
 
 css:
 	@echo "Compiling Tailwind CSS..."
-	@if [ ! -f package.json ]; then npm init -y > /dev/null; fi
-	@if [ ! -d node_modules/tailwindcss ]; then npm install tailwindcss @tailwindcss/cli > /dev/null; fi
+	@if [ ! -d node_modules ]; then npm install > /dev/null; fi
 	npx --yes @tailwindcss/cli -i web/static/css/input.css -o web/static/css/app.css --minify
 	@echo "CSS compiled."
 
-build: css
+build: clean css
 	@echo "Building $(APP_NAME)..."
 	go build -ldflags="-s -w" -o $(APP_NAME) .
 	upx --best --lzma $(APP_NAME)

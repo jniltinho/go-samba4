@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+/* JetBrains Mono Local */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono-bold.woff2') format('woff2');
+}
+
 @theme {
   --color-base:    #F5F5F0;  /* background da aplicação */
   --color-surface: #FFFFFF;  /* cards, tabelas, painéis */
