@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"samba4-admin/internal/config"
-	"samba4-admin/internal/models"
-	// "samba4-admin/internal/ldap"  // would be needed to check group mapping if not stored in session
+	"go-samba4/internal/config"
+	"go-samba4/internal/models"
+	// "go-samba4/internal/ldap"  // would be needed to check group mapping if not stored in session
 )
 
 // RBAC checks if the user has the required group role

@@ -1,4 +1,4 @@
-# samba4-admin
+# go-samba4
 Web Administration Panel for Samba 4 Active Directory
 
 > **Status:** 🔴 Under Development (v1.1.0)
@@ -34,13 +34,13 @@ Because the application is structured around a powerful `cobra` CLI, it provides
 
 ```bash
 # Start the Web Admin Server (Default Port 8080)
-./samba4-admin serve --port 8080
+./go-samba4 serve --port 8080
 
 # Run local application database migrations (Sessions and Logs)
-./samba4-admin migrate
+./go-samba4 migrate
 
 # Use the emergency CLI for skeleton tasks (local bypass users)
-./samba4-admin user
+./go-samba4 user
 ```
 
 > **Note:** The core application configuration, including LDAP and TLS communication, is managed externally via a `config.toml` file pointed by the `--config` flag if needed (defaults to `./config.toml`).

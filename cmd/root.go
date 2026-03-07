@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-	"samba4-admin/internal/config"
+	"go-samba4/internal/config"
 )
 
 var (
@@ -18,7 +18,7 @@ var (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "samba4-admin",
+	Use:   "go-samba4",
 	Short: "Samba 4 Active Directory Web Administration",
 	Long:  `A fast and robust web panel for managing Samba 4 Active Directory environments.`,
 }
@@ -32,7 +32,7 @@ func Execute(templates embed.FS, static embed.FS) error {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is ./config.toml or /etc/samba4-admin/config.toml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is ./config.toml or /etc/go-samba4/config.toml)")
 }
 
 func initConfig() {

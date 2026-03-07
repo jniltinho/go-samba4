@@ -4,7 +4,7 @@ import (
 	"log/slog"
 
 	"github.com/spf13/cobra"
-	"samba4-admin/internal/server"
+	"go-samba4/internal/server"
 )
 
 var serveCmd = &cobra.Command{

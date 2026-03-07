@@ -1,6 +1,6 @@
 .PHONY: all build clean run compressed help css
 
-APP_NAME = samba4-admin
+APP_NAME = go-samba4
 
 all: build
 

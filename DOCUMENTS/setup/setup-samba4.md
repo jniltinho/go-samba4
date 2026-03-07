@@ -21,8 +21,8 @@
 10. [Iniciar e Verificar](#10-iniciar-e-verificar)
 11. [Configurar Firewall (UFW)](#11-configurar-firewall-ufw)
 12. [Habilitar LDAPS (porta 636)](#12-habilitar-ldaps-porta-636)
-13. [Criar Usuário Bind para samba4-admin](#13-criar-usuário-bind-para-samba4-admin)
-14. [Criar Grupos de Acesso para samba4-admin](#14-criar-grupos-de-acesso-para-samba4-admin)
+13. [Criar Usuário Bind para go-samba4](#13-criar-usuário-bind-para-go-samba4)
+14. [Criar Grupos de Acesso para go-samba4](#14-criar-grupos-de-acesso-para-go-samba4)
 15. [Verificações Pós-Instalação](#15-verificações-pós-instalação)
 16. [Configuração de NTP/Chrony](#16-configuração-de-ntpchrony)
 17. [Gerenciamento com samba-tool](#17-gerenciamento-com-samba-tool)
@@ -507,7 +507,7 @@ Após qualquer mudança no `smb.conf`:
 sudo systemctl restart samba-ad-dc
 ```
 
-### 12.4 Configurar LDAP para aceitar conexões simples (necessário para samba4-admin)
+### 12.4 Configurar LDAP para aceitar conexões simples (necessário para go-samba4)
 
 Por padrão, o Samba 4 exige autenticação forte (TLS ou SASL) em conexões LDAP. Para permitir bind simples com senha via LDAPS (porta 636), adicione ao `[global]` do `smb.conf`:
 
@@ -526,15 +526,15 @@ sudo systemctl restart samba-ad-dc
 
 ---
 
-## 13. Criar Usuário Bind para samba4-admin
+## 13. Criar Usuário Bind para go-samba4
 
-O `samba4-admin` usa uma conta de serviço dedicada para se conectar ao AD via LDAP. **Não use o Administrator** para isso.
+O `go-samba4` usa uma conta de serviço dedicada para se conectar ao AD via LDAP. **Não use o Administrator** para isso.
 
 ### 13.1 Criar a conta de serviço
 
 ```bash
 sudo samba-tool user create samba4admin \
-    --description="Bind user for samba4-admin web panel" \
+    --description="Bind user for go-samba4 web panel" \
     --mail-address="samba4admin@empresa.local"
 
 # A senha será solicitada
@@ -561,7 +561,7 @@ sudo samba-tool user show samba4admin
 # dn: CN=samba4admin,CN=Users,DC=empresa,DC=local
 ```
 
-Este DN será usado no `config.toml` do `samba4-admin`:
+Este DN será usado no `config.toml` do `go-samba4`:
 
 ```toml
 [ldap]
@@ -570,26 +570,26 @@ bind_user = "CN=samba4admin,CN=Users,DC=empresa,DC=local"
 
 ---
 
-## 14. Criar Grupos de Acesso para samba4-admin
+## 14. Criar Grupos de Acesso para go-samba4
 
-O `samba4-admin` usa RBAC mapeado a grupos AD. Criar os grupos necessários:
+O `go-samba4` usa RBAC mapeado a grupos AD. Criar os grupos necessários:
 
 ```bash
 # Grupo de administradores do painel web (acesso total)
 sudo samba-tool group add SambaWebAdmins \
-    --description="Full access to samba4-admin web panel"
+    --description="Full access to go-samba4 web panel"
 
 # Grupo de operadores (CRUD de usuários/grupos, sem configurações)
 sudo samba-tool group add SambaWebOperators \
-    --description="Operator access to samba4-admin web panel"
+    --description="Operator access to go-samba4 web panel"
 
 # Grupo helpdesk (reset de senha, habilitar/desabilitar contas)
 sudo samba-tool group add SambaWebHelpdesk \
-    --description="Helpdesk access to samba4-admin web panel"
+    --description="Helpdesk access to go-samba4 web panel"
 
 # Grupo somente leitura
 sudo samba-tool group add SambaWebReadOnly \
-    --description="Read-only access to samba4-admin web panel"
+    --description="Read-only access to go-samba4 web panel"
 ```
 
 Adicionar usuários aos grupos:

@@ -12,13 +12,13 @@ import (
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 
-	"samba4-admin/internal/auth"
-	"samba4-admin/internal/config"
-	"samba4-admin/internal/handlers"
-	"samba4-admin/internal/ldap"
-	"samba4-admin/internal/middleware"
-	"samba4-admin/internal/models"
-	"samba4-admin/internal/routes"
+	"go-samba4/internal/auth"
+	"go-samba4/internal/config"
+	"go-samba4/internal/handlers"
+	"go-samba4/internal/ldap"
+	"go-samba4/internal/middleware"
+	"go-samba4/internal/models"
+	"go-samba4/internal/routes"
 )
 
 // Serve initializes Echo and its dependencies before starting the server

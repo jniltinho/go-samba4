@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"samba4-admin/internal/models"
+	"go-samba4/internal/models"
 )
 
 func (app *AppContext) SettingsGET(c echo.Context) error {

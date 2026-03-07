@@ -1,15 +1,15 @@
 version: '3.8'
 
 services:
-  samba4-admin:
+  go-samba4:
     build: .
-    container_name: samba4-admin
+    container_name: go-samba4
     restart: unless-stopped
     ports:
       - "8080:8080"
     volumes:
-      - samba4_data:/var/lib/samba4-admin
-      - ./config.toml:/etc/samba4-admin/config.toml:ro
+      - samba4_data:/var/lib/go-samba4
+      - ./config.toml:/etc/go-samba4/config.toml:ro
     environment:
       - SAMBA4_LDAP_PASS=secretpassword
 

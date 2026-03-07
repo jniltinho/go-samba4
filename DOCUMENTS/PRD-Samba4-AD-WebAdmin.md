@@ -202,12 +202,12 @@ The application follows a **modular monolithic architecture** — a single self-
 ### 4.2 Directory Structure
 
 ```
-samba4-admin/
+go-samba4/
 ├── cmd/
 │   ├── root.go              # Cobra root command + Viper setup
-│   ├── serve.go             # Command: samba4-admin serve
-│   ├── migrate.go           # Command: samba4-admin migrate
-│   └── user.go              # Command: samba4-admin user create/list
+│   ├── serve.go             # Command: go-samba4 serve
+│   ├── migrate.go           # Command: go-samba4 migrate
+│   └── user.go              # Command: go-samba4 user create/list
 ├── internal/
 │   ├── auth/
 │   │   ├── ldap.go          # LDAP bind authentication
@@ -330,7 +330,7 @@ bind_user       = "CN=samba4admin,CN=Users,DC=empresa,DC=local"
 [database]
 # Option 1 — SQLite (default, zero config, ideal for single instances)
 driver = "sqlite"
-path   = "/var/lib/samba4-admin/data.db"
+path   = "/var/lib/go-samba4/data.db"
 
 # Option 2 — MySQL or MariaDB (recommended for high-concurrency environments)
 # driver = "mysql"

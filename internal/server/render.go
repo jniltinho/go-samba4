@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"github.com/labstack/echo/v4"
-	"samba4-admin/internal/config"
+	"go-samba4/internal/config"
 )
 
 // TemplateRegistry is a custom html/template renderer for Echo framework

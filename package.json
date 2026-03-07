@@ -1,5 +1,5 @@
 {
-  "name": "samba4-admin",
+  "name": "go-samba4",
   "version": "1.0.0",
   "description": "A complete web administration panel for **Samba 4 Active Directory**, written in **Go**.",
   "main": "index.js",

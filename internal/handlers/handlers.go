@@ -2,9 +2,9 @@ package handlers
 
 import (
 	"gorm.io/gorm"
-	"samba4-admin/internal/auth"
-	"samba4-admin/internal/config"
-	"samba4-admin/internal/ldap"
+	"go-samba4/internal/auth"
+	"go-samba4/internal/config"
+	"go-samba4/internal/ldap"
 )
 
 // AppContext holds dependencies for the handlers

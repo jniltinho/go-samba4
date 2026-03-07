@@ -4,7 +4,7 @@
 
 ## Project Context
 
-Create a complete project named **`samba4-admin`** — a web administration panel for **Samba 4 Active Directory**, written in **Go 1.26**. It is a single, self-sufficient binary that embeds all HTML templates and static assets into the executable via `//go:embed`. There is no SPA — everything is SSR with Go's `html/template`.
+Create a complete project named **`go-samba4`** — a web administration panel for **Samba 4 Active Directory**, written in **Go 1.26**. It is a single, self-sufficient binary that embeds all HTML templates and static assets into the executable via `//go:embed`. There is no SPA — everything is SSR with Go's `html/template`.
 
 ---
 
@@ -27,12 +27,12 @@ Create a complete project named **`samba4-admin`** — a web administration pane
 Create exactly this structure:
 
 ```
-samba4-admin/
+go-samba4/
 ├── cmd/
 │   ├── root.go          # Cobra root + Viper (reads config.toml)
-│   ├── serve.go         # samba4-admin serve [--port] [--config]
-│   ├── migrate.go       # samba4-admin migrate
-│   └── user.go          # samba4-admin user create/list
+│   ├── serve.go         # go-samba4 serve [--port] [--config]
+│   ├── migrate.go       # go-samba4 migrate
+│   └── user.go          # go-samba4 user create/list
 ├── internal/
 │   ├── auth/
 │   │   ├── ldap.go      # LDAP bind — user authentication
@@ -153,7 +153,7 @@ bind_user       = "CN=samba4admin,CN=Users,DC=empresa,DC=local"
 [database]
 # SQLite (default)
 driver = "sqlite"
-path   = "/var/lib/samba4-admin/data.db"
+path   = "/var/lib/go-samba4/data.db"
 # MySQL/MariaDB:
 # driver = "mysql"
 # dsn    = "user:pass@tcp(localhost:3306)/samba4admin?charset=utf8mb4&parseTime=True&loc=Local"
@@ -301,7 +301,7 @@ input.error { border-color: var(--color-accent); box-shadow: 4px 4px 0px var(--c
 29. Exportable reports: inactive users (90+ days), passwords expiring in 7/14/30 days.
 30. Security headers: CSP, X-Frame-Options, HSTS, X-Content-Type-Options.
 31. Multi-stage Dockerfile (builder + minimal runtime).
-32. `docker-compose.yml` with the `samba4-admin` service.
+32. `docker-compose.yml` with the `go-samba4` service.
 
 ---
 
@@ -332,7 +332,7 @@ input.error { border-color: var(--color-accent); box-shadow: 4px 4px 0px var(--c
 *   Audit log for **every** write operation in the AD.
 
 ### Database
-*   GORM with auto-migrate on startup (`samba4-admin migrate` or automatic in `serve`).
+*   GORM with auto-migrate on startup (`go-samba4 migrate` or automatic in `serve`).
 *   `AuditLog` is append-only — never UPDATE or DELETE in this table.
 *   Indexes on: `audit_logs.created_at`, `audit_logs.admin_user`, `sessions.token`, `sessions.expires_at`.
 
@@ -341,7 +341,7 @@ input.error { border-color: var(--color-accent); box-shadow: 4px 4px 0px var(--c
 ## Initial `go.mod`
 
 ```
-module github.com/youruser/samba4-admin
+module github.com/youruser/go-samba4
 
 go 1.26
 
@@ -407,10 +407,10 @@ At the end, the command below must work:
 
 ```bash
 # Build
-go build -o samba4-admin .
+go build -o go-samba4 .
 
 # Initialize database and start server
-./samba4-admin serve --config config.toml
+./go-samba4 serve --config config.toml
 
 # Access
 # http://localhost:8080 → redirects to /login

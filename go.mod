@@ -1,4 +1,4 @@
-module samba4-admin
+module go-samba4
 
 go 1.25.0
 
