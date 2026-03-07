@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v5"
 	"go-samba4/internal/auth"
 	"go-samba4/internal/handlers"
 	"go-samba4/internal/middleware"
@@ -9,12 +9,12 @@ import (
 
 // RegisterRoutes sets up all the HTTP routes for the application
 func RegisterRoutes(e *echo.Echo, appCtx *handlers.AppContext, sm *auth.SessionManager) {
-	e.GET("/", func(c echo.Context) error { return c.Redirect(302, "/dashboard") })
+	e.GET("/", func(c *echo.Context) error { return c.Redirect(302, "/dashboard") })
 
 	// Public Auth Routes
 	authGrp := e.Group("/auth", middleware.CSRF())
 	authGrp.GET("/login", appCtx.AuthLoginGET)
-	authGrp.POST("/login", appCtx.AuthLoginPOST)
+	authGrp.POST("/login", appCtx.AuthLoginPOST, middleware.RateLimit())
 	authGrp.GET("/logout", appCtx.AuthLogout)
 
 	// Protected Routes
@@ -32,7 +32,7 @@ func RegisterRoutes(e *echo.Echo, appCtx *handlers.AppContext, sm *auth.SessionM
 
 	p.GET("/search", appCtx.SearchGET)
 
-	p.GET("/audit", func(c echo.Context) error { return c.Render(200, "audit/list", nil) })
+	p.GET("/audit", func(c *echo.Context) error { return c.Render(200, "audit/list", nil) })
 	p.GET("/settings", appCtx.SettingsGET)
 	p.POST("/settings", appCtx.SettingsPOST)
 }

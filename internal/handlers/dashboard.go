@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v5"
 )
 
-func (app *AppContext) DashboardGET(c echo.Context) error {
+func (app *AppContext) DashboardGET(c *echo.Context) error {
 	// Gather statistics from AD if connection is available
 	users, err := app.LDAPClient.GetAllUsers("")
 	userCount := len(users)

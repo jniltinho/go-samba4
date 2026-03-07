@@ -5,13 +5,13 @@ import (
 	"encoding/base64"
 	"net/http"
 
-	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v5"
 )
 
 // CSRF middleware generates a token on GET and validates it on POST/PUT/DELETE
 func CSRF() echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
-		return func(c echo.Context) error {
+		return func(c *echo.Context) error {
 			req := c.Request()
 
 			if req.Method == http.MethodGet {
@@ -22,7 +22,7 @@ func CSRF() echo.MiddlewareFunc {
 				c.Set("csrf", token)
 
 				// Set token in a secondary cookie to be validated later
-				http.SetCookie(c.Response().Writer, &http.Cookie{
+				http.SetCookie(c.Response(), &http.Cookie{
 					Name:     "samba4_csrf",
 					Value:    token,
 					Path:     "/",

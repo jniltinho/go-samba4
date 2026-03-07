@@ -10,7 +10,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v5"
 	"go-samba4/internal/config"
 )
 
@@ -78,7 +78,7 @@ func NewTemplateRegistry(cfg *config.Config, tplFS embed.FS) (*TemplateRegistry,
 }
 
 // Render implements echo.Renderer interface
-func (t *TemplateRegistry) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
+func (t *TemplateRegistry) Render(c *echo.Context, w io.Writer, name string, data any) error {
 	tmpl, ok := t.Templates[name]
 	if !ok {
 		return fmt.Errorf("Template not found: %s", name)

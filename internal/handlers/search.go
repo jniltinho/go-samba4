@@ -5,10 +5,10 @@ import (
 	"net/http"
 
 	goldap "github.com/go-ldap/ldap/v3"
-	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v5"
 )
 
-func (app *AppContext) SearchGET(c echo.Context) error {
+func (app *AppContext) SearchGET(c *echo.Context) error {
 	query := c.QueryParam("q")
 	if query == "" {
 		return c.Render(http.StatusOK, "search", map[string]interface{}{

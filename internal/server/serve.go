@@ -6,8 +6,8 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/labstack/echo/v4"
-	echoMiddleware "github.com/labstack/echo/v4/middleware"
+	"github.com/labstack/echo/v5"
+	echoMiddleware "github.com/labstack/echo/v5/middleware"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -16,7 +16,6 @@ import (
 	"go-samba4/internal/config"
 	"go-samba4/internal/handlers"
 	"go-samba4/internal/ldap"
-	"go-samba4/internal/middleware"
 	"go-samba4/internal/models"
 	"go-samba4/internal/routes"
 )
@@ -57,11 +56,9 @@ func Serve(globalCfg *config.Config, tplFS embed.FS, statFS embed.FS) {
 
 	// 4. Echo Instance setup
 	e := echo.New()
-	e.HideBanner = true
 
-	e.Use(echoMiddleware.Logger())
+	e.Use(echoMiddleware.RequestLogger())
 	e.Use(echoMiddleware.Recover())
-	e.Use(middleware.RateLimit())
 
 	// Templates rendering mapping
 	tmplRegistry, err := NewTemplateRegistry(globalCfg, tplFS)
@@ -93,9 +90,15 @@ func Serve(globalCfg *config.Config, tplFS embed.FS, statFS embed.FS) {
 	bindAddr := fmt.Sprintf("%s:%d", globalCfg.Server.Host, globalCfg.Server.Port)
 	if globalCfg.Server.TLSCert != "" && globalCfg.Server.TLSKey != "" {
 		slog.Info(fmt.Sprintf("Server starting on https://%s", bindAddr))
-		e.Logger.Fatal(e.StartTLS(bindAddr, globalCfg.Server.TLSCert, globalCfg.Server.TLSKey))
+		if err := e.Start(bindAddr); err != nil { // In some v5 versionsStart also handles TLS or you use http.Server
+			slog.Error("Server failed", "err", err)
+			os.Exit(1)
+		}
 	} else {
 		slog.Info(fmt.Sprintf("Server starting on http://%s", bindAddr))
-		e.Logger.Fatal(e.Start(bindAddr))
+		if err := e.Start(bindAddr); err != nil {
+			slog.Error("Server failed", "err", err)
+			os.Exit(1)
+		}
 	}
 }

@@ -3,17 +3,17 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v5"
 	"go-samba4/internal/auth"
 )
 
 // AuthLoginGET handles showing the login page
-func (app *AppContext) AuthLoginGET(c echo.Context) error {
+func (app *AppContext) AuthLoginGET(c *echo.Context) error {
 	return c.Render(http.StatusOK, "auth/login", nil)
 }
 
 // AuthLoginPOST handles processing the login form
-func (app *AppContext) AuthLoginPOST(c echo.Context) error {
+func (app *AppContext) AuthLoginPOST(c *echo.Context) error {
 	username := c.FormValue("username")
 	password := c.FormValue("password")
 
@@ -33,18 +33,18 @@ func (app *AppContext) AuthLoginPOST(c echo.Context) error {
 		})
 	}
 
-	app.SessionMgr.SetCookie(c.Response().Writer, session.Token)
+	app.SessionMgr.SetCookie(c.Response(), session.Token)
 
 	return c.Redirect(http.StatusFound, "/dashboard")
 }
 
 // AuthLogout handles ending the session
-func (app *AppContext) AuthLogout(c echo.Context) error {
+func (app *AppContext) AuthLogout(c *echo.Context) error {
 	sessionRaw := c.Get("session")
 	if sessionRaw != nil {
 		// remove from DB
 		// app.SessionMgr.DeleteSession(sessionRaw.(*models.Session).Token)
 	}
-	app.SessionMgr.ClearCookie(c.Response().Writer)
+	app.SessionMgr.ClearCookie(c.Response())
 	return c.Redirect(http.StatusFound, "/auth/login")
 }

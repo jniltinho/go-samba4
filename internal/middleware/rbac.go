@@ -3,7 +3,7 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v5"
 	"go-samba4/internal/config"
 	"go-samba4/internal/models"
 	// "go-samba4/internal/ldap"  // would be needed to check group mapping if not stored in session
@@ -12,7 +12,7 @@ import (
 // RBAC checks if the user has the required group role
 func RBAC(requiredGroup string, cfg *config.Config) echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
-		return func(c echo.Context) error {
+		return func(c *echo.Context) error {
 			sessionRaw := c.Get("session")
 			if sessionRaw == nil {
 				return c.Redirect(http.StatusFound, "/auth/login")
