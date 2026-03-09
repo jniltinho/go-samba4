@@ -181,6 +181,11 @@ input.error {
   box-shadow: 2px 2px 0px var(--color-ink);
   padding: 1.5rem;
 }
+.card-primary {
+  background: var(--color-primary) !important;
+  color: #fff;
+  border-color: #fff;
+}
 
 /* Collapsible sections (details/summary) */
 details.collapse-section {
@@ -263,7 +268,9 @@ details.collapse-section > summary:hover {
   border-right: 2px solid var(--color-ink);
 }
 .sidebar-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   padding: 0.75rem 1rem;
   color: #FFF;
   text-decoration: none;
@@ -273,4 +280,25 @@ details.collapse-section > summary:hover {
   background: var(--color-accent);
   color: #FFF;
   border-left: 4px solid #FFF;
+}
+
+/* Lucide SVG — sidebar: 20px, inline with text */
+.sidebar-link svg.lucide {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Lucide SVG — dashboard cards: 56px */
+.card svg.lucide {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Lucide SVG — small inline (header badge, buttons) */
+.lucide-sm {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
 }

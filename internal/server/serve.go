@@ -11,6 +11,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	gormLogger "gorm.io/gorm/logger"
 
 	"go-samba4/internal/auth"
 	"go-samba4/internal/config"
@@ -21,7 +22,7 @@ import (
 )
 
 // Serve initializes Echo and its dependencies before starting the server
-func Serve(globalCfg *config.Config, tplFS embed.FS, statFS embed.FS) {
+func Serve(globalCfg *config.Config, tplFS embed.FS, statFS embed.FS, debug bool) {
 	// 1. Database Connection
 	var dialector gorm.Dialector
 	if globalCfg.Database.Driver == "mysql" {
@@ -30,7 +31,11 @@ func Serve(globalCfg *config.Config, tplFS embed.FS, statFS embed.FS) {
 		dialector = sqlite.Open(globalCfg.Database.Path)
 	}
 
-	db, err := gorm.Open(dialector, &gorm.Config{})
+	gormCfg := &gorm.Config{}
+	if debug {
+		gormCfg.Logger = gormLogger.Default.LogMode(gormLogger.Info)
+	}
+	db, err := gorm.Open(dialector, gormCfg)
 	if err != nil {
 		slog.Error("Failed to connect to database", "err", err)
 		os.Exit(1)
@@ -55,6 +60,10 @@ func Serve(globalCfg *config.Config, tplFS embed.FS, statFS embed.FS) {
 	sm := auth.NewSessionManager(db, globalCfg)
 
 	// 4. Echo Instance setup
+	if debug {
+		slog.SetDefault(slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelDebug})))
+		slog.Info("Debug mode enabled")
+	}
 	e := echo.New()
 
 	e.Use(echoMiddleware.RequestLogger())

@@ -2,6 +2,9 @@
 $(document).ready(function() {
     console.log("Samba4 Admin Panel Initialized");
 
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+
     // CSRF Setup for AJAX calls
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
     $.ajaxSetup({

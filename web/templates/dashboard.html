@@ -6,27 +6,27 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
     
     <div class="card flex flex-col items-center justify-center p-8 bg-[#E5E5E5] hover:bg-white transition-none">
-        <span class="text-6xl mb-4">👥</span>
+        <i data-lucide="users"></i>
         <h3 class="text-xl font-bold uppercase">Users</h3>
         <p class="text-4xl font-black mt-2 mono">{{.TotalUsers}}</p>
     </div>
 
     <div class="card flex flex-col items-center justify-center p-8 bg-[#E5E5E5] hover:bg-white transition-none">
-        <span class="text-6xl mb-4">🛡️</span>
+        <i data-lucide="shield"></i>
         <h3 class="text-xl font-bold uppercase">Groups</h3>
         <p class="text-4xl font-black mt-2 mono">{{.TotalGroups}}</p>
     </div>
 
     <div class="card flex flex-col items-center justify-center p-8 bg-[#E5E5E5] hover:bg-white transition-none">
-        <span class="text-6xl mb-4">📁</span>
+        <i data-lucide="folder"></i>
         <h3 class="text-xl font-bold uppercase">Org Units</h3>
         <p class="text-4xl font-black mt-2 mono">{{.TotalOUs}}</p>
     </div>
 
-    <div class="card flex flex-col items-center justify-center p-8 bg-[var(--color-primary)] text-white border-white border-2 shadow-[2px 2px 0px var(--color-ink)] hover:bg-[var(--color-ink)] transition-none">
-        <span class="text-6xl mb-4">🖥️</span>
+    <div class="card flex flex-col items-center justify-center p-8 bg-[#E5E5E5] hover:bg-white transition-none">
+        <i data-lucide="monitor" style="color: var(--color-success)"></i>
         <h3 class="text-xl font-bold uppercase">DC Status</h3>
-        <p class="text-2xl font-black mt-2 text-[var(--color-success)] uppercase">Online</p>
+        <p class="text-2xl font-black mt-2 uppercase" style="color: var(--color-success)">Online</p>
     </div>
 
 </div>

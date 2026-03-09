@@ -30,9 +30,8 @@
                 {{block "title" .}}Samba4 Admin{{end}}
             </h1>
             <div class="flex items-center gap-4 font-bold">
-                <span
-                    class="px-4 py-2 border-2 border-[var(--color-ink)] bg-[var(--color-surface)] shadow-[1px 1px 0px var(--color-ink)]">
-                    👤 {{.Username}}
+                <span class="flex items-center gap-2 px-4 py-2 border-2 border-[var(--color-ink)] bg-[var(--color-surface)] shadow-[1px 1px 0px var(--color-ink)]">
+                    <i data-lucide="user" class="lucide-sm"></i>{{.Username}}
                 </span>
                 <a href="/auth/logout" class="btn btn-danger no-underline !shadow-none">Logout</a>
             </div>
@@ -49,6 +48,7 @@
     {{end}}
 
     <!-- Custom JS -->
+    <script src="/static/js/lucide.min.js"></script>
     <script src="/static/js/app.js"></script>
     {{block "scripts" .}}{{end}}
 </body>
