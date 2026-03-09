@@ -3,18 +3,12 @@
 {{define "title"}}Users{{end}}
 
 {{define "content"}}
-<div class="flex justify-between items-center mb-6">
-    <form method="GET" action="/users" class="flex gap-3">
-        <input type="text" name="q" placeholder="Search users..." class="w-72"
-            value="{{.Query}}">
-        <button type="submit" class="btn btn-primary px-6">Search</button>
-        {{if .Query}}<a href="/users" class="btn bg-white no-underline flex items-center">Clear</a>{{end}}
-    </form>
+<div class="flex justify-end mb-6">
     {{if .IsAdmin}}<a href="/users/new" class="btn btn-primary no-underline">+ New User</a>{{end}}
 </div>
 
-<div class="card p-0 overflow-x-auto">
-    <table class="table-brutal w-full whitespace-nowrap">
+<div class="card p-0">
+    <table id="table-users" class="table-brutal w-full">
         <thead>
             <tr>
                 <th class="text-left">Username</th>
@@ -26,7 +20,6 @@
             </tr>
         </thead>
         <tbody class="mono text-sm">
-            {{if .Users}}
             {{range .Users}}
             <tr>
                 <td class="font-black">{{.SAMAccountName}}</td>
@@ -35,42 +28,39 @@
                 <td>{{.Department}}</td>
                 <td>
                     {{if eq .UserAccountControl 512}}
-                        <span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">ACTIVE</span>
+                    <span
+                        class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">ACTIVE</span>
                     {{else if eq .UserAccountControl 514}}
-                        <span class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">DISABLED</span>
+                    <span
+                        class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">DISABLED</span>
                     {{else if eq .UserAccountControl 66048}}
-                        <span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">ACTIVE</span>
+                    <span
+                        class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">ACTIVE</span>
                     {{else if eq .UserAccountControl 66050}}
-                        <span class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">DISABLED</span>
+                    <span
+                        class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">DISABLED</span>
                     {{else}}
-                        <span class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold text-xs uppercase">UAC:{{.UserAccountControl}}</span>
+                    <span
+                        class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold text-xs uppercase">UAC:{{.UserAccountControl}}</span>
                     {{end}}
                 </td>
                 <td class="text-right">
                     <a href="/users/{{.SAMAccountName}}"
-                       class="btn bg-white px-2 py-1 text-xs shadow-[1px_1px_0px_var(--color-ink)] mr-1 no-underline">
+                        class="btn bg-white px-2 py-1 text-xs shadow-[1px_1px_0px_var(--color-ink)] mr-1 no-underline">
                         View
                     </a>
                     {{if or $.IsAdmin (eq $.CurrentUser .SAMAccountName)}}
                     <a href="/users/{{.SAMAccountName}}/edit"
-                       class="btn bg-white px-2 py-1 text-xs shadow-[1px_1px_0px_var(--color-ink)] mr-1 no-underline">
+                        class="btn bg-white px-2 py-1 text-xs shadow-[1px_1px_0px_var(--color-ink)] mr-1 no-underline">
                         Edit
                     </a>
                     {{end}}
                     {{if $.IsAdmin}}
-                    <button type="button"
-                        class="btn btn-danger px-2 py-1 text-xs js-delete-trigger"
+                    <button type="button" class="btn btn-danger px-2 py-1 text-xs js-delete-trigger"
                         data-sam="{{.SAMAccountName}}">
                         Delete
                     </button>
                     {{end}}
-                </td>
-            </tr>
-            {{end}}
-            {{else}}
-            <tr>
-                <td colspan="6" class="text-center text-[var(--color-muted)] py-8">
-                    No users found.
                 </td>
             </tr>
             {{end}}
@@ -87,12 +77,14 @@
         </div>
 
         <div class="border-2 border-[var(--color-accent)] bg-[#FFF5F5] p-4 mb-6">
-            <p class="font-bold text-sm">This action is <span class="text-[var(--color-accent)]">irreversible</span>. The user will be permanently deleted from Active Directory.</p>
+            <p class="font-bold text-sm">This action is <span class="text-[var(--color-accent)]">irreversible</span>.
+                The user will be permanently deleted from Active Directory.</p>
         </div>
 
         <p class="text-sm mb-4">
             To confirm, type the username
-            <code id="modal-delete-sam-label" class="bg-[var(--color-base)] border border-[var(--color-ink)] px-1 mono font-bold"></code>
+            <code id="modal-delete-sam-label"
+                class="bg-[var(--color-base)] border border-[var(--color-ink)] px-1 mono font-bold"></code>
             below:
         </p>
 
@@ -100,26 +92,59 @@
             <input type="hidden" name="_csrf" value="{{$.CSRFToken}}">
 
             <div class="flex flex-col gap-1 mb-6">
-                <label for="confirm_name_list" class="font-bold uppercase tracking-wider text-sm">Confirm Username</label>
-                <input type="text"
-                    id="confirm_name_list"
-                    name="confirm_name"
-                    class="js-confirm-input"
-                    data-confirm-target="btn-confirm-delete-list"
-                    autocomplete="off"
+                <label for="confirm_name_list" class="font-bold uppercase tracking-wider text-sm">Confirm
+                    Username</label>
+                <input type="text" id="confirm_name_list" name="confirm_name" class="js-confirm-input"
+                    data-confirm-target="btn-confirm-delete-list" autocomplete="off"
                     placeholder="Type username to confirm">
             </div>
 
             <div class="flex justify-end gap-3 pt-4 border-t-2 border-[var(--color-ink)]">
                 <button type="button" class="btn bg-white js-modal-close">Cancel</button>
-                <button type="submit"
-                    id="btn-confirm-delete-list"
-                    class="btn btn-danger"
-                    disabled>
+                <button type="submit" id="btn-confirm-delete-list" class="btn btn-danger" disabled>
                     Delete Permanently
                 </button>
             </div>
         </form>
     </div>
 </div>
+{{end}}
+
+{{define "head_extra"}}
+<link rel="stylesheet" href="/static/css/datatables.css">
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/js/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table-users').DataTable({
+            pageLength: 15,
+            lengthMenu: [10, 15, 25, 50, 100],
+            order: [[0, 'asc']],
+            layout: {
+                topStart: 'pageLength',
+                topEnd: 'search',
+                bottomStart: 'info',
+                bottomEnd: 'paging'
+            },
+            columnDefs: [
+                { orderable: false, targets: [5] }
+            ],
+            language: {
+                search: 'SEARCH:',
+                lengthMenu: 'SHOW _MENU_ entries',
+                info: 'Showing _START_ to _END_ of _TOTAL_ users',
+                infoEmpty: 'No users found',
+                infoFiltered: '(filtered from _MAX_)',
+                paginate: {
+                    first: '«',
+                    last: '»',
+                    next: '›',
+                    previous: '‹'
+                }
+            }
+        });
+    });
+</script>
 {{end}}

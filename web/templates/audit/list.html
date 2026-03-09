@@ -3,34 +3,84 @@
 {{define "title"}}Audit Logs{{end}}
 
 {{define "content"}}
-<div class="flex justify-between items-center mb-6">
-    <div class="flex gap-4">
-        <input type="text" placeholder="Search logs..." class="w-64">
-        <input type="date" class="w-48">
-        <button class="btn btn-primary px-6">Filter</button>
-    </div>
-</div>
-
-<div class="card p-0 overflow-x-auto">
-    <table class="table-brutal w-full whitespace-nowrap">
+<div class="card p-0">
+    <table id="table-audit" class="table-brutal w-full">
         <thead>
             <tr>
-                <th>Timestamp</th>
-                <th>Admin User</th>
-                <th>IP Address</th>
-                <th>Action</th>
-                <th>Object DN</th>
-                <th>Details</th>
+                <th class="text-left">Timestamp</th>
+                <th class="text-left">Admin User</th>
+                <th class="text-left">IP Address</th>
+                <th class="text-left">Action</th>
+                <th class="text-left">Object DN</th>
+                <th class="text-left">Details</th>
             </tr>
         </thead>
         <tbody class="mono text-sm">
-            <!-- Simulated data or empty state -->
-            {{/* range .AuditLogs */}}
+            {{range .AuditLogs}}
             <tr>
-                <td colspan="6" class="text-center italic py-4">No audit logs available matching the filter.</td>
+                <td class="text-xs">{{.CreatedAt.Format "2006-01-02 15:04:05"}}</td>
+                <td class="font-bold">{{.AdminUser}}</td>
+                <td>{{.IPAddress}}</td>
+                <td>
+                    {{if eq .Action "CREATE_USER"}}
+                        <span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">CREATE</span>
+                    {{else if eq .Action "UPDATE_USER"}}
+                        <span class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold text-xs uppercase">UPDATE</span>
+                    {{else if eq .Action "DELETE_USER"}}
+                        <span class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">DELETE</span>
+                    {{else}}
+                        <span class="bg-[var(--color-primary)] text-white px-2 py-1 font-bold text-xs uppercase">{{.Action}}</span>
+                    {{end}}
+                </td>
+                <td class="text-xs break-all max-w-xs">{{.ObjectDN}}</td>
+                <td class="text-xs text-[var(--color-muted)]">{{.Details}}</td>
             </tr>
-            {{/* end */}}
+            {{else}}
+            <tr>
+                <td colspan="6" class="text-center text-[var(--color-muted)] py-8">No audit logs found.</td>
+            </tr>
+            {{end}}
         </tbody>
     </table>
 </div>
+{{end}}
+
+{{define "head_extra"}}
+<link rel="stylesheet" href="/static/css/datatables.css">
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/js/datatables.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#table-audit').DataTable({
+        pageLength: 25,
+        lengthMenu: [10, 25, 50, 100],
+        autoWidth: false,
+        order: [[0, 'desc']],
+        layout: {
+            topStart:    'pageLength',
+            topEnd:      'search',
+            bottomStart: 'info',
+            bottomEnd:   'paging'
+        },
+        columnDefs: [
+            { orderable: false, targets: [5] }
+        ],
+        language: {
+            search:       'SEARCH:',
+            lengthMenu:   'SHOW _MENU_ entries',
+            info:         'Showing _START_ to _END_ of _TOTAL_ entries',
+            infoEmpty:    'No logs found',
+            infoFiltered: '(filtered from _MAX_)',
+            paginate: {
+                first:    '«',
+                last:     '»',
+                next:     '›',
+                previous: '‹'
+            }
+        }
+    });
+});
+</script>
 {{end}}

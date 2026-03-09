@@ -35,8 +35,8 @@
     <h2 class="text-2xl font-bold uppercase border-b-2 border-[var(--color-ink)] pb-2 mb-6">
         Recent Activity (Audit Log)
     </h2>
-    <div class="card p-0 overflow-hidden">
-        <table class="table-brutal">
+    <div class="card p-0">
+        <table id="table-audit-dashboard" class="table-brutal">
             <thead>
                 <tr>
                     <th>Timestamp</th>
@@ -46,27 +46,53 @@
                 </tr>
             </thead>
             <tbody class="mono text-sm">
-                <!-- Data populated from DB later -->
+                {{range .RecentLogs}}
                 <tr>
-                    <td>2026-03-07 10:15:30</td>
-                    <td>samba4admin</td>
-                    <td><span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold">CREATE</span></td>
-                    <td>CN=JSmith,OU=Users,DC=empresa,DC=local</td>
+                    <td class="text-xs">{{.CreatedAt.Format "2006-01-02 15:04:05"}}</td>
+                    <td class="font-bold">{{.AdminUser}}</td>
+                    <td>
+                        {{if eq .Action "CREATE_USER"}}
+                            <span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">CREATE</span>
+                        {{else if eq .Action "UPDATE_USER"}}
+                            <span class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold text-xs uppercase">UPDATE</span>
+                        {{else if eq .Action "DELETE_USER"}}
+                            <span class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">DELETE</span>
+                        {{else}}
+                            <span class="bg-[var(--color-primary)] text-white px-2 py-1 font-bold text-xs uppercase">{{.Action}}</span>
+                        {{end}}
+                    </td>
+                    <td class="text-xs">{{.ObjectDN}}</td>
                 </tr>
-                <tr>
-                    <td>2026-03-07 10:10:12</td>
-                    <td>samba4admin</td>
-                    <td><span class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold">UPDATE</span></td>
-                    <td>CN=ITStaff,OU=Groups,DC=empresa,DC=local</td>
-                </tr>
-                <tr>
-                    <td>2026-03-07 09:45:00</td>
-                    <td>samba4admin</td>
-                    <td><span class="bg-[var(--color-primary)] text-white px-2 py-1 font-bold">LOGIN</span></td>
-                    <td>192.168.1.50</td>
-                </tr>
+                {{end}}
             </tbody>
         </table>
     </div>
 </div>
+{{end}}
+
+{{define "head_extra"}}
+<link rel="stylesheet" href="/static/css/datatables.css">
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/js/datatables.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#table-audit-dashboard').DataTable({
+        paging:    false,
+        info:      false,
+        autoWidth: false,
+        order:     [[0, 'desc']],
+        layout: {
+            topStart: null,
+            topEnd:   'search',
+            bottomStart: null,
+            bottomEnd:   null
+        },
+        language: {
+            search: 'SEARCH:'
+        }
+    });
+});
+</script>
 {{end}}

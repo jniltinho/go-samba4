@@ -1,25 +1,24 @@
 {{template "base" .}}
 
-{{define "title"}}Groups List{{end}}
+{{define "title"}}Groups{{end}}
 
 {{define "content"}}
 <div class="flex justify-between items-center mb-6">
-    <div class="flex gap-4">
-        <input type="text" placeholder="Search groups..." class="w-64">
-        <button class="btn btn-primary px-6">Filter</button>
-    </div>
+    <p class="text-sm text-[var(--color-muted)] font-bold uppercase tracking-wider">
+        Active Directory Groups
+    </p>
     <a href="/groups/new" class="btn btn-primary no-underline">+ New Group</a>
 </div>
 
-<div class="card p-0 overflow-x-auto">
-    <table class="table-brutal w-full whitespace-nowrap">
+<div class="card p-0">
+    <table id="table-groups" class="table-brutal w-full">
         <thead>
             <tr>
-                <th>Group Name</th>
-                <th>Description</th>
-                <th>Type</th>
-                <th>Members</th>
-                <th>Actions</th>
+                <th class="text-left">Group Name</th>
+                <th class="text-left">Description</th>
+                <th class="text-left">Type</th>
+                <th class="text-right">Members</th>
+                <th class="text-right">Actions</th>
             </tr>
         </thead>
         <tbody class="mono text-sm">
@@ -28,15 +27,60 @@
                 <td class="font-bold">{{.SAMAccountName}}</td>
                 <td>{{.Description}}</td>
                 <td>
-                    <span class="bg-[var(--color-primary)] text-white px-2 py-1 text-xs uppercase">{{.GroupType}}</span>
+                    <span
+                        class="bg-[var(--color-primary)] text-white px-2 py-1 text-xs uppercase font-bold border-2 border-[var(--color-ink)]">
+                        {{.GroupType}}
+                    </span>
                 </td>
-                <td>{{len .Member}}</td>
-                <td>
-                    <a href="/groups/{{.SAMAccountName}}/edit" class="btn bg-[#FFF] px-2 py-1 text-xs shadow-[1px 1px 0px var(--color-ink)] mr-2 no-underline">Edit</a>
+                <td class="text-right font-black mono">{{len .Member}}</td>
+                <td class="text-right">
+                    <a href="/groups/{{.SAMAccountName}}/edit"
+                        class="btn bg-white px-2 py-1 text-xs shadow-[1px_1px_0px_var(--color-ink)] no-underline">
+                        Edit
+                    </a>
                 </td>
             </tr>
             {{end}}
         </tbody>
     </table>
 </div>
+{{end}}
+
+{{define "head_extra"}}
+<link rel="stylesheet" href="/static/css/datatables.css">
+{{end}}
+
+{{define "scripts"}}
+<script src="/static/js/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table-groups').DataTable({
+            pageLength: 15,
+            lengthMenu: [10, 15, 25, 50, 100],
+            order: [[0, 'asc']],
+            layout: {
+                topStart: 'pageLength',
+                topEnd: 'search',
+                bottomStart: 'info',
+                bottomEnd: 'paging'
+            },
+            columnDefs: [
+                { orderable: false, targets: [4] }
+            ],
+            language: {
+                search: 'SEARCH:',
+                lengthMenu: 'SHOW _MENU_ entries',
+                info: 'Showing _START_ to _END_ of _TOTAL_ groups',
+                infoEmpty: 'No groups found',
+                infoFiltered: '(filtered from _MAX_)',
+                paginate: {
+                    first: '«',
+                    last: '»',
+                    next: '›',
+                    previous: '‹'
+                }
+            }
+        });
+    });
+</script>
 {{end}}

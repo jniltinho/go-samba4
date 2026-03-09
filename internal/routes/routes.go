@@ -35,7 +35,7 @@ func RegisterRoutes(e *echo.Echo, appCtx *handlers.AppContext, sm *auth.SessionM
 
 	p.GET("/search", appCtx.SearchGET)
 
-	p.GET("/audit", func(c *echo.Context) error { return c.Render(200, "audit/list", nil) })
+	p.GET("/audit", appCtx.AuditListGET)
 	p.GET("/settings", appCtx.SettingsGET)
 	p.POST("/settings", appCtx.SettingsPOST)
 }

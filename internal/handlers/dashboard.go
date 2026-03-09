@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v5"
+	"go-samba4/internal/models"
 )
 
 func (app *AppContext) DashboardGET(c *echo.Context) error {
@@ -27,9 +28,13 @@ func (app *AppContext) DashboardGET(c *echo.Context) error {
 		fmt.Printf("Error fetching OUs: %v\n", err)
 	}
 
+	var recentLogs []models.AuditLog
+	app.DB.Order("created_at desc").Limit(10).Find(&recentLogs)
+
 	return c.Render(http.StatusOK, "dashboard", map[string]interface{}{
 		"TotalUsers":  userCount,
 		"TotalGroups": groupCount,
 		"TotalOUs":    ouCount,
+		"RecentLogs":  recentLogs,
 	})
 }
