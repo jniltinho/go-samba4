@@ -1,6 +1,11 @@
 .PHONY: all build clean run compressed help css
 
 APP_NAME = go-samba4
+DATE     = $(shell date +%Y-%m-%d\ %H:%M:%S)
+VERSION  = v1.1.1
+PREFIX   = go-samba4/cmd
+LDFLAGS  = -X '$(PREFIX).Version=$(VERSION)' -X '$(PREFIX).BuildDate=$(DATE)'
+FLAGS    = -v -ldflags="-s -w $(LDFLAGS)"
 
 all: build
 
@@ -11,8 +16,8 @@ css:
 	@echo "CSS compiled."
 
 build: clean css
-	@echo "Building $(APP_NAME)..."
-	go build -ldflags="-s -w" -o $(APP_NAME) .
+	@echo "Building $(APP_NAME) $(VERSION)..."
+	go build $(FLAGS) -o $(APP_NAME) .
 	upx --best --lzma $(APP_NAME)
 	@echo "Build complete."
 
