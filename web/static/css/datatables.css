@@ -33,11 +33,24 @@ table.dataTable {
 }
 
 /* Push end slot to the right even when start is empty */
-div.dt-container .dt-layout-end { margin-left: auto; }
+div.dt-container .dt-layout-end {
+  margin-left: auto;
+}
 
 /* Search */
-div.dt-container .dt-search { display: flex; align-items: center; gap: 0.5rem; }
-div.dt-container .dt-search label { font-weight: 900; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+div.dt-container .dt-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+div.dt-container .dt-search label {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
 div.dt-container .dt-search input {
   border: 2px solid var(--color-ink);
   box-shadow: none;
@@ -48,14 +61,26 @@ div.dt-container .dt-search input {
   background: var(--color-surface);
   outline: none;
 }
+
 div.dt-container .dt-search input:focus {
   border-color: var(--color-primary);
   box-shadow: none;
 }
 
 /* Length selector */
-div.dt-container .dt-length { display: flex; align-items: center; gap: 0.5rem; }
-div.dt-container .dt-length label { font-weight: 900; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+div.dt-container .dt-length {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+div.dt-container .dt-length label {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
 div.dt-container .dt-length select {
   border: 2px solid var(--color-ink);
   box-shadow: 2px 2px 0px var(--color-ink);
@@ -78,7 +103,12 @@ div.dt-container .dt-info {
 }
 
 /* Pagination */
-div.dt-container .dt-paging { display: flex; align-items: center; gap: 0; }
+div.dt-container .dt-paging {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
 div.dt-container .dt-paging .dt-paging-button {
   border: 2px solid var(--color-ink);
   margin-left: -2px;
@@ -91,22 +121,44 @@ div.dt-container .dt-paging .dt-paging-button {
   text-transform: uppercase;
   transition: none;
 }
+
 div.dt-container .dt-paging .dt-paging-button:hover:not(.disabled) {
   background: var(--color-primary);
   color: #fff;
 }
+
 div.dt-container .dt-paging .dt-paging-button.current {
   background: var(--color-primary);
   color: #fff;
 }
+
 div.dt-container .dt-paging .dt-paging-button.disabled {
   opacity: 0.35;
   cursor: not-allowed;
 }
 
+/* Column alignment helpers (mirrors DataTables built-in since we skip the official CSS) */
+table.dataTable th.dt-center,
+table.dataTable td.dt-center {
+  text-align: center;
+}
+
+table.dataTable th.dt-right,
+table.dataTable td.dt-right {
+  text-align: right;
+}
+
+table.dataTable th.dt-left,
+table.dataTable td.dt-left {
+  text-align: left;
+}
+
+
 /* Sortable column headers */
+/*
 table.dataTable thead th.dt-orderable-asc,
 table.dataTable thead th.dt-orderable-desc { cursor: pointer; }
 table.dataTable thead th.dt-ordering-asc::after  { content: " [↑]"; font-size: 0.7rem; opacity: 0.7; }
 table.dataTable thead th.dt-ordering-desc::after { content: " [↓]"; font-size: 0.7rem; opacity: 0.7; }
 table.dataTable thead th span.dt-column-order { display: none; }
+*/

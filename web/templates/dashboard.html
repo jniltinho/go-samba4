@@ -41,7 +41,7 @@
                 <tr>
                     <th>{{ T $.Lang "Col_Timestamp" }}</th>
                     <th>{{ T $.Lang "Col_User" }}</th>
-                    <th>{{ T $.Lang "Col_Action" }}</th>
+                    <th class="text-center">{{ T $.Lang "Col_Action" }}</th>
                     <th>{{ T $.Lang "Col_Object" }}</th>
                 </tr>
             </thead>
@@ -50,7 +50,7 @@
                 <tr>
                     <td class="text-xs">{{.CreatedAt.Format "2006-01-02 15:04:05"}}</td>
                     <td class="font-bold">{{.AdminUser}}</td>
-                    <td>
+                    <td class="text-center">
                         {{if eq .Action "CREATE_USER"}}
                             <span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">CREATE</span>
                         {{else if eq .Action "UPDATE_USER"}}
@@ -89,7 +89,10 @@ $(document).ready(function() {
             topEnd:   'search',
             bottomStart: null,
             bottomEnd:   null
-        }
+        },
+        columnDefs: [
+            { className: 'dt-center', width: '100px', targets: [2] }
+        ]
     });
 });
 </script>

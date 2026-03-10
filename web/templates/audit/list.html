@@ -10,7 +10,7 @@
                 <th class="text-left">{{ T $.Lang "Col_Timestamp" }}</th>
                 <th class="text-left">{{ T $.Lang "Col_AdminUser" }}</th>
                 <th class="text-left">{{ T $.Lang "Col_IPAddress" }}</th>
-                <th class="text-left">{{ T $.Lang "Col_Action" }}</th>
+                <th class="text-center">{{ T $.Lang "Col_Action" }}</th>
                 <th class="text-left">{{ T $.Lang "Col_ObjectDN" }}</th>
                 <th class="text-left">{{ T $.Lang "Col_Details" }}</th>
             </tr>
@@ -21,7 +21,7 @@
                 <td class="text-xs">{{.CreatedAt.Format "2006-01-02 15:04:05"}}</td>
                 <td class="font-bold">{{.AdminUser}}</td>
                 <td>{{.IPAddress}}</td>
-                <td>
+                <td class="text-center">
                     {{if eq .Action "CREATE_USER"}}
                         <span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">CREATE</span>
                     {{else if eq .Action "UPDATE_USER"}}
@@ -66,7 +66,8 @@ $(document).ready(function() {
             bottomEnd:   'paging'
         },
         columnDefs: [
-            { orderable: false, targets: [5] }
+            { orderable: false, targets: [5] },
+            { className: 'dt-center', width: '100px', targets: [3] }
         ]
     });
 });
