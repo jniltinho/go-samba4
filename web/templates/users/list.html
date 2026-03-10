@@ -28,26 +28,29 @@
                 <td>{{.Department}}</td>
                 <td class="text-center">
                     {{if or (eq .UserAccountControl 512) (eq .UserAccountControl 66048)}}
-                    <i data-lucide="circle-check" style="color: var(--color-success); width: 1.5rem; height: 1.5rem; display: block; margin: 0 auto;"></i>
+                    <i data-lucide="circle-check"
+                        style="color: var(--color-success); width: 1.5rem; height: 1.5rem; display: block; margin: 0 auto;"></i>
                     {{else if or (eq .UserAccountControl 514) (eq .UserAccountControl 66050)}}
-                    <i data-lucide="circle-x" style="color: var(--color-accent); width: 1.5rem; height: 1.5rem; display: block; margin: 0 auto;"></i>
+                    <i data-lucide="circle-x"
+                        style="color: var(--color-accent); width: 1.5rem; height: 1.5rem; display: block; margin: 0 auto;"></i>
                     {{else}}
-                    <i data-lucide="circle-help" style="color: var(--color-warning); width: 1.5rem; height: 1.5rem; display: block; margin: 0 auto;" title="UAC:{{.UserAccountControl}}"></i>
+                    <i data-lucide="circle-help"
+                        style="color: var(--color-warning); width: 1.5rem; height: 1.5rem; display: block; margin: 0 auto;"
+                        title="UAC:{{.UserAccountControl}}"></i>
                     {{end}}
                 </td>
                 <td class="text-right">
-                    <a href="/users/{{.SAMAccountName}}"
-                        class="btn bg-white px-2 py-1 text-xs shadow-[1px_1px_0px_var(--color-ink)] mr-1 no-underline">
+                    <a href="/users/{{.SAMAccountName}}" class="btn btn-success px-1 py-1 text-xs mr-1 no-underline">
                         {{ T $.Lang "Btn_View" }}
                     </a>
                     {{if or $.IsAdmin (eq $.CurrentUser .SAMAccountName)}}
                     <a href="/users/{{.SAMAccountName}}/edit"
-                        class="btn bg-white px-2 py-1 text-xs shadow-[1px_1px_0px_var(--color-ink)] mr-1 no-underline">
+                        class="btn btn-warning px-1 py-1 text-xs mr-1 no-underline">
                         {{ T $.Lang "Btn_Edit" }}
                     </a>
                     {{end}}
                     {{if $.IsAdmin}}
-                    <button type="button" class="btn btn-danger px-2 py-1 text-xs js-delete-trigger"
+                    <button type="button" class="btn btn-danger px-1 py-1 text-xs js-delete-trigger !shadow-none"
                         data-sam="{{.SAMAccountName}}">
                         {{ T $.Lang "Btn_Delete" }}
                     </button>
@@ -119,8 +122,8 @@
                 bottomEnd: 'paging'
             },
             columnDefs: [
-                { orderable: false, width: '320px', className: 'dt-right', targets: [5] },
-                { className: 'dt-center', width: '100px', targets: [4] }
+                { width: '70px', className: 'dt-center', targets: [4] },
+                { width: '270px', className: 'dt-right', orderable: false, targets: [5] }
             ]
         });
     });

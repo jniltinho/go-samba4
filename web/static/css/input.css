@@ -61,7 +61,7 @@ code, .mono {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 0.5rem 1.25rem;
+  padding: 0.3rem 0.75rem;
   transition: none;
   cursor: pointer;
   background-color: var(--color-surface);
@@ -86,14 +86,53 @@ code, .mono {
   color: #FFF;
 }
 
-.btn-danger { 
-  border-color: var(--color-accent); 
-  box-shadow: 2px 2px 0px var(--color-accent); 
+.btn-success {
+  border-color: var(--color-success);
+  box-shadow: none;
+  color: var(--color-success);
+}
+.btn-success:hover {
+  background: var(--color-success);
+  color: #FFF;
+  border-color: var(--color-ink);
+}
+
+.btn-warning {
+  border-color: var(--color-warning);
+  box-shadow: none;
+  color: var(--color-warning);
+}
+.btn-warning:hover {
+  background: var(--color-warning);
+  color: #FFF;
+  border-color: var(--color-ink);
+}
+
+.btn-danger {
+  border-color: var(--color-accent);
+  box-shadow: 2px 2px 0px var(--color-accent);
   color: var(--color-accent);
 }
-.btn-danger:hover { 
-  background: var(--color-accent); 
-  color: #FFF; 
+.btn-danger:hover {
+  background: var(--color-accent);
+  color: #FFF;
+  border-color: var(--color-ink);
+}
+
+.btn-logout {
+  border: 2px solid var(--color-accent);
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: none;
+}
+.btn-logout:hover {
+  background: var(--color-accent);
+  color: #FFF;
   border-color: var(--color-ink);
 }
 
