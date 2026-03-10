@@ -35,6 +35,13 @@ run:
 	@echo "Running $(APP_NAME)..."
 	./$(APP_NAME) serve
 
+certs:
+	@echo "Generating SSL certificates..."
+	mkdir -p ssl
+	openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
+		-keyout ssl/server.key -out ssl/server.crt \
+		-subj "/C=BR/ST=SP/L=Sao Paulo/O=Development/CN=localhost"
+
 help:
 	@echo "Available commands:"
 	@echo "  make build      - Build the application (stripped binary)"

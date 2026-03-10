@@ -1,10 +1,13 @@
 package server
 
 import (
+	stdContext "context"
 	"embed"
 	"fmt"
 	"log/slog"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/labstack/echo/v5"
 	echoMiddleware "github.com/labstack/echo/v5/middleware"
@@ -103,7 +106,10 @@ func Serve(globalCfg *config.Config, tplFS embed.FS, statFS embed.FS, localesFS 
 	bindAddr := fmt.Sprintf("%s:%d", globalCfg.Server.Host, globalCfg.Server.Port)
 	if globalCfg.Server.TLSCert != "" && globalCfg.Server.TLSKey != "" {
 		slog.Info(fmt.Sprintf("Server starting on https://%s", bindAddr))
-		if err := e.Start(bindAddr); err != nil { // In some v5 versionsStart also handles TLS or you use http.Server
+		sc := echo.StartConfig{Address: bindAddr}
+		ctx, cancel := signal.NotifyContext(stdContext.Background(), os.Interrupt, syscall.SIGTERM)
+		defer cancel()
+		if err := sc.StartTLS(ctx, e, globalCfg.Server.TLSCert, globalCfg.Server.TLSKey); err != nil {
 			slog.Error("Server failed", "err", err)
 			os.Exit(1)
 		}
