@@ -2,7 +2,7 @@
 
 APP_NAME = go-samba4
 DATE     = $(shell date +%Y-%m-%d\ %H:%M:%S)
-VERSION  = v1.1.1
+VERSION  = v1.1.2
 PREFIX   = go-samba4/internal/buildinfo
 LDFLAGS  = -X '$(PREFIX).Version=$(VERSION)' -X '$(PREFIX).BuildDate=$(DATE)'
 FLAGS    = -v -ldflags="-s -w $(LDFLAGS)"
@@ -31,7 +31,7 @@ clean:
 	rm -f $(APP_NAME)
 	@echo "Clean complete."
 
-run: build
+run:
 	@echo "Running $(APP_NAME)..."
 	./$(APP_NAME) serve
 

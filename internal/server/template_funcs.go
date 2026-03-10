@@ -3,6 +3,7 @@ package server
 import (
 	"fmt"
 	"html/template"
+	"strings"
 
 	"go-samba4/internal/buildinfo"
 	"go-samba4/internal/i18n"
@@ -31,6 +32,8 @@ func TemplateFuncMap() template.FuncMap {
 		"safeCSS": func(s string) template.CSS {
 			return template.CSS(s)
 		},
+		// Check if a string has a prefix: {{ if hasPrefix $.CurrentPath "/users" }}
+		"hasPrefix": strings.HasPrefix,
 		// Build a map from key-value pairs (for TData): {{ dict "Key" .Value "Key2" .Value2 }}
 		"dict": func(kvs ...any) (map[string]any, error) {
 			if len(kvs)%2 != 0 {

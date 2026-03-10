@@ -93,6 +93,7 @@ func (t *TemplateRegistry) Render(c *echo.Context, w io.Writer, name string, dat
 	viewData["CSRFToken"] = c.Get("csrf")
 	viewData["Username"] = c.Get("username")
 	viewData["Lang"] = handlers.LangFromRequest(c)
+	viewData["CurrentPath"] = c.Request().URL.Path
 
 	// Render the primary 'base' template layout which intrinsically yields the corresponding sub-content
 	return tmpl.ExecuteTemplate(w, "base", viewData)

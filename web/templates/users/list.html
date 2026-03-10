@@ -27,21 +27,12 @@
                 <td>{{.Mail}}</td>
                 <td>{{.Department}}</td>
                 <td class="text-center">
-                    {{if eq .UserAccountControl 512}}
-                    <span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">{{ T $.Lang
-                        "Label_Active" }}</span>
-                    {{else if eq .UserAccountControl 514}}
-                    <span class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">{{ T $.Lang
-                        "Label_Disabled" }}</span>
-                    {{else if eq .UserAccountControl 66048}}
-                    <span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">{{ T $.Lang
-                        "Label_Active" }}</span>
-                    {{else if eq .UserAccountControl 66050}}
-                    <span class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">{{ T $.Lang
-                        "Label_Disabled" }}</span>
+                    {{if or (eq .UserAccountControl 512) (eq .UserAccountControl 66048)}}
+                    <i data-lucide="circle-check" style="color: var(--color-success); width: 1.5rem; height: 1.5rem; display: block; margin: 0 auto;"></i>
+                    {{else if or (eq .UserAccountControl 514) (eq .UserAccountControl 66050)}}
+                    <i data-lucide="circle-x" style="color: var(--color-accent); width: 1.5rem; height: 1.5rem; display: block; margin: 0 auto;"></i>
                     {{else}}
-                    <span
-                        class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold text-xs uppercase">UAC:{{.UserAccountControl}}</span>
+                    <i data-lucide="circle-help" style="color: var(--color-warning); width: 1.5rem; height: 1.5rem; display: block; margin: 0 auto;" title="UAC:{{.UserAccountControl}}"></i>
                     {{end}}
                 </td>
                 <td class="text-right">
