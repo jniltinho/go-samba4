@@ -1,3 +1,15 @@
+// DataTables language — set before ready so templates can use window.dtLang
+(function () {
+    var lang = window.AppLang || 'en';
+    if (lang === 'pt' || lang === 'pt_BR') {
+        window.dtLang = { url: '/static/js/i18n/pt-BR.json' };
+    } else if (lang === 'es') {
+        window.dtLang = { url: '/static/js/i18n/es-ES.json' };
+    } else {
+        window.dtLang = {};
+    }
+})();
+
 // Initialize jQuery Document Ready
 $(document).ready(function() {
     console.log("Samba4 Admin Panel Initialized");

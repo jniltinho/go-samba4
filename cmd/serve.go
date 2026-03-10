@@ -13,7 +13,7 @@ var serveCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		debug, _ := cmd.Flags().GetBool("debug")
 		slog.Info("Starting Samba4-Admin Server")
-		server.Serve(globalCfg, tplFS, statFS, debug)
+		server.Serve(globalCfg, tplFS, statFS, localesFS, debug)
 	},
 }
 

@@ -10,6 +10,7 @@ import (
 // RegisterRoutes sets up all the HTTP routes for the application
 func RegisterRoutes(e *echo.Echo, appCtx *handlers.AppContext, sm *auth.SessionManager) {
 	e.GET("/", func(c *echo.Context) error { return c.Redirect(302, "/dashboard") })
+	e.GET("/lang/:code", appCtx.SetLanguage)
 
 	// Public Auth Routes
 	authGrp := e.Group("/auth", middleware.CSRF())

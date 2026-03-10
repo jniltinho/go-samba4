@@ -1,18 +1,18 @@
 {{template "base" .}}
 
-{{define "title"}}Audit Logs{{end}}
+{{define "title"}}{{ T $.Lang "Page_AuditLogs" }}{{end}}
 
 {{define "content"}}
 <div class="card p-0">
     <table id="table-audit" class="table-brutal w-full">
         <thead>
             <tr>
-                <th class="text-left">Timestamp</th>
-                <th class="text-left">Admin User</th>
-                <th class="text-left">IP Address</th>
-                <th class="text-left">Action</th>
-                <th class="text-left">Object DN</th>
-                <th class="text-left">Details</th>
+                <th class="text-left">{{ T $.Lang "Col_Timestamp" }}</th>
+                <th class="text-left">{{ T $.Lang "Col_AdminUser" }}</th>
+                <th class="text-left">{{ T $.Lang "Col_IPAddress" }}</th>
+                <th class="text-left">{{ T $.Lang "Col_Action" }}</th>
+                <th class="text-left">{{ T $.Lang "Col_ObjectDN" }}</th>
+                <th class="text-left">{{ T $.Lang "Col_Details" }}</th>
             </tr>
         </thead>
         <tbody class="mono text-sm">
@@ -37,7 +37,7 @@
             </tr>
             {{else}}
             <tr>
-                <td colspan="6" class="text-center text-[var(--color-muted)] py-8">No audit logs found.</td>
+                <td colspan="6" class="text-center text-[var(--color-muted)] py-8">{{ T $.Lang "Msg_NoAuditLogs" }}</td>
             </tr>
             {{end}}
         </tbody>
@@ -58,6 +58,7 @@ $(document).ready(function() {
         lengthMenu: [10, 25, 50, 100],
         autoWidth: false,
         order: [[0, 'desc']],
+        language: window.dtLang,
         layout: {
             topStart:    'pageLength',
             topEnd:      'search',
@@ -66,20 +67,7 @@ $(document).ready(function() {
         },
         columnDefs: [
             { orderable: false, targets: [5] }
-        ],
-        language: {
-            search:       'SEARCH:',
-            lengthMenu:   'SHOW _MENU_ entries',
-            info:         'Showing _START_ to _END_ of _TOTAL_ entries',
-            infoEmpty:    'No logs found',
-            infoFiltered: '(filtered from _MAX_)',
-            paginate: {
-                first:    '«',
-                last:     '»',
-                next:     '›',
-                previous: '‹'
-            }
-        }
+        ]
     });
 });
 </script>

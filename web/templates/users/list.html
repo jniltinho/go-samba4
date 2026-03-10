@@ -1,22 +1,22 @@
 {{template "base" .}}
 
-{{define "title"}}Users{{end}}
+{{define "title"}}{{ T $.Lang "Page_Users" }}{{end}}
 
 {{define "content"}}
 <div class="flex justify-end mb-6">
-    {{if .IsAdmin}}<a href="/users/new" class="btn btn-primary no-underline">+ New User</a>{{end}}
+    {{if .IsAdmin}}<a href="/users/new" class="btn btn-primary no-underline">{{ T $.Lang "Btn_NewUser" }}</a>{{end}}
 </div>
 
 <div class="card p-0">
     <table id="table-users" class="table-brutal w-full">
         <thead>
             <tr>
-                <th class="text-left">Username</th>
-                <th class="text-left">Display Name</th>
-                <th class="text-left">Email</th>
-                <th class="text-left">Department</th>
-                <th class="text-left">Status</th>
-                <th class="text-right">Actions</th>
+                <th class="text-left">{{ T $.Lang "Col_Username" }}</th>
+                <th class="text-left">{{ T $.Lang "Col_DisplayName" }}</th>
+                <th class="text-left">{{ T $.Lang "Col_Email" }}</th>
+                <th class="text-left">{{ T $.Lang "Col_Department" }}</th>
+                <th class="text-left">{{ T $.Lang "Col_Status" }}</th>
+                <th class="text-right">{{ T $.Lang "Col_Actions" }}</th>
             </tr>
         </thead>
         <tbody class="mono text-sm">
@@ -29,16 +29,16 @@
                 <td>
                     {{if eq .UserAccountControl 512}}
                     <span
-                        class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">ACTIVE</span>
+                        class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">{{ T $.Lang "Label_Active" }}</span>
                     {{else if eq .UserAccountControl 514}}
                     <span
-                        class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">DISABLED</span>
+                        class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">{{ T $.Lang "Label_Disabled" }}</span>
                     {{else if eq .UserAccountControl 66048}}
                     <span
-                        class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">ACTIVE</span>
+                        class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">{{ T $.Lang "Label_Active" }}</span>
                     {{else if eq .UserAccountControl 66050}}
                     <span
-                        class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">DISABLED</span>
+                        class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">{{ T $.Lang "Label_Disabled" }}</span>
                     {{else}}
                     <span
                         class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold text-xs uppercase">UAC:{{.UserAccountControl}}</span>
@@ -47,18 +47,18 @@
                 <td class="text-right">
                     <a href="/users/{{.SAMAccountName}}"
                         class="btn bg-white px-2 py-1 text-xs shadow-[1px_1px_0px_var(--color-ink)] mr-1 no-underline">
-                        View
+                        {{ T $.Lang "Btn_View" }}
                     </a>
                     {{if or $.IsAdmin (eq $.CurrentUser .SAMAccountName)}}
                     <a href="/users/{{.SAMAccountName}}/edit"
                         class="btn bg-white px-2 py-1 text-xs shadow-[1px_1px_0px_var(--color-ink)] mr-1 no-underline">
-                        Edit
+                        {{ T $.Lang "Btn_Edit" }}
                     </a>
                     {{end}}
                     {{if $.IsAdmin}}
                     <button type="button" class="btn btn-danger px-2 py-1 text-xs js-delete-trigger"
                         data-sam="{{.SAMAccountName}}">
-                        Delete
+                        {{ T $.Lang "Btn_Delete" }}
                     </button>
                     {{end}}
                 </td>
@@ -72,37 +72,35 @@
 <div id="modal-delete-list" class="modal-overlay hidden">
     <div class="modal-content max-w-md w-full">
         <div class="flex justify-between items-start mb-6">
-            <h3 class="font-black uppercase text-lg text-[var(--color-accent)]">Delete User</h3>
+            <h3 class="font-black uppercase text-lg text-[var(--color-accent)]">{{ T $.Lang "Msg_DeleteUser" }}</h3>
             <button type="button" class="modal-close js-modal-close leading-none">[&#x2715;]</button>
         </div>
 
         <div class="border-2 border-[var(--color-accent)] bg-[#FFF5F5] p-4 mb-6">
-            <p class="font-bold text-sm">This action is <span class="text-[var(--color-accent)]">irreversible</span>.
-                The user will be permanently deleted from Active Directory.</p>
+            <p class="font-bold text-sm">{{ T $.Lang "Msg_DeleteConfirm" }}
+                {{ T $.Lang "Msg_DeleteWarning" }}</p>
         </div>
 
         <p class="text-sm mb-4">
-            To confirm, type the username
+            {{ T $.Lang "Msg_TypeToConfirm" }}
             <code id="modal-delete-sam-label"
                 class="bg-[var(--color-base)] border border-[var(--color-ink)] px-1 mono font-bold"></code>
-            below:
         </p>
 
         <form id="form-delete-list" method="POST" action="">
             <input type="hidden" name="_csrf" value="{{$.CSRFToken}}">
 
             <div class="flex flex-col gap-1 mb-6">
-                <label for="confirm_name_list" class="font-bold uppercase tracking-wider text-sm">Confirm
-                    Username</label>
+                <label for="confirm_name_list" class="font-bold uppercase tracking-wider text-sm">{{ T $.Lang "Label_ConfirmUsername" }}</label>
                 <input type="text" id="confirm_name_list" name="confirm_name" class="js-confirm-input"
                     data-confirm-target="btn-confirm-delete-list" autocomplete="off"
-                    placeholder="Type username to confirm">
+                    placeholder="{{ T $.Lang "Col_Username" }}">
             </div>
 
             <div class="flex justify-end gap-3 pt-4 border-t-2 border-[var(--color-ink)]">
-                <button type="button" class="btn bg-white js-modal-close">Cancel</button>
+                <button type="button" class="btn bg-white js-modal-close">{{ T $.Lang "Btn_Cancel" }}</button>
                 <button type="submit" id="btn-confirm-delete-list" class="btn btn-danger" disabled>
-                    Delete Permanently
+                    {{ T $.Lang "Btn_DeletePermanently" }}
                 </button>
             </div>
         </form>
@@ -122,6 +120,7 @@
             pageLength: 15,
             lengthMenu: [10, 15, 25, 50, 100],
             order: [[0, 'asc']],
+            language: window.dtLang,
             layout: {
                 topStart: 'pageLength',
                 topEnd: 'search',
@@ -130,20 +129,7 @@
             },
             columnDefs: [
                 { orderable: false, targets: [5] }
-            ],
-            language: {
-                search: 'SEARCH:',
-                lengthMenu: 'SHOW _MENU_ entries',
-                info: 'Showing _START_ to _END_ of _TOTAL_ users',
-                infoEmpty: 'No users found',
-                infoFiltered: '(filtered from _MAX_)',
-                paginate: {
-                    first: '«',
-                    last: '»',
-                    next: '›',
-                    previous: '‹'
-                }
-            }
+            ]
         });
     });
 </script>

@@ -12,6 +12,7 @@ import (
 
 	"github.com/labstack/echo/v5"
 	"go-samba4/internal/config"
+	"go-samba4/internal/handlers"
 )
 
 // TemplateRegistry is a custom html/template renderer for Echo framework
@@ -55,12 +56,10 @@ func NewTemplateRegistry(cfg *config.Config, tplFS embed.FS) (*TemplateRegistry,
 		tmplKey := strings.TrimPrefix(filePath, "web/templates/")
 		tmplKey = strings.TrimSuffix(tmplKey, ".html")
 
-		var tmpl *template.Template
-		var parseErr error
-
 		// Each page template gets parsed together with the layout foundations
-		tmpl = template.New(path.Base(filePath))
-		tmpl, parseErr = tmpl.ParseFS(fileSystem, layout, sidebar, filePath)
+		// Funcs must be registered before parsing
+		tmpl := template.New(path.Base(filePath)).Funcs(TemplateFuncMap())
+		tmpl, parseErr := tmpl.ParseFS(fileSystem, layout, sidebar, filePath)
 
 		if parseErr != nil {
 			return fmt.Errorf("failed to parse template %s: %w", filePath, parseErr)
@@ -93,6 +92,7 @@ func (t *TemplateRegistry) Render(c *echo.Context, w io.Writer, name string, dat
 	}
 	viewData["CSRFToken"] = c.Get("csrf")
 	viewData["Username"] = c.Get("username")
+	viewData["Lang"] = handlers.LangFromRequest(c)
 
 	// Render the primary 'base' template layout which intrinsically yields the corresponding sub-content
 	return tmpl.ExecuteTemplate(w, "base", viewData)

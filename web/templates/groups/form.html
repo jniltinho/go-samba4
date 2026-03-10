@@ -1,27 +1,27 @@
 {{template "base" .}}
 
-{{define "title"}}Edit Group{{end}}
+{{define "title"}}{{ T $.Lang "Page_EditGroup" }}{{end}}
 
 {{define "content"}}
 <div class="card max-w-4xl">
     <form method="POST" action="/groups/save">
         <input type="hidden" name="_csrf" value="{{.CSRFToken}}">
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="flex flex-col gap-2">
-                <label for="SAMAccountName" class="font-bold uppercase tracking-wider">Group Name</label>
+                <label for="SAMAccountName" class="font-bold uppercase tracking-wider">{{ T $.Lang "Label_GroupName" }}</label>
                 <input type="text" id="SAMAccountName" name="SAMAccountName" required>
             </div>
-            
+
             <div class="flex flex-col gap-2 md:col-span-2">
-                <label for="Description" class="font-bold uppercase tracking-wider">Description</label>
+                <label for="Description" class="font-bold uppercase tracking-wider">{{ T $.Lang "Label_Description" }}</label>
                 <input type="text" id="Description" name="Description">
             </div>
         </div>
-        
+
         <div class="mt-8 pt-6 border-t-2 border-[var(--color-ink)] flex justify-end gap-4">
-            <a href="/groups" class="btn bg-[#FFF] no-underline leading-[normal] flex items-center justify-center">Cancel</a>
-            <button type="submit" class="btn btn-primary">Save Group</button>
+            <a href="/groups" class="btn bg-[#FFF] no-underline leading-[normal] flex items-center justify-center">{{ T $.Lang "Btn_Cancel" }}</a>
+            <button type="submit" class="btn btn-primary">{{ T $.Lang "Btn_SaveGroup" }}</button>
         </div>
     </form>
 </div>

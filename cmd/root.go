@@ -14,6 +14,7 @@ var (
 	globalCfg *config.Config
 	tplFS     embed.FS
 	statFS    embed.FS
+	localesFS embed.FS
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -24,9 +25,10 @@ var rootCmd = &cobra.Command{
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
-func Execute(templates embed.FS, static embed.FS) error {
+func Execute(templates embed.FS, static embed.FS, locales embed.FS) error {
 	tplFS = templates
 	statFS = static
+	localesFS = locales
 	return rootCmd.Execute()
 }
 

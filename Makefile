@@ -3,7 +3,7 @@
 APP_NAME = go-samba4
 DATE     = $(shell date +%Y-%m-%d\ %H:%M:%S)
 VERSION  = v1.1.1
-PREFIX   = go-samba4/cmd
+PREFIX   = go-samba4/internal/buildinfo
 LDFLAGS  = -X '$(PREFIX).Version=$(VERSION)' -X '$(PREFIX).BuildDate=$(DATE)'
 FLAGS    = -v -ldflags="-s -w $(LDFLAGS)"
 

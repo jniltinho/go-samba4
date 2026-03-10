@@ -302,3 +302,24 @@ details.collapse-section > summary:hover {
   height: 1rem;
   vertical-align: middle;
 }
+
+/* Language switcher */
+.sidebar-lang {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+.sidebar-lang-btn {
+  border: 2px solid rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+.sidebar-lang-btn:hover, .sidebar-lang-btn.active {
+  border-color: #fff;
+  color: #fff;
+  background: rgba(255,255,255,0.15);
+}

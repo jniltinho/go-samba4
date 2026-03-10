@@ -1,10 +1,10 @@
 {{template "base" .}}
 
-{{define "title"}}User — {{.User.SAMAccountName}}{{end}}
+{{define "title"}}{{ T $.Lang "Col_Username" }} — {{.User.SAMAccountName}}{{end}}
 
 {{define "content"}}
 <div class="mb-6">
-    <a href="/users" class="btn bg-white no-underline text-sm py-1 px-3">&#8592; Back to Users</a>
+    <a href="/users" class="btn bg-white no-underline text-sm py-1 px-3">&#8592; {{ T $.Lang "Btn_BackToUsers" }}</a>
 </div>
 
 <div class="card max-w-4xl">
@@ -15,11 +15,11 @@
             <p class="mono mt-1 text-lg text-[var(--color-muted)]">{{.User.SAMAccountName}}</p>
             <div class="mt-3">
                 {{if eq .User.UserAccountControl 512}}
-                    <span class="bg-[var(--color-success)] text-white px-3 py-1 font-black text-xs uppercase tracking-wider border-2 border-[var(--color-ink)]">ACTIVE</span>
+                    <span class="bg-[var(--color-success)] text-white px-3 py-1 font-black text-xs uppercase tracking-wider border-2 border-[var(--color-ink)]">{{ T $.Lang "Label_Active" }}</span>
                 {{else if eq .User.UserAccountControl 514}}
-                    <span class="bg-[var(--color-accent)] text-white px-3 py-1 font-black text-xs uppercase tracking-wider border-2 border-[var(--color-ink)]">DISABLED</span>
+                    <span class="bg-[var(--color-accent)] text-white px-3 py-1 font-black text-xs uppercase tracking-wider border-2 border-[var(--color-ink)]">{{ T $.Lang "Label_Disabled" }}</span>
                 {{else if eq .User.UserAccountControl 66048}}
-                    <span class="bg-[var(--color-success)] text-white px-3 py-1 font-black text-xs uppercase tracking-wider border-2 border-[var(--color-ink)]">ACTIVE (PWD NEVER EXPIRES)</span>
+                    <span class="bg-[var(--color-success)] text-white px-3 py-1 font-black text-xs uppercase tracking-wider border-2 border-[var(--color-ink)]">{{ T $.Lang "Label_Active" }} (PWD NEVER EXPIRES)</span>
                 {{else}}
                     <span class="bg-[var(--color-warning)] text-white px-3 py-1 font-black text-xs uppercase tracking-wider border-2 border-[var(--color-ink)]">UAC: {{.User.UserAccountControl}}</span>
                 {{end}}
@@ -27,11 +27,11 @@
         </div>
         <div class="flex gap-3">
             {{if or .IsAdmin (eq .CurrentUser .User.SAMAccountName)}}
-            <a href="/users/{{.User.SAMAccountName}}/edit" class="btn btn-primary no-underline">Edit User</a>
+            <a href="/users/{{.User.SAMAccountName}}/edit" class="btn btn-primary no-underline">{{ T $.Lang "Btn_EditUser" }}</a>
             {{end}}
             {{if .IsAdmin}}
             <button type="button" class="btn btn-danger js-modal-trigger" data-target="#modal-delete-user">
-                Delete User
+                {{ T $.Lang "Btn_DeleteUser" }}
             </button>
             {{end}}
         </div>
@@ -41,23 +41,23 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
         <div>
             <h3 class="font-black uppercase text-sm mb-4 border-b-2 border-dashed border-[var(--color-ink)] pb-2">
-                General Info
+                {{ T $.Lang "Label_GeneralInfo" }}
             </h3>
             <ul class="flex flex-col gap-4 text-sm">
                 <li class="flex flex-col gap-1">
-                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">Email</span>
+                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">{{ T $.Lang "Label_Email" }}</span>
                     <span class="mono">{{if .User.Mail}}{{.User.Mail}}{{else}}<span class="text-[var(--color-muted)]">—</span>{{end}}</span>
                 </li>
                 <li class="flex flex-col gap-1">
-                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">Department</span>
+                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">{{ T $.Lang "Label_Department" }}</span>
                     <span>{{if .User.Department}}{{.User.Department}}{{else}}<span class="text-[var(--color-muted)]">—</span>{{end}}</span>
                 </li>
                 <li class="flex flex-col gap-1">
-                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">Title</span>
+                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">{{ T $.Lang "Label_Title" }}</span>
                     <span>{{if .User.Title}}{{.User.Title}}{{else}}<span class="text-[var(--color-muted)]">—</span>{{end}}</span>
                 </li>
                 <li class="flex flex-col gap-1">
-                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">Phone</span>
+                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">{{ T $.Lang "Label_Phone" }}</span>
                     <span class="mono">{{if .User.TelephoneNumber}}{{.User.TelephoneNumber}}{{else}}<span class="text-[var(--color-muted)]">—</span>{{end}}</span>
                 </li>
             </ul>
@@ -65,19 +65,19 @@
 
         <div>
             <h3 class="font-black uppercase text-sm mb-4 border-b-2 border-dashed border-[var(--color-ink)] pb-2">
-                System Info
+                {{ T $.Lang "Label_SystemInfo" }}
             </h3>
             <ul class="flex flex-col gap-4 text-sm">
                 <li class="flex flex-col gap-1">
-                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">UPN</span>
+                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">{{ T $.Lang "Label_UPN" }}</span>
                     <span class="mono break-all">{{if .User.UserPrincipalName}}{{.User.UserPrincipalName}}{{else}}<span class="text-[var(--color-muted)]">—</span>{{end}}</span>
                 </li>
                 <li class="flex flex-col gap-1">
-                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">Distinguished Name</span>
+                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">{{ T $.Lang "Label_DistinguishedName" }}</span>
                     <code class="text-xs break-all bg-[var(--color-base)] border border-[var(--color-ink)] px-2 py-1 block mt-1">{{.User.DN}}</code>
                 </li>
                 <li class="flex flex-col gap-1">
-                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">UAC Value</span>
+                    <span class="font-bold uppercase text-xs text-[var(--color-muted)] tracking-wide">{{ T $.Lang "Label_UACValue" }}</span>
                     <span class="mono">{{.User.UserAccountControl}}</span>
                 </li>
             </ul>
@@ -87,7 +87,7 @@
     <!-- Group Memberships -->
     <div>
         <h3 class="font-black uppercase text-sm mb-4 border-b-2 border-dashed border-[var(--color-ink)] pb-2">
-            Group Memberships ({{len .User.MemberOf}})
+            {{ T $.Lang "Label_GroupMemberships" }} ({{len .User.MemberOf}})
         </h3>
         {{if .User.MemberOf}}
         <div class="flex flex-wrap gap-2">
@@ -96,7 +96,7 @@
             {{end}}
         </div>
         {{else}}
-        <p class="text-sm text-[var(--color-muted)]">No group memberships found.</p>
+        <p class="text-sm text-[var(--color-muted)]">{{ T $.Lang "Msg_NoGroupMemberships" }}</p>
         {{end}}
     </div>
 </div>
@@ -105,41 +105,40 @@
 <div id="modal-delete-user" class="modal-overlay hidden">
     <div class="modal-content max-w-md w-full">
         <div class="flex justify-between items-start mb-6">
-            <h3 class="font-black uppercase text-lg text-[var(--color-accent)]">Delete User</h3>
+            <h3 class="font-black uppercase text-lg text-[var(--color-accent)]">{{ T $.Lang "Msg_DeleteUser" }}</h3>
             <button type="button" class="modal-close js-modal-close leading-none">[&#x2715;]</button>
         </div>
 
         <div class="border-2 border-[var(--color-accent)] bg-[#FFF5F5] p-4 mb-6">
-            <p class="font-bold text-sm">This action is <span class="text-[var(--color-accent)]">irreversible</span>. The user will be permanently deleted from Active Directory.</p>
+            <p class="font-bold text-sm">{{ T $.Lang "Msg_DeleteConfirm" }} {{ T $.Lang "Msg_DeleteWarning" }}</p>
         </div>
 
         <p class="text-sm mb-4">
-            To confirm, type the username
+            {{ T $.Lang "Msg_TypeToConfirm" }}
             <code class="bg-[var(--color-base)] border border-[var(--color-ink)] px-1 mono">{{.User.SAMAccountName}}</code>
-            below:
         </p>
 
         <form method="POST" action="/users/{{.User.SAMAccountName}}/delete">
             <input type="hidden" name="_csrf" value="{{.CSRFToken}}">
 
             <div class="flex flex-col gap-1 mb-6">
-                <label for="confirm_name" class="font-bold uppercase tracking-wider text-sm">Confirm Username</label>
+                <label for="confirm_name" class="font-bold uppercase tracking-wider text-sm">{{ T $.Lang "Label_ConfirmUsername" }}</label>
                 <input type="text"
                     id="confirm_name"
                     name="confirm_name"
                     class="js-confirm-input"
                     data-confirm-value="{{.User.SAMAccountName}}"
                     autocomplete="off"
-                    placeholder="Type username to confirm">
+                    placeholder="{{ T $.Lang "Col_Username" }}">
             </div>
 
             <div class="flex justify-end gap-3 pt-4 border-t-2 border-[var(--color-ink)]">
-                <button type="button" class="btn bg-white js-modal-close">Cancel</button>
+                <button type="button" class="btn bg-white js-modal-close">{{ T $.Lang "Btn_Cancel" }}</button>
                 <button type="submit"
                     id="btn-confirm-delete"
                     class="btn btn-danger"
                     disabled>
-                    Delete Permanently
+                    {{ T $.Lang "Btn_DeletePermanently" }}
                 </button>
             </div>
         </form>

@@ -1,10 +1,10 @@
 {{template "base" .}}
 
-{{define "title"}}{{if .User}}Edit User — {{.User.SAMAccountName}}{{else}}New User{{end}}{{end}}
+{{define "title"}}{{if .User}}{{ T $.Lang "Page_EditUser" }} — {{.User.SAMAccountName}}{{else}}{{ T $.Lang "Page_NewUser" }}{{end}}{{end}}
 
 {{define "content"}}
 <div class="mb-6">
-    <a href="/users" class="btn bg-white no-underline text-sm py-1 px-3">&#8592; Back to Users</a>
+    <a href="/users" class="btn bg-white no-underline text-sm py-1 px-3">&#8592; {{ T $.Lang "Btn_BackToUsers" }}</a>
 </div>
 
 {{if .Error}}
@@ -17,7 +17,7 @@
 <div class="card max-w-4xl">
     <div class="border-b-2 border-[var(--color-ink)] pb-4 mb-6">
         <h2 class="text-xl font-black uppercase tracking-wide">
-            {{if .User}}Edit User{{else}}Create New User{{end}}
+            {{if .User}}{{ T $.Lang "Btn_EditUser" }}{{else}}{{ T $.Lang "Btn_CreateUser" }}{{end}}
         </h2>
         {{if .User}}
         <p class="mono text-xs text-[var(--color-muted)] mt-1 break-all">{{.User.DN}}</p>
@@ -29,19 +29,19 @@
 
         <!-- ── Account ────────────────────────────────────────────── -->
         <details class="collapse-section mb-4" open>
-            <summary>Account</summary>
+            <summary>{{ T $.Lang "Label_Account" }}</summary>
             <div class="section-body grid grid-cols-1 md:grid-cols-2 gap-6">
 
                 <div class="flex flex-col gap-1">
                     <label for="SAMAccountName" class="font-bold uppercase tracking-wider text-sm">
-                        Username {{if not .User}}<span class="text-[var(--color-accent)]">*</span>{{end}}
+                        {{ T $.Lang "Label_Username" }} {{if not .User}}<span class="text-[var(--color-accent)]">*</span>{{end}}
                     </label>
                     {{if .User}}
                     <input type="text" id="SAMAccountName" name="SAMAccountName"
                         value="{{.User.SAMAccountName}}"
                         class="bg-[var(--color-base)] text-[var(--color-muted)] cursor-not-allowed"
                         readonly>
-                    <p class="text-xs text-[var(--color-muted)] mt-1">Username cannot be changed after creation</p>
+                    <p class="text-xs text-[var(--color-muted)] mt-1">{{ T $.Lang "Msg_UsernameNotChanged" }}</p>
                     {{else}}
                     <input type="text" id="SAMAccountName" name="SAMAccountName"
                         required autocomplete="off"
@@ -51,7 +51,7 @@
 
                 <div class="flex flex-col gap-1">
                     <label for="UserPrincipalName" class="font-bold uppercase tracking-wider text-sm">
-                        User Principal Name (UPN)
+                        {{ T $.Lang "Label_UPN" }}
                     </label>
                     {{if .User}}
                     <input type="text" id="UserPrincipalName" name="UserPrincipalName"
@@ -60,34 +60,34 @@
                     <input type="text" id="UserPrincipalName" name="UserPrincipalName"
                         class="bg-[var(--color-base)] text-[var(--color-muted)] cursor-not-allowed"
                         readonly>
-                    <p class="text-xs text-[var(--color-muted)] mt-1">Auto-filled as username@{{.Domain}}</p>
+                    <p class="text-xs text-[var(--color-muted)] mt-1">{{ T $.Lang "Msg_AutoFillUPN" }}{{.Domain}}</p>
                     {{end}}
                 </div>
 
                 <div class="flex flex-col gap-1">
                     <label for="Password" class="font-bold uppercase tracking-wider text-sm">
-                        Password {{if not .User}}<span class="text-[var(--color-accent)]">*</span>{{end}}
+                        {{ T $.Lang "Label_Password" }} {{if not .User}}<span class="text-[var(--color-accent)]">*</span>{{end}}
                     </label>
                     <input type="password" id="Password" name="Password"
                         {{if not .User}}required{{end}}
                         autocomplete="new-password">
                     {{if .User}}
-                    <p class="text-xs text-[var(--color-muted)] mt-1">Leave blank to keep current password</p>
+                    <p class="text-xs text-[var(--color-muted)] mt-1">{{ T $.Lang "Msg_LeaveBlankPassword" }}</p>
                     {{end}}
                 </div>
 
                 <div class="flex flex-col gap-1">
                     <label for="OUDN" class="font-bold uppercase tracking-wider text-sm">
-                        Organizational Unit {{if not .User}}<span class="text-[var(--color-accent)]">*</span>{{end}}
+                        {{ T $.Lang "Label_OrgUnit" }} {{if not .User}}<span class="text-[var(--color-accent)]">*</span>{{end}}
                     </label>
                     <select id="OUDN" name="OUDN" {{if not .User}}required{{end}}>
-                        <option value="">-- Select OU --</option>
+                        <option value="">{{ T $.Lang "Label_SelectOU" }}</option>
                         {{range .OUs}}
                         <option value="{{.DN}}">{{.Name}}</option>
                         {{end}}
                     </select>
                     {{if .User}}
-                    <p class="text-xs text-[var(--color-muted)] mt-1">OU is not changed during edits</p>
+                    <p class="text-xs text-[var(--color-muted)] mt-1">{{ T $.Lang "Msg_OUNotChangedOnEdit" }}</p>
                     {{end}}
                 </div>
 
@@ -96,12 +96,12 @@
 
         <!-- ── Personal Info ──────────────────────────────────────── -->
         <details class="collapse-section mb-4">
-            <summary>Personal Info</summary>
+            <summary>{{ T $.Lang "Label_PersonalInfo" }}</summary>
             <div class="section-body grid grid-cols-1 md:grid-cols-2 gap-6">
 
                 <div class="flex flex-col gap-1">
                     <label for="DisplayName" class="font-bold uppercase tracking-wider text-sm">
-                        Display Name <span class="text-[var(--color-accent)]">*</span>
+                        {{ T $.Lang "Label_DisplayName" }} <span class="text-[var(--color-accent)]">*</span>
                     </label>
                     <input type="text" id="DisplayName" name="DisplayName"
                         value="{{if .User}}{{.User.DisplayName}}{{end}}"
@@ -109,19 +109,19 @@
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <label for="Mail" class="font-bold uppercase tracking-wider text-sm">Email</label>
+                    <label for="Mail" class="font-bold uppercase tracking-wider text-sm">{{ T $.Lang "Label_Email" }}</label>
                     <input type="email" id="Mail" name="Mail"
                         value="{{if .User}}{{.User.Mail}}{{end}}">
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <label for="GivenName" class="font-bold uppercase tracking-wider text-sm">First Name</label>
+                    <label for="GivenName" class="font-bold uppercase tracking-wider text-sm">{{ T $.Lang "Label_FirstName" }}</label>
                     <input type="text" id="GivenName" name="GivenName"
                         value="{{if .User}}{{.User.GivenName}}{{end}}">
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <label for="SN" class="font-bold uppercase tracking-wider text-sm">Last Name</label>
+                    <label for="SN" class="font-bold uppercase tracking-wider text-sm">{{ T $.Lang "Label_LastName" }}</label>
                     <input type="text" id="SN" name="SN"
                         value="{{if .User}}{{.User.SN}}{{end}}">
                 </div>
@@ -131,23 +131,23 @@
 
         <!-- ── Work Info ──────────────────────────────────────────── -->
         <details class="collapse-section mb-4">
-            <summary>Work Info</summary>
+            <summary>{{ T $.Lang "Label_WorkInfo" }}</summary>
             <div class="section-body grid grid-cols-1 md:grid-cols-2 gap-6">
 
                 <div class="flex flex-col gap-1">
-                    <label for="Title" class="font-bold uppercase tracking-wider text-sm">Title / Position</label>
+                    <label for="Title" class="font-bold uppercase tracking-wider text-sm">{{ T $.Lang "Label_TitlePosition" }}</label>
                     <input type="text" id="Title" name="Title"
                         value="{{if .User}}{{.User.Title}}{{end}}">
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <label for="Department" class="font-bold uppercase tracking-wider text-sm">Department</label>
+                    <label for="Department" class="font-bold uppercase tracking-wider text-sm">{{ T $.Lang "Label_Department" }}</label>
                     <input type="text" id="Department" name="Department"
                         value="{{if .User}}{{.User.Department}}{{end}}">
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <label for="TelephoneNumber" class="font-bold uppercase tracking-wider text-sm">Phone</label>
+                    <label for="TelephoneNumber" class="font-bold uppercase tracking-wider text-sm">{{ T $.Lang "Label_Phone" }}</label>
                     <input type="tel" id="TelephoneNumber" name="TelephoneNumber"
                         value="{{if .User}}{{.User.TelephoneNumber}}{{end}}">
                 </div>
@@ -158,7 +158,7 @@
         <!-- ── Account Options (admins only in edit mode; all in create mode) ── -->
         {{if or .IsAdmin (not .User)}}
         <details class="collapse-section mb-6">
-            <summary>Account Options</summary>
+            <summary>{{ T $.Lang "Label_AccountOptions" }}</summary>
             <div class="section-body flex flex-col gap-5">
 
                 <label class="flex items-start gap-4 cursor-pointer">
@@ -169,9 +169,9 @@
                         {{if .AccountEnabled}}checked{{end}}
                         class="checkbox-brutal mt-1">
                     <div>
-                        <p class="font-bold uppercase tracking-wider text-sm">Account Enabled</p>
+                        <p class="font-bold uppercase tracking-wider text-sm">{{ T $.Lang "Label_AccountEnabled" }}</p>
                         <p class="text-xs text-[var(--color-muted)] mt-1">
-                            Uncheck to disable login access without deleting the account.
+                            {{ T $.Lang "Msg_AccountEnabledDesc" }}
                         </p>
                     </div>
                 </label>
@@ -184,9 +184,9 @@
                         {{if .PwdNeverExpires}}checked{{end}}
                         class="checkbox-brutal mt-1">
                     <div>
-                        <p class="font-bold uppercase tracking-wider text-sm">Password Never Expires</p>
+                        <p class="font-bold uppercase tracking-wider text-sm">{{ T $.Lang "Label_PwdNeverExpires" }}</p>
                         <p class="text-xs text-[var(--color-muted)] mt-1">
-                            Exempts this account from the domain password expiration policy.
+                            {{ T $.Lang "Msg_PwdNeverExpiresDesc" }}
                         </p>
                     </div>
                 </label>
@@ -198,10 +198,10 @@
         <div class="flex justify-between items-center pt-4 border-t-2 border-[var(--color-ink)]">
             <a href="{{if .User}}/users/{{.User.SAMAccountName}}{{else}}/users{{end}}"
                class="btn bg-white no-underline leading-normal flex items-center justify-center">
-                Cancel
+                {{ T $.Lang "Btn_Cancel" }}
             </a>
             <button type="submit" class="btn btn-primary px-8">
-                {{if .User}}Save Changes{{else}}Create User{{end}}
+                {{if .User}}{{ T $.Lang "Btn_SaveChanges" }}{{else}}{{ T $.Lang "Btn_CreateUser" }}{{end}}
             </button>
         </div>
     </form>

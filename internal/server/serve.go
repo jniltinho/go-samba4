@@ -16,13 +16,14 @@ import (
 	"go-samba4/internal/auth"
 	"go-samba4/internal/config"
 	"go-samba4/internal/handlers"
+	"go-samba4/internal/i18n"
 	"go-samba4/internal/ldap"
 	"go-samba4/internal/models"
 	"go-samba4/internal/routes"
 )
 
 // Serve initializes Echo and its dependencies before starting the server
-func Serve(globalCfg *config.Config, tplFS embed.FS, statFS embed.FS, debug bool) {
+func Serve(globalCfg *config.Config, tplFS embed.FS, statFS embed.FS, localesFS embed.FS, debug bool) {
 	// 1. Database Connection
 	var dialector gorm.Dialector
 	if globalCfg.Database.Driver == "mysql" {
@@ -59,7 +60,10 @@ func Serve(globalCfg *config.Config, tplFS embed.FS, statFS embed.FS, debug bool
 	// 3. Setup Session Manager
 	sm := auth.NewSessionManager(db, globalCfg)
 
-	// 4. Echo Instance setup
+	// 4. Init i18n
+	i18n.Init(localesFS)
+
+	// 5. Echo Instance setup
 	if debug {
 		slog.SetDefault(slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelDebug})))
 		slog.Info("Debug mode enabled")

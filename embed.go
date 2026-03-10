@@ -13,6 +13,9 @@ var TemplatesFS embed.FS
 //go:embed all:web/static
 var StaticFS embed.FS
 
+//go:embed all:locales
+var LocalesFS embed.FS
+
 func loadTemplates() *template.Template {
 	return template.Must(
 		template.New("").ParseFS(TemplatesFS, "web/templates/**/*.html", "web/templates/*.html"),

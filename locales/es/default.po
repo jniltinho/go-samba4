@@ -1,0 +1,433 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: es\n"
+
+# Navigation
+msgid "Nav_Dashboard"
+msgstr "Panel"
+
+msgid "Nav_Users"
+msgstr "Usuarios"
+
+msgid "Nav_Groups"
+msgstr "Grupos"
+
+msgid "Nav_OUs"
+msgstr "UOs"
+
+msgid "Nav_Search"
+msgstr "Buscar"
+
+msgid "Nav_AuditLogs"
+msgstr "Logs de Auditoría"
+
+msgid "Nav_Settings"
+msgstr "Configuración"
+
+# Page Titles
+msgid "Page_Dashboard"
+msgstr "Panel"
+
+msgid "Page_Users"
+msgstr "Usuarios"
+
+msgid "Page_Groups"
+msgstr "Grupos"
+
+msgid "Page_OUs"
+msgstr "Unidades Organizativas"
+
+msgid "Page_Search"
+msgstr "Buscar"
+
+msgid "Page_AuditLogs"
+msgstr "Logs de Auditoría"
+
+msgid "Page_Settings"
+msgstr "Configuración"
+
+msgid "Page_Login"
+msgstr "Iniciar Sesión"
+
+msgid "Page_NewUser"
+msgstr "Nuevo Usuario"
+
+msgid "Page_EditUser"
+msgstr "Editar Usuario"
+
+# Buttons
+msgid "Btn_NewUser"
+msgstr "+ Nuevo Usuario"
+
+msgid "Btn_Edit"
+msgstr "Editar"
+
+msgid "Btn_Delete"
+msgstr "Eliminar"
+
+msgid "Btn_Save"
+msgstr "Guardar"
+
+msgid "Btn_Cancel"
+msgstr "Cancelar"
+
+msgid "Btn_Login"
+msgstr "Iniciar Sesión"
+
+msgid "Btn_View"
+msgstr "Ver"
+
+msgid "Btn_Confirm"
+msgstr "Confirmar"
+
+msgid "Btn_DeletePermanently"
+msgstr "Eliminar Permanentemente"
+
+# Table Columns
+msgid "Col_Username"
+msgstr "Usuario"
+
+msgid "Col_DisplayName"
+msgstr "Nombre Completo"
+
+msgid "Col_Email"
+msgstr "Correo"
+
+msgid "Col_Department"
+msgstr "Departamento"
+
+msgid "Col_Status"
+msgstr "Estado"
+
+msgid "Col_Actions"
+msgstr "Acciones"
+
+msgid "Col_Timestamp"
+msgstr "Fecha/Hora"
+
+msgid "Col_User"
+msgstr "Usuario"
+
+msgid "Col_Action"
+msgstr "Acción"
+
+msgid "Col_Object"
+msgstr "Objeto"
+
+msgid "Col_Name"
+msgstr "Nombre"
+
+msgid "Col_DN"
+msgstr "DN"
+
+msgid "Col_Members"
+msgstr "Miembros"
+
+# Labels
+msgid "Label_Active"
+msgstr "ACTIVO"
+
+msgid "Label_Disabled"
+msgstr "DESACTIVADO"
+
+msgid "Label_Online"
+msgstr "En línea"
+
+msgid "Label_Search"
+msgstr "BUSCAR:"
+
+msgid "Label_Username"
+msgstr "Usuario"
+
+msgid "Label_Password"
+msgstr "Contraseña"
+
+msgid "Label_DisplayName"
+msgstr "Nombre Completo"
+
+msgid "Label_Email"
+msgstr "Correo Electrónico"
+
+msgid "Label_Department"
+msgstr "Departamento"
+
+msgid "Label_Title"
+msgstr "Cargo"
+
+msgid "Label_Phone"
+msgstr "Teléfono"
+
+msgid "Label_UPN"
+msgstr "Nombre Principal de Usuario"
+
+msgid "Label_FirstName"
+msgstr "Nombre"
+
+msgid "Label_LastName"
+msgstr "Apellido"
+
+msgid "Label_SAMAccountName"
+msgstr "Nombre de Cuenta SAM"
+
+msgid "Label_DCStatus"
+msgstr "Estado del DC"
+
+msgid "Label_OrgUnits"
+msgstr "Unidades Org."
+
+msgid "Label_RecentActivity"
+msgstr "Actividad Reciente (Log de Auditoría)"
+
+msgid "Label_AccountOptions"
+msgstr "Opciones de Cuenta"
+
+msgid "Label_AccountEnabled"
+msgstr "Cuenta Habilitada"
+
+msgid "Label_PwdNeverExpires"
+msgstr "Contraseña Nunca Expira"
+
+msgid "Label_NewPassword"
+msgstr "Nueva Contraseña"
+
+msgid "Label_PersonalInfo"
+msgstr "Información Personal"
+
+msgid "Label_WorkInfo"
+msgstr "Información Laboral"
+
+msgid "Label_Company"
+msgstr "Empresa"
+
+msgid "Label_Office"
+msgstr "Oficina"
+
+msgid "Label_Street"
+msgstr "Dirección"
+
+msgid "Label_City"
+msgstr "Ciudad"
+
+msgid "Label_State"
+msgstr "Estado/Provincia"
+
+msgid "Label_Country"
+msgstr "País"
+
+# Messages
+msgid "Msg_NoData"
+msgstr "No se encontraron datos."
+
+msgid "Msg_Loading"
+msgstr "Cargando..."
+
+msgid "Msg_DeleteConfirm"
+msgstr "Esta acción es irreversible."
+
+msgid "Msg_DeleteWarning"
+msgstr "El usuario será eliminado permanentemente del Active Directory."
+
+msgid "Msg_TypeToConfirm"
+msgstr "Para confirmar, escriba el nombre de usuario a continuación:"
+
+msgid "Msg_AutoFillUPN"
+msgstr "Completado automáticamente como usuario@"
+
+# Errors
+msgid "Err_InvalidCredentials"
+msgstr "Usuario o contraseña inválidos."
+
+msgid "Err_TooManyAttempts"
+msgstr "Demasiados intentos de inicio de sesión. Inténtelo de nuevo más tarde."
+
+msgid "Err_SessionExpired"
+msgstr "Su sesión ha expirado. Por favor inicie sesión de nuevo."
+
+msgid "Err_Forbidden"
+msgstr "No tiene permiso para realizar esta acción."
+
+msgid "Err_NotFound"
+msgstr "El recurso solicitado no fue encontrado."
+
+# Dashboard
+msgid "Card_Users"
+msgstr "Usuarios"
+
+msgid "Card_Groups"
+msgstr "Grupos"
+
+msgid "Card_OrgUnits"
+msgstr "Unidades Org."
+
+msgid "Card_DCStatus"
+msgstr "Estado DC"
+
+# Additional Labels
+msgid "Label_Authentication"
+msgstr "Autenticación"
+
+msgid "Label_ADGroups"
+msgstr "Grupos de Active Directory"
+
+msgid "Label_Account"
+msgstr "Cuenta"
+
+msgid "Label_GeneralInfo"
+msgstr "Información General"
+
+msgid "Label_SystemInfo"
+msgstr "Información del Sistema"
+
+msgid "Label_GroupMemberships"
+msgstr "Membresías de Grupos"
+
+msgid "Label_UACValue"
+msgstr "Valor UAC"
+
+msgid "Label_DistinguishedName"
+msgstr "Nombre Distinguido"
+
+msgid "Label_AdminUser"
+msgstr "Administrador"
+
+msgid "Label_IPAddress"
+msgstr "Dirección IP"
+
+msgid "Label_Details"
+msgstr "Detalles"
+
+msgid "Label_ObjectDN"
+msgstr "DN del Objeto"
+
+msgid "Label_OUHierarchy"
+msgstr "Jerarquía de UOs"
+
+msgid "Label_OrgUnit"
+msgstr "Unidad Organizativa"
+
+msgid "Label_ConfirmUsername"
+msgstr "Confirmar Usuario"
+
+msgid "Label_GroupName"
+msgstr "Nombre del Grupo"
+
+msgid "Label_Description"
+msgstr "Descripción"
+
+msgid "Label_TitlePosition"
+msgstr "Cargo / Puesto"
+
+msgid "Label_SelectOU"
+msgstr "-- Seleccionar UO --"
+
+# Additional Columns
+msgid "Col_Description"
+msgstr "Descripción"
+
+msgid "Col_GroupType"
+msgstr "Tipo"
+
+msgid "Col_AdminUser"
+msgstr "Administrador"
+
+msgid "Col_IPAddress"
+msgstr "Dirección IP"
+
+msgid "Col_ObjectDN"
+msgstr "DN del Objeto"
+
+msgid "Col_Details"
+msgstr "Detalles"
+
+# Additional Buttons
+msgid "Btn_NewGroup"
+msgstr "+ Nuevo Grupo"
+
+msgid "Btn_SaveGroup"
+msgstr "Guardar Grupo"
+
+msgid "Btn_BackToUsers"
+msgstr "← Volver a Usuarios"
+
+msgid "Btn_EditUser"
+msgstr "Editar Usuario"
+
+msgid "Btn_DeleteUser"
+msgstr "Eliminar Usuario"
+
+msgid "Btn_CreateUser"
+msgstr "Crear Usuario"
+
+msgid "Btn_SaveChanges"
+msgstr "Guardar Cambios"
+
+msgid "Btn_Logout"
+msgstr "Cerrar Sesión"
+
+# Additional Pages
+msgid "Page_EditGroup"
+msgstr "Editar Grupo"
+
+# Additional Messages
+msgid "Msg_DeleteUser"
+msgstr "Eliminar Usuario"
+
+msgid "Msg_NoAuditLogs"
+msgstr "No se encontraron logs de auditoría."
+
+msgid "Msg_NoGroupMemberships"
+msgstr "No se encontraron membresías de grupos."
+
+msgid "Msg_LeaveBlankPassword"
+msgstr "Deje en blanco para mantener la contraseña actual"
+
+msgid "Msg_UsernameNotChanged"
+msgstr "El nombre de usuario no puede cambiarse después de la creación"
+
+msgid "Msg_OUNotChangedOnEdit"
+msgstr "La OU no se cambia durante la edición"
+
+msgid "Msg_AccountEnabledDesc"
+msgstr "Desmarque para deshabilitar el acceso sin eliminar la cuenta."
+
+msgid "Msg_PwdNeverExpiresDesc"
+msgstr "Exime esta cuenta de la política de vencimiento de contraseñas."
+
+# DataTables
+msgid "DT_ShowEntries"
+msgstr "MOSTRAR _MENU_ entradas"
+
+msgid "DT_InfoUsers"
+msgstr "Mostrando _START_ a _END_ de _TOTAL_ usuarios"
+
+msgid "DT_InfoEmptyUsers"
+msgstr "No se encontraron usuarios"
+
+msgid "DT_InfoFiltered"
+msgstr "(filtrado de _MAX_)"
+
+msgid "DT_InfoGroups"
+msgstr "Mostrando _START_ a _END_ de _TOTAL_ grupos"
+
+msgid "DT_InfoEmptyGroups"
+msgstr "No se encontraron grupos"
+
+msgid "DT_InfoEntries"
+msgstr "Mostrando _START_ a _END_ de _TOTAL_ entradas"
+
+msgid "DT_InfoEmptyLogs"
+msgstr "No se encontraron logs"
+
+# Settings
+msgid "Settings_LDAPConfig"
+msgstr "Configuración LDAP"
+
+msgid "Settings_Host"
+msgstr "Host"
+
+msgid "Settings_Port"
+msgstr "Puerto"
+
+msgid "Settings_BaseDN"
+msgstr "DN Base"

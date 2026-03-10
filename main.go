@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	if err := cmd.Execute(TemplatesFS, StaticFS); err != nil {
+	if err := cmd.Execute(TemplatesFS, StaticFS, LocalesFS); err != nil {
 		slog.Error("Startup failure", "error", err)
 		os.Exit(1)
 	}

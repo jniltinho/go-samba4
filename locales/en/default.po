@@ -1,0 +1,433 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+
+# Navigation
+msgid "Nav_Dashboard"
+msgstr "Dashboard"
+
+msgid "Nav_Users"
+msgstr "Users"
+
+msgid "Nav_Groups"
+msgstr "Groups"
+
+msgid "Nav_OUs"
+msgstr "OUs"
+
+msgid "Nav_Search"
+msgstr "Search"
+
+msgid "Nav_AuditLogs"
+msgstr "Audit Logs"
+
+msgid "Nav_Settings"
+msgstr "Settings"
+
+# Page Titles
+msgid "Page_Dashboard"
+msgstr "Dashboard"
+
+msgid "Page_Users"
+msgstr "Users"
+
+msgid "Page_Groups"
+msgstr "Groups"
+
+msgid "Page_OUs"
+msgstr "Organizational Units"
+
+msgid "Page_Search"
+msgstr "Search"
+
+msgid "Page_AuditLogs"
+msgstr "Audit Logs"
+
+msgid "Page_Settings"
+msgstr "Settings"
+
+msgid "Page_Login"
+msgstr "Login"
+
+msgid "Page_NewUser"
+msgstr "New User"
+
+msgid "Page_EditUser"
+msgstr "Edit User"
+
+# Buttons
+msgid "Btn_NewUser"
+msgstr "+ New User"
+
+msgid "Btn_Edit"
+msgstr "Edit"
+
+msgid "Btn_Delete"
+msgstr "Delete"
+
+msgid "Btn_Save"
+msgstr "Save"
+
+msgid "Btn_Cancel"
+msgstr "Cancel"
+
+msgid "Btn_Login"
+msgstr "Sign In"
+
+msgid "Btn_View"
+msgstr "View"
+
+msgid "Btn_Confirm"
+msgstr "Confirm"
+
+msgid "Btn_DeletePermanently"
+msgstr "Delete Permanently"
+
+# Table Columns
+msgid "Col_Username"
+msgstr "Username"
+
+msgid "Col_DisplayName"
+msgstr "Display Name"
+
+msgid "Col_Email"
+msgstr "Email"
+
+msgid "Col_Department"
+msgstr "Department"
+
+msgid "Col_Status"
+msgstr "Status"
+
+msgid "Col_Actions"
+msgstr "Actions"
+
+msgid "Col_Timestamp"
+msgstr "Timestamp"
+
+msgid "Col_User"
+msgstr "User"
+
+msgid "Col_Action"
+msgstr "Action"
+
+msgid "Col_Object"
+msgstr "Object"
+
+msgid "Col_Name"
+msgstr "Name"
+
+msgid "Col_DN"
+msgstr "DN"
+
+msgid "Col_Members"
+msgstr "Members"
+
+# Labels
+msgid "Label_Active"
+msgstr "ACTIVE"
+
+msgid "Label_Disabled"
+msgstr "DISABLED"
+
+msgid "Label_Online"
+msgstr "Online"
+
+msgid "Label_Search"
+msgstr "SEARCH:"
+
+msgid "Label_Username"
+msgstr "Username"
+
+msgid "Label_Password"
+msgstr "Password"
+
+msgid "Label_DisplayName"
+msgstr "Display Name"
+
+msgid "Label_Email"
+msgstr "Email"
+
+msgid "Label_Department"
+msgstr "Department"
+
+msgid "Label_Title"
+msgstr "Title"
+
+msgid "Label_Phone"
+msgstr "Phone"
+
+msgid "Label_UPN"
+msgstr "User Principal Name"
+
+msgid "Label_FirstName"
+msgstr "First Name"
+
+msgid "Label_LastName"
+msgstr "Last Name"
+
+msgid "Label_SAMAccountName"
+msgstr "SAM Account Name"
+
+msgid "Label_DCStatus"
+msgstr "DC Status"
+
+msgid "Label_OrgUnits"
+msgstr "Org Units"
+
+msgid "Label_RecentActivity"
+msgstr "Recent Activity (Audit Log)"
+
+msgid "Label_AccountOptions"
+msgstr "Account Options"
+
+msgid "Label_AccountEnabled"
+msgstr "Account Enabled"
+
+msgid "Label_PwdNeverExpires"
+msgstr "Password Never Expires"
+
+msgid "Label_NewPassword"
+msgstr "New Password"
+
+msgid "Label_PersonalInfo"
+msgstr "Personal Info"
+
+msgid "Label_WorkInfo"
+msgstr "Work Info"
+
+msgid "Label_Company"
+msgstr "Company"
+
+msgid "Label_Office"
+msgstr "Office"
+
+msgid "Label_Street"
+msgstr "Street Address"
+
+msgid "Label_City"
+msgstr "City"
+
+msgid "Label_State"
+msgstr "State"
+
+msgid "Label_Country"
+msgstr "Country"
+
+# Messages
+msgid "Msg_NoData"
+msgstr "No data found."
+
+msgid "Msg_Loading"
+msgstr "Loading..."
+
+msgid "Msg_DeleteConfirm"
+msgstr "This action is irreversible."
+
+msgid "Msg_DeleteWarning"
+msgstr "The user will be permanently deleted from Active Directory."
+
+msgid "Msg_TypeToConfirm"
+msgstr "To confirm, type the username below:"
+
+msgid "Msg_AutoFillUPN"
+msgstr "Auto-filled as username@"
+
+# Errors
+msgid "Err_InvalidCredentials"
+msgstr "Invalid username or password."
+
+msgid "Err_TooManyAttempts"
+msgstr "Too many login attempts. Please try again later."
+
+msgid "Err_SessionExpired"
+msgstr "Your session has expired. Please log in again."
+
+msgid "Err_Forbidden"
+msgstr "You do not have permission to perform this action."
+
+msgid "Err_NotFound"
+msgstr "The requested resource was not found."
+
+# Dashboard
+msgid "Card_Users"
+msgstr "Users"
+
+msgid "Card_Groups"
+msgstr "Groups"
+
+msgid "Card_OrgUnits"
+msgstr "Org Units"
+
+msgid "Card_DCStatus"
+msgstr "DC Status"
+
+# Additional Labels
+msgid "Label_Authentication"
+msgstr "Authentication"
+
+msgid "Label_ADGroups"
+msgstr "Active Directory Groups"
+
+msgid "Label_Account"
+msgstr "Account"
+
+msgid "Label_GeneralInfo"
+msgstr "General Info"
+
+msgid "Label_SystemInfo"
+msgstr "System Info"
+
+msgid "Label_GroupMemberships"
+msgstr "Group Memberships"
+
+msgid "Label_UACValue"
+msgstr "UAC Value"
+
+msgid "Label_DistinguishedName"
+msgstr "Distinguished Name"
+
+msgid "Label_AdminUser"
+msgstr "Admin User"
+
+msgid "Label_IPAddress"
+msgstr "IP Address"
+
+msgid "Label_Details"
+msgstr "Details"
+
+msgid "Label_ObjectDN"
+msgstr "Object DN"
+
+msgid "Label_OUHierarchy"
+msgstr "OU Hierarchy"
+
+msgid "Label_OrgUnit"
+msgstr "Organizational Unit"
+
+msgid "Label_ConfirmUsername"
+msgstr "Confirm Username"
+
+msgid "Label_GroupName"
+msgstr "Group Name"
+
+msgid "Label_Description"
+msgstr "Description"
+
+msgid "Label_TitlePosition"
+msgstr "Title / Position"
+
+msgid "Label_SelectOU"
+msgstr "-- Select OU --"
+
+# Additional Columns
+msgid "Col_Description"
+msgstr "Description"
+
+msgid "Col_GroupType"
+msgstr "Type"
+
+msgid "Col_AdminUser"
+msgstr "Admin User"
+
+msgid "Col_IPAddress"
+msgstr "IP Address"
+
+msgid "Col_ObjectDN"
+msgstr "Object DN"
+
+msgid "Col_Details"
+msgstr "Details"
+
+# Additional Buttons
+msgid "Btn_NewGroup"
+msgstr "+ New Group"
+
+msgid "Btn_SaveGroup"
+msgstr "Save Group"
+
+msgid "Btn_BackToUsers"
+msgstr "← Back to Users"
+
+msgid "Btn_EditUser"
+msgstr "Edit User"
+
+msgid "Btn_DeleteUser"
+msgstr "Delete User"
+
+msgid "Btn_CreateUser"
+msgstr "Create User"
+
+msgid "Btn_SaveChanges"
+msgstr "Save Changes"
+
+msgid "Btn_Logout"
+msgstr "Logout"
+
+# Additional Pages
+msgid "Page_EditGroup"
+msgstr "Edit Group"
+
+# Additional Messages
+msgid "Msg_DeleteUser"
+msgstr "Delete User"
+
+msgid "Msg_NoAuditLogs"
+msgstr "No audit logs found."
+
+msgid "Msg_NoGroupMemberships"
+msgstr "No group memberships found."
+
+msgid "Msg_LeaveBlankPassword"
+msgstr "Leave blank to keep current password"
+
+msgid "Msg_UsernameNotChanged"
+msgstr "Username cannot be changed after creation"
+
+msgid "Msg_OUNotChangedOnEdit"
+msgstr "OU is not changed during edits"
+
+msgid "Msg_AccountEnabledDesc"
+msgstr "Uncheck to disable login access without deleting the account."
+
+msgid "Msg_PwdNeverExpiresDesc"
+msgstr "Exempts this account from the domain password expiration policy."
+
+# DataTables
+msgid "DT_ShowEntries"
+msgstr "SHOW _MENU_ entries"
+
+msgid "DT_InfoUsers"
+msgstr "Showing _START_ to _END_ of _TOTAL_ users"
+
+msgid "DT_InfoEmptyUsers"
+msgstr "No users found"
+
+msgid "DT_InfoFiltered"
+msgstr "(filtered from _MAX_)"
+
+msgid "DT_InfoGroups"
+msgstr "Showing _START_ to _END_ of _TOTAL_ groups"
+
+msgid "DT_InfoEmptyGroups"
+msgstr "No groups found"
+
+msgid "DT_InfoEntries"
+msgstr "Showing _START_ to _END_ of _TOTAL_ entries"
+
+msgid "DT_InfoEmptyLogs"
+msgstr "No logs found"
+
+# Settings
+msgid "Settings_LDAPConfig"
+msgstr "LDAP Configuration"
+
+msgid "Settings_Host"
+msgstr "Host"
+
+msgid "Settings_Port"
+msgstr "Port"
+
+msgid "Settings_BaseDN"
+msgstr "Base DN"

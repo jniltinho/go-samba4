@@ -1,24 +1,24 @@
 {{template "base" .}}
 
-{{define "title"}}Groups{{end}}
+{{define "title"}}{{ T $.Lang "Page_Groups" }}{{end}}
 
 {{define "content"}}
 <div class="flex justify-between items-center mb-6">
     <p class="text-sm text-[var(--color-muted)] font-bold uppercase tracking-wider">
-        Active Directory Groups
+        {{ T $.Lang "Label_ADGroups" }}
     </p>
-    <a href="/groups/new" class="btn btn-primary no-underline">+ New Group</a>
+    <a href="/groups/new" class="btn btn-primary no-underline">{{ T $.Lang "Btn_NewGroup" }}</a>
 </div>
 
 <div class="card p-0">
     <table id="table-groups" class="table-brutal w-full">
         <thead>
             <tr>
-                <th class="text-left">Group Name</th>
-                <th class="text-left">Description</th>
-                <th class="text-left">Type</th>
-                <th class="text-right">Members</th>
-                <th class="text-right">Actions</th>
+                <th class="text-left">{{ T $.Lang "Col_Name" }}</th>
+                <th class="text-left">{{ T $.Lang "Col_Description" }}</th>
+                <th class="text-left">{{ T $.Lang "Col_GroupType" }}</th>
+                <th class="text-right">{{ T $.Lang "Col_Members" }}</th>
+                <th class="text-right">{{ T $.Lang "Col_Actions" }}</th>
             </tr>
         </thead>
         <tbody class="mono text-sm">
@@ -36,7 +36,7 @@
                 <td class="text-right">
                     <a href="/groups/{{.SAMAccountName}}/edit"
                         class="btn bg-white px-2 py-1 text-xs shadow-[1px_1px_0px_var(--color-ink)] no-underline">
-                        Edit
+                        {{ T $.Lang "Btn_Edit" }}
                     </a>
                 </td>
             </tr>
@@ -58,6 +58,7 @@
             pageLength: 15,
             lengthMenu: [10, 15, 25, 50, 100],
             order: [[0, 'asc']],
+            language: window.dtLang,
             layout: {
                 topStart: 'pageLength',
                 topEnd: 'search',
@@ -66,20 +67,7 @@
             },
             columnDefs: [
                 { orderable: false, targets: [4] }
-            ],
-            language: {
-                search: 'SEARCH:',
-                lengthMenu: 'SHOW _MENU_ entries',
-                info: 'Showing _START_ to _END_ of _TOTAL_ groups',
-                infoEmpty: 'No groups found',
-                infoFiltered: '(filtered from _MAX_)',
-                paginate: {
-                    first: '«',
-                    last: '»',
-                    next: '›',
-                    previous: '‹'
-                }
-            }
+            ]
         });
     });
 </script>

@@ -4,14 +4,20 @@
         <h2 class="text-xl font-bold uppercase tracking-wider">Go Samba4</h2>
     </div>
     <nav class="mt-2 flex flex-col font-bold">
-        <a href="/dashboard" class="sidebar-link"><i data-lucide="layout-dashboard"></i> Dashboard</a>
-        <a href="/users" class="sidebar-link"><i data-lucide="users"></i> Users</a>
-        <a href="/groups" class="sidebar-link"><i data-lucide="shield"></i> Groups</a>
-        <a href="/ous" class="sidebar-link"><i data-lucide="folder"></i> OUs</a>
-        <a href="/search" class="sidebar-link"><i data-lucide="search"></i> Search</a>
+        <a href="/dashboard" class="sidebar-link"><i data-lucide="layout-dashboard"></i> {{ T $.Lang "Nav_Dashboard" }}</a>
+        <a href="/users" class="sidebar-link"><i data-lucide="users"></i> {{ T $.Lang "Nav_Users" }}</a>
+        <a href="/groups" class="sidebar-link"><i data-lucide="shield"></i> {{ T $.Lang "Nav_Groups" }}</a>
+        <a href="/ous" class="sidebar-link"><i data-lucide="folder"></i> {{ T $.Lang "Nav_OUs" }}</a>
+        <a href="/search" class="sidebar-link"><i data-lucide="search"></i> {{ T $.Lang "Nav_Search" }}</a>
         <hr class="border-[var(--color-ink)] border-t-2 my-2 opacity-50">
-        <a href="/audit" class="sidebar-link"><i data-lucide="scroll-text"></i> Audit Logs</a>
-        <a href="/settings" class="sidebar-link"><i data-lucide="settings"></i> Settings</a>
+        <a href="/audit" class="sidebar-link"><i data-lucide="scroll-text"></i> {{ T $.Lang "Nav_AuditLogs" }}</a>
+        <a href="/settings" class="sidebar-link"><i data-lucide="settings"></i> {{ T $.Lang "Nav_Settings" }}</a>
+        <hr class="border-[var(--color-ink)] border-t-2 my-2 opacity-30">
+        <div class="sidebar-lang">
+            <a href="/lang/en" class="sidebar-lang-btn {{if eq $.Lang "en"}}active{{end}}">EN</a>
+            <a href="/lang/pt" class="sidebar-lang-btn {{if eq $.Lang "pt"}}active{{end}}">PT</a>
+            <a href="/lang/es" class="sidebar-lang-btn {{if eq $.Lang "es"}}active{{end}}">ES</a>
+        </div>
     </nav>
 </aside>
 {{end}}

@@ -1,48 +1,48 @@
 {{template "base" .}}
 
-{{define "title"}}Dashboard{{end}}
+{{define "title"}}{{ T $.Lang "Page_Dashboard" }}{{end}}
 
 {{define "content"}}
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-    
+
     <div class="card flex flex-col items-center justify-center p-8 bg-[#E5E5E5] hover:bg-white transition-none">
         <i data-lucide="users"></i>
-        <h3 class="text-xl font-bold uppercase">Users</h3>
+        <h3 class="text-xl font-bold uppercase">{{ T $.Lang "Card_Users" }}</h3>
         <p class="text-4xl font-black mt-2 mono">{{.TotalUsers}}</p>
     </div>
 
     <div class="card flex flex-col items-center justify-center p-8 bg-[#E5E5E5] hover:bg-white transition-none">
         <i data-lucide="shield"></i>
-        <h3 class="text-xl font-bold uppercase">Groups</h3>
+        <h3 class="text-xl font-bold uppercase">{{ T $.Lang "Card_Groups" }}</h3>
         <p class="text-4xl font-black mt-2 mono">{{.TotalGroups}}</p>
     </div>
 
     <div class="card flex flex-col items-center justify-center p-8 bg-[#E5E5E5] hover:bg-white transition-none">
         <i data-lucide="folder"></i>
-        <h3 class="text-xl font-bold uppercase">Org Units</h3>
+        <h3 class="text-xl font-bold uppercase">{{ T $.Lang "Card_OrgUnits" }}</h3>
         <p class="text-4xl font-black mt-2 mono">{{.TotalOUs}}</p>
     </div>
 
     <div class="card flex flex-col items-center justify-center p-8 bg-[#E5E5E5] hover:bg-white transition-none">
         <i data-lucide="monitor" style="color: var(--color-success)"></i>
-        <h3 class="text-xl font-bold uppercase">DC Status</h3>
-        <p class="text-2xl font-black mt-2 uppercase" style="color: var(--color-success)">Online</p>
+        <h3 class="text-xl font-bold uppercase">{{ T $.Lang "Card_DCStatus" }}</h3>
+        <p class="text-2xl font-black mt-2 uppercase" style="color: var(--color-success)">{{ T $.Lang "Label_Online" }}</p>
     </div>
 
 </div>
 
 <div class="mt-12">
     <h2 class="text-2xl font-bold uppercase border-b-2 border-[var(--color-ink)] pb-2 mb-6">
-        Recent Activity (Audit Log)
+        {{ T $.Lang "Label_RecentActivity" }}
     </h2>
     <div class="card p-0">
         <table id="table-audit-dashboard" class="table-brutal">
             <thead>
                 <tr>
-                    <th>Timestamp</th>
-                    <th>User</th>
-                    <th>Action</th>
-                    <th>Object</th>
+                    <th>{{ T $.Lang "Col_Timestamp" }}</th>
+                    <th>{{ T $.Lang "Col_User" }}</th>
+                    <th>{{ T $.Lang "Col_Action" }}</th>
+                    <th>{{ T $.Lang "Col_Object" }}</th>
                 </tr>
             </thead>
             <tbody class="mono text-sm">
@@ -83,14 +83,12 @@ $(document).ready(function() {
         info:      false,
         autoWidth: false,
         order:     [[0, 'desc']],
+        language:  window.dtLang,
         layout: {
             topStart: null,
             topEnd:   'search',
             bottomStart: null,
             bottomEnd:   null
-        },
-        language: {
-            search: 'SEARCH:'
         }
     });
 });
