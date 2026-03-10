@@ -1,6 +1,14 @@
 {{template "base" .}}
-
 {{define "title"}}{{ T $.Lang "Page_Login" }}{{end}}
+
+{{define "head_extra"}}
+<style>
+    body {
+        background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+</style>
+{{end}}
 
 {{define "content"}}
 <div class="flex flex-col items-center w-full max-w-md">
