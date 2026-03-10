@@ -18,21 +18,40 @@
         <tbody class="mono text-sm">
             {{range .AuditLogs}}
             <tr>
-                <td class="text-xs">{{.CreatedAt.Format "2006-01-02 15:04:05"}}</td>
-                <td class="font-bold">{{.AdminUser}}</td>
-                <td>{{.IPAddress}}</td>
+                <td class="text-xs whitespace-nowrap">{{.CreatedAt.Format "2006-01-02 15:04:05"}}</td>
+                <td class="font-bold whitespace-nowrap">{{.AdminUser}}</td>
+                <td class="whitespace-nowrap">{{.IPAddress}}</td>
                 <td class="text-center">
                     {{if eq .Action "CREATE_USER"}}
-                        <span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">CREATE</span>
+                    <span
+                        class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">+
+                        User</span>
                     {{else if eq .Action "UPDATE_USER"}}
-                        <span class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold text-xs uppercase">UPDATE</span>
+                    <span
+                        class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">~
+                        User</span>
                     {{else if eq .Action "DELETE_USER"}}
-                        <span class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">DELETE</span>
+                    <span
+                        class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">-
+                        User</span>
+                    {{else if eq .Action "CREATE_GROUP"}}
+                    <span
+                        class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">+
+                        Group</span>
+                    {{else if eq .Action "UPDATE_GROUP"}}
+                    <span
+                        class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">~
+                        Group</span>
+                    {{else if eq .Action "DELETE_GROUP"}}
+                    <span
+                        class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">-
+                        Group</span>
                     {{else}}
-                        <span class="bg-[var(--color-primary)] text-white px-2 py-1 font-bold text-xs uppercase">{{.Action}}</span>
+                    <span
+                        class="bg-[var(--color-primary)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">{{.Action}}</span>
                     {{end}}
                 </td>
-                <td class="text-xs break-all max-w-xs">{{.ObjectDN}}</td>
+                <td class="text-xs">{{.ObjectDN}}</td>
                 <td class="text-xs text-[var(--color-muted)]">{{.Details}}</td>
             </tr>
             {{else}}
@@ -52,24 +71,28 @@
 {{define "scripts"}}
 <script src="/static/js/datatables.min.js"></script>
 <script>
-$(document).ready(function() {
-    $('#table-audit').DataTable({
-        pageLength: 25,
-        lengthMenu: [10, 25, 50, 100],
-        autoWidth: false,
-        order: [[0, 'desc']],
-        language: window.dtLang,
-        layout: {
-            topStart:    'pageLength',
-            topEnd:      'search',
-            bottomStart: 'info',
-            bottomEnd:   'paging'
-        },
-        columnDefs: [
-            { orderable: false, targets: [5] },
-            { className: 'dt-center', width: '100px', targets: [3] }
-        ]
+    $(document).ready(function () {
+        $('#table-audit').DataTable({
+            pageLength: 25,
+            lengthMenu: [10, 25, 50, 100],
+            autoWidth: false,
+            order: [[0, 'desc']],
+            language: window.dtLang,
+            layout: {
+                topStart: 'pageLength',
+                topEnd: 'search',
+                bottomStart: 'info',
+                bottomEnd: 'paging'
+            },
+            columnDefs: [
+                { width: '155px', className: 'dt-left', targets: [0] },
+                { width: '140px', className: 'dt-left', targets: [1] },
+                { width: '140px', className: 'dt-left', targets: [2] },
+                { width: '90px', className: 'dt-center', targets: [3] },
+                { width: '35%', className: 'dt-left', targets: [4] },
+                { orderable: false, className: 'dt-left', targets: [5] }
+            ]
+        });
     });
-});
 </script>
 {{end}}

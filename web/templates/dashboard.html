@@ -26,7 +26,8 @@
     <div class="card flex flex-col items-center justify-center p-8 bg-[#E5E5E5] hover:bg-white transition-none">
         <i data-lucide="monitor" style="color: var(--color-success)"></i>
         <h3 class="text-xl font-bold uppercase">{{ T $.Lang "Card_DCStatus" }}</h3>
-        <p class="text-2xl font-black mt-2 uppercase" style="color: var(--color-success)">{{ T $.Lang "Label_Online" }}</p>
+        <p class="text-2xl font-black mt-2 uppercase" style="color: var(--color-success)">{{ T $.Lang "Label_Online" }}
+        </p>
     </div>
 
 </div>
@@ -36,29 +37,48 @@
         {{ T $.Lang "Label_RecentActivity" }}
     </h2>
     <div class="card p-0">
-        <table id="table-audit-dashboard" class="table-brutal">
+        <table id="table-audit-dashboard" class="table-brutal w-full">
             <thead>
                 <tr>
-                    <th>{{ T $.Lang "Col_Timestamp" }}</th>
-                    <th>{{ T $.Lang "Col_User" }}</th>
+                    <th class="text-left">{{ T $.Lang "Col_Timestamp" }}</th>
+                    <th class="text-left">{{ T $.Lang "Col_User" }}</th>
                     <th class="text-center">{{ T $.Lang "Col_Action" }}</th>
-                    <th>{{ T $.Lang "Col_Object" }}</th>
+                    <th class="text-left">{{ T $.Lang "Col_Object" }}</th>
                 </tr>
             </thead>
             <tbody class="mono text-sm">
                 {{range .RecentLogs}}
                 <tr>
-                    <td class="text-xs">{{.CreatedAt.Format "2006-01-02 15:04:05"}}</td>
-                    <td class="font-bold">{{.AdminUser}}</td>
+                    <td class="text-xs whitespace-nowrap">{{.CreatedAt.Format "2006-01-02 15:04:05"}}</td>
+                    <td class="font-bold whitespace-nowrap">{{.AdminUser}}</td>
                     <td class="text-center">
                         {{if eq .Action "CREATE_USER"}}
-                            <span class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase">CREATE</span>
+                        <span
+                            class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">+
+                            User</span>
                         {{else if eq .Action "UPDATE_USER"}}
-                            <span class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold text-xs uppercase">UPDATE</span>
+                        <span
+                            class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">~
+                            User</span>
                         {{else if eq .Action "DELETE_USER"}}
-                            <span class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase">DELETE</span>
+                        <span
+                            class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">-
+                            User</span>
+                        {{else if eq .Action "CREATE_GROUP"}}
+                        <span
+                            class="bg-[var(--color-success)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">+
+                            Group</span>
+                        {{else if eq .Action "UPDATE_GROUP"}}
+                        <span
+                            class="bg-[var(--color-warning)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">~
+                            Group</span>
+                        {{else if eq .Action "DELETE_GROUP"}}
+                        <span
+                            class="bg-[var(--color-accent)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">-
+                            Group</span>
                         {{else}}
-                            <span class="bg-[var(--color-primary)] text-white px-2 py-1 font-bold text-xs uppercase">{{.Action}}</span>
+                        <span
+                            class="bg-[var(--color-primary)] text-white px-2 py-1 font-bold text-xs uppercase whitespace-nowrap">{{.Action}}</span>
                         {{end}}
                     </td>
                     <td class="text-xs">{{.ObjectDN}}</td>
@@ -77,23 +97,26 @@
 {{define "scripts"}}
 <script src="/static/js/datatables.min.js"></script>
 <script>
-$(document).ready(function() {
-    $('#table-audit-dashboard').DataTable({
-        paging:    false,
-        info:      false,
-        autoWidth: false,
-        order:     [[0, 'desc']],
-        language:  window.dtLang,
-        layout: {
-            topStart: null,
-            topEnd:   'search',
-            bottomStart: null,
-            bottomEnd:   null
-        },
-        columnDefs: [
-            { className: 'dt-center', width: '100px', targets: [2] }
-        ]
+    $(document).ready(function () {
+        $('#table-audit-dashboard').DataTable({
+            paging: false,
+            info: false,
+            autoWidth: false,
+            order: [[0, 'desc']],
+            language: window.dtLang,
+            layout: {
+                topStart: null,
+                topEnd: 'search',
+                bottomStart: null,
+                bottomEnd: null
+            },
+            columnDefs: [
+                { width: '155px', className: 'dt-left', targets: [0] },
+                { width: '150px', className: 'dt-left', targets: [1] },
+                { width: '95px', className: 'dt-center', targets: [2] },
+                { className: 'dt-left', targets: [3] }
+            ]
+        });
     });
-});
 </script>
 {{end}}
