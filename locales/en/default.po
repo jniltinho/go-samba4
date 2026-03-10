@@ -394,31 +394,6 @@ msgstr "Uncheck to disable login access without deleting the account."
 msgid "Msg_PwdNeverExpiresDesc"
 msgstr "Exempts this account from the domain password expiration policy."
 
-# DataTables
-msgid "DT_ShowEntries"
-msgstr "SHOW _MENU_ entries"
-
-msgid "DT_InfoUsers"
-msgstr "Showing _START_ to _END_ of _TOTAL_ users"
-
-msgid "DT_InfoEmptyUsers"
-msgstr "No users found"
-
-msgid "DT_InfoFiltered"
-msgstr "(filtered from _MAX_)"
-
-msgid "DT_InfoGroups"
-msgstr "Showing _START_ to _END_ of _TOTAL_ groups"
-
-msgid "DT_InfoEmptyGroups"
-msgstr "No groups found"
-
-msgid "DT_InfoEntries"
-msgstr "Showing _START_ to _END_ of _TOTAL_ entries"
-
-msgid "DT_InfoEmptyLogs"
-msgstr "No logs found"
-
 # Settings
 msgid "Settings_LDAPConfig"
 msgstr "LDAP Configuration"

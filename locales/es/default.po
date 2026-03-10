@@ -394,31 +394,6 @@ msgstr "Desmarque para deshabilitar el acceso sin eliminar la cuenta."
 msgid "Msg_PwdNeverExpiresDesc"
 msgstr "Exime esta cuenta de la política de vencimiento de contraseñas."
 
-# DataTables
-msgid "DT_ShowEntries"
-msgstr "MOSTRAR _MENU_ entradas"
-
-msgid "DT_InfoUsers"
-msgstr "Mostrando _START_ a _END_ de _TOTAL_ usuarios"
-
-msgid "DT_InfoEmptyUsers"
-msgstr "No se encontraron usuarios"
-
-msgid "DT_InfoFiltered"
-msgstr "(filtrado de _MAX_)"
-
-msgid "DT_InfoGroups"
-msgstr "Mostrando _START_ a _END_ de _TOTAL_ grupos"
-
-msgid "DT_InfoEmptyGroups"
-msgstr "No se encontraron grupos"
-
-msgid "DT_InfoEntries"
-msgstr "Mostrando _START_ a _END_ de _TOTAL_ entradas"
-
-msgid "DT_InfoEmptyLogs"
-msgstr "No se encontraron logs"
-
 # Settings
 msgid "Settings_LDAPConfig"
 msgstr "Configuración LDAP"

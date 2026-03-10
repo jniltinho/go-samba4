@@ -394,31 +394,6 @@ msgstr "Desmarque para desativar o acesso sem excluir a conta."
 msgid "Msg_PwdNeverExpiresDesc"
 msgstr "Isenta esta conta da política de expiração de senha."
 
-# DataTables
-msgid "DT_ShowEntries"
-msgstr "MOSTRAR _MENU_ registros"
-
-msgid "DT_InfoUsers"
-msgstr "Mostrando _START_ a _END_ de _TOTAL_ usuários"
-
-msgid "DT_InfoEmptyUsers"
-msgstr "Nenhum usuário encontrado"
-
-msgid "DT_InfoFiltered"
-msgstr "(filtrado de _MAX_)"
-
-msgid "DT_InfoGroups"
-msgstr "Mostrando _START_ a _END_ de _TOTAL_ grupos"
-
-msgid "DT_InfoEmptyGroups"
-msgstr "Nenhum grupo encontrado"
-
-msgid "DT_InfoEntries"
-msgstr "Mostrando _START_ a _END_ de _TOTAL_ registros"
-
-msgid "DT_InfoEmptyLogs"
-msgstr "Nenhum log encontrado"
-
 # Settings
 msgid "Settings_LDAPConfig"
 msgstr "Configuração LDAP"
